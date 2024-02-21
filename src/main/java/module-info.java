@@ -4,6 +4,6 @@ module tn.esprit.esprit {
     requires java.sql;
 
 
-    opens tn.esprit.esprit to javafx.fxml;
-    exports tn.esprit.esprit;
+    exports tn.esprit.esprit.test;
+    opens tn.esprit.esprit.test to javafx.fxml;
 }

@@ -4,7 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="12e99c3f-d69f-4ce3-a0fb-12f240e81200" name="Changes" comment="" />
+    <list default="true" id="12e99c3f-d69f-4ce3-a0fb-12f240e81200" name="Changes" comment="gestionUser">
+      <change afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/esprit/controller/loginController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/tn/esprit/esprit/login.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/esprit/MainFx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/esprit/test/MainFx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/esprit/Securite/BCrypt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/esprit/Securite/BCrypt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/tn/esprit/esprit/hello-view.fxml" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -19,7 +28,26 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="baf8363a916e6bb5eb9f2af7fd54e845d9f8e1fb" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "oldsonny"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="c2ccb404-3b0b-450d-8acd-7183e3d306cd" />
+        <option name="url" value="https://github.com/rayaabdelhafidh/EspritE-Learn.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/main/java/tn/esprit/esprit/MainFx.java" root0="FORCE_HIGHLIGHTING" />
@@ -39,7 +67,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "gestion__user-khalilNaddari",
     "last_opened_file_path": "C:/Users/nadda/Desktop/esprit",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -48,6 +76,11 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\nadda\Desktop\esprit\src\main\resources\tn\esprit\esprit" />
+    </key>
+  </component>
   <component name="RunManager" selected="Application.Main">
     <configuration name="HelloApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="tn.esprit.esprit.HelloApplication" />
@@ -79,6 +112,8 @@
       <list>
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.HelloApplication" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.HelloApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -95,11 +130,37 @@
       <workItem from="1708419944012" duration="4908000" />
       <workItem from="1708430223858" duration="4347000" />
       <workItem from="1708440863322" duration="9903000" />
-      <workItem from="1708461762801" duration="6096000" />
+      <workItem from="1708461762801" duration="6987000" />
+      <workItem from="1708469541553" duration="578000" />
+      <workItem from="1708502607113" duration="2770000" />
     </task>
+    <task id="LOCAL-00001" summary="gestionUser">
+      <option name="closed" value="true" />
+      <created>1708468821895</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1708468821896</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="gestionUser" />
+    <option name="LAST_COMMIT_MESSAGE" value="gestionUser" />
   </component>
 </project>

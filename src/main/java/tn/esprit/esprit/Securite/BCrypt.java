@@ -1,19 +1,12 @@
 package tn.esprit.esprit.Securite;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 
 
 import java.io.UnsupportedEncodingException;
 import java.security.SecureRandom;
 
-/**
- *
- * @author maham
- */
+
 public class BCrypt {
     private static final int GENSALT_DEFAULT_LOG2_ROUNDS = 10;
     private static final int BCRYPT_SALT_LEN = 16;
