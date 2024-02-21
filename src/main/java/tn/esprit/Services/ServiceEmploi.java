@@ -81,11 +81,13 @@ public class ServiceEmploi implements IServiceEmploi<emploi> {
                 Salle salle = new Salle();
                 salle.setSalleId(salleId);
                 e.setSalle(salle);
-//                Set<JourSemaine> jourSemaineSet = getJourSemaineByEmploiId(e.getEmploiId()); // You need to implement this method
-//                e.setJourSemaine(jourSemaineSet);
                 Set<JourSemaine> jourSemaineSet = new HashSet<>();
+                JourSemaine jourSemaine = JourSemaine.valueOf(rs.getString("jourSemaine"));
+                jourSemaineSet.add(jourSemaine);
                 e.setJourSemaine(jourSemaineSet);
                 Set<Heure> heureSet = new HashSet<>();
+                Heure heure = Heure.valueOf(rs.getString("Heure"));
+                heureSet.add(heure);
                 e.setHeure(heureSet);
                 emplois.add(e);
             }
