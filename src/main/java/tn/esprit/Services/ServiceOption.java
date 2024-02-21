@@ -31,16 +31,64 @@ public class ServiceOption implements IServices<Option> {
     }
     @Override
     public ArrayList<Option> getAll() {
-        return null;
+        ArrayList<Option> options = new ArrayList<>();
+        String qry = "SELECT * FROM options";
+        try {
+            PreparedStatement stm = cnx.prepareStatement(qry);
+            ResultSet rs= stm.executeQuery();
+
+            while (rs.next()) {
+                Option option = new Option();
+                option.setOption_id(rs.getInt("option_id"));
+                option.setOption_content(rs.getString("option_content"));
+                option.setIs_correct(rs.getBoolean("is_correct"));
+
+                // Vous devez obtenir l'objet Question associé à cette option
+                // Vous pouvez utiliser serviceQuestion.getById() pour obtenir l'objet Question
+                int questionId = rs.getInt("questionId");
+
+
+                options.add(option);
+            }
+
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return options;
     }
+
 
     @Override
     public void update(Option option) {
+        String qry = "UPDATE options SET option_content = ?, is_correct = ?, questionId = ? WHERE option_id = ?";
+        try {
+            PreparedStatement stm = cnx.prepareStatement(qry);
+            stm.setString(1, option.getOption_content());
+            stm.setBoolean(2, option.isIs_correct());
+            stm.setInt(3, option.getQuestion().getQuestionId());
+            stm.setInt(4, option.getOptionId());
 
+            stm.executeUpdate();
+            stm.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     @Override
     public boolean delete(Option option) {
-        return false;
+        String qry = "DELETE FROM options WHERE id = ?";
+        try {
+            PreparedStatement stm = cnx.prepareStatement(qry);
+            stm.setInt(1, option.getOption_id());
+            stm.executeUpdate();
+
+
+            return true;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
     }
 }

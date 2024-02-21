@@ -57,23 +57,35 @@ public class ServiceQuestion implements IServices<Question> {
     }
 
     @Override
-    public void update(Question question) {
-        String qry = "UPDATE question SET content = ?, quiz_id = ? WHERE question_id = ?";
+    public void update(Quiz quiz) {
+        String qry = "UPDATE quizz SET description = ?, enseignantId = ?, matiere = ? WHERE id = ?";
         try {
             PreparedStatement stm = cnx.prepareStatement(qry);
-            stm.setString(1, question.getContent());
-            stm.setInt(2, question.getQuiz().getQuiz_id());
-            stm.setInt(3, question.getQuestionId());
+            stm.setString(1, quiz.getDescription());
+            stm.setInt(2, quiz.getEnseignantId());
+            stm.setString(3, quiz.getMatiere());
+            stm.setInt(4, quiz.getQuiz_id());
 
             stm.executeUpdate();
             stm.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+
     }
 
     @Override
-    public boolean delete(Question question) {
-        return false;
-    }
+    public boolean delete(Quiz quiz) {
+
+        String qry = "DELETE FROM quizz WHERE quiz_id = ?";
+        try {
+            PreparedStatement stm = cnx.prepareStatement(qry);
+            stm.setInt(1,quiz.getQuiz_id());
+            stm.executeUpdate();
+            return true;
+        }
+        catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
 }
