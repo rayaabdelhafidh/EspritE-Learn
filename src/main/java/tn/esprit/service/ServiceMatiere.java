@@ -119,7 +119,7 @@ public class ServiceMatiere implements IService<Matiere> {
                 //m.setNiv(Niveau.valueOf(rs.getString("niveau")));
                 m.setSemester(rs.getInt("semester"));
                m.setCredit(rs.getInt("credit"));
-               m.setIdEnseignant(rs.getInt("idPlanDetude"));
+               m.setIdPlanDetude(rs.getInt("idPlanDetude"));
                 matiereSet.add(m);
             }
         }

@@ -23,8 +23,8 @@ public class FXMain extends Application {
         primaryStage.setScene(scene);
         primaryStage.setTitle("Ajouter PlanDetude");
         primaryStage.show();*/
-        FXMLLoader loader=new FXMLLoader(FXMain.class.getResource("/ajouterPlanDetude.fxml"));
-        //FXMLLoader loader=new FXMLLoader(FXMain.class.getResource("/ajouterMatiere.fxml"));
+       // FXMLLoader loader=new FXMLLoader(FXMain.class.getResource("/ajouterPlanDetude.fxml"));
+        FXMLLoader loader=new FXMLLoader(FXMain.class.getResource("/ajouterMatiere.fxml"));
        //FXMLLoader loader=new FXMLLoader(FXMain.class.getResource("/modifierPlanDetude.fxml"));
        // FXMLLoader loader=new FXMLLoader(FXMain.class.getResource("/afficherPlanDetude.fxml"));
         Parent root=loader.load();
