@@ -16,12 +16,24 @@ public class FXMain extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        FXMLLoader loader=new FXMLLoader(FXMain.class.getResource("/ajouterPlanDetude.fxml"));
+        /*FXMLLoader loader=new FXMLLoader(FXMain.class.getResource("/ajouterPlanDetude.fxml"));
         //a7na fl etat mt3na hadhi l interface f wosto  AncherPane mais najmo nty7o f des cas ili mana3rfouch ismha fl interface donc dima a7na kif bch ndeclariw l root ili bch nloadiw fih dima madhabina nistanciw ml parent
         Parent root=loader.load();
         Scene scene=new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Ajouter PlanDetude");
+        primaryStage.show();*/
+        FXMLLoader loader=new FXMLLoader(FXMain.class.getResource("/ajouterPlanDetude.fxml"));
+        //FXMLLoader loader=new FXMLLoader(FXMain.class.getResource("/ajouterMatiere.fxml"));
+       //FXMLLoader loader=new FXMLLoader(FXMain.class.getResource("/modifierPlanDetude.fxml"));
+       // FXMLLoader loader=new FXMLLoader(FXMain.class.getResource("/afficherPlanDetude.fxml"));
+        Parent root=loader.load();
+        Scene scene=new Scene(root);
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Ajouter Cour");
         primaryStage.show();
+
+
+
     }
 }

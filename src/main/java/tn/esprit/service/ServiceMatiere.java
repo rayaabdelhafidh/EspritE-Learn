@@ -7,7 +7,9 @@ import tn.esprit.util.MyDataBase;
 
 import java.sql.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class ServiceMatiere implements IService<Matiere> {
 
@@ -129,6 +131,15 @@ public class ServiceMatiere implements IService<Matiere> {
 
     @Override
     public Matiere getById(int id) {
-        return null;
+
+        return afficher().stream().filter(p->p.getIdM()==id).findAny().orElse(null);
+
+    }
+    public List<String> getNomMatiere(){
+        return afficher().stream().map(m->m.getNomM()).collect(Collectors.toList());
+    }
+
+    public int getIdByName(String nom){
+        return afficher().stream().filter(m->m.getNomM().equals(nom)).findAny().orElse(null).getIdM();
     }
 }

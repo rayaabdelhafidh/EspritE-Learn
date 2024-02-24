@@ -66,6 +66,7 @@ import java.util.stream.Collectors;
         public Set<PlanDetude> afficher() {
             Set<PlanDetude> planSet = new HashSet<>();
             String query = "SELECT * FROM plandetude";
+
             try {
                 Statement st = cnx.createStatement();
                 ResultSet rs = st.executeQuery(query);
