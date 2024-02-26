@@ -4,22 +4,38 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane onMouseClicked="#fillforum" prefHeight="704.0" prefWidth="955.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.AjouterMatiere">
    <children>
-      <Text fill="#c11212" layoutX="678.0" layoutY="64.0" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter matiére" wrappingWidth="122.13671875" />
+      <ImageView disable="true" fitHeight="742.0" fitWidth="1015.0" layoutX="7.0" layoutY="13.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/esprit-ghazela.jpg" />
+         </image>
+      </ImageView>
+      <Text fill="#f22e2e" layoutX="358.0" layoutY="120.0" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion matiére" wrappingWidth="306.93670654296875">
+         <font>
+            <Font name="System Bold" size="38.0" />
+         </font></Text>
       <TextField fx:id="tfnommatiere" layoutX="593.0" layoutY="169.0" promptText="Nom matiere" />
       <TextField fx:id="tfnbrheures" layoutX="593.0" layoutY="248.0" promptText="nbr heures" />
       <TextField fx:id="tfcredit" layoutX="593.0" layoutY="326.0" promptText="credit" />
       <TextField fx:id="tfcoeff" layoutX="790.0" layoutY="248.0" promptText="coefficient" />
-      <ComboBox fx:id="cbenseignant" layoutX="789.0" layoutY="169.0" prefWidth="150.0" promptText="Enseignant" />
-      <ComboBox fx:id="cbsemester" layoutX="790.0" layoutY="326.0" prefWidth="150.0" promptText="Semester" />
-      <ComboBox fx:id="cbplandetude" layoutX="678.0" layoutY="427.0" prefWidth="150.0" promptText="Plan d'etude" />
+      <ComboBox fx:id="cbenseignant" editable="true" layoutX="789.0" layoutY="169.0" prefWidth="150.0" promptText="Enseignant" />
+      <ComboBox fx:id="cbplandetude" editable="true" layoutX="678.0" layoutY="427.0" prefWidth="150.0" promptText="Plan d'etude" />
       <Button layoutX="726.0" layoutY="491.0" mnemonicParsing="false" onAction="#ajouterMatiere" text="Ajouter" />
-      <ListView fx:id="listMatiere" layoutX="6.0" layoutY="162.0" onMouseClicked="#fillforum" prefHeight="478.0" prefWidth="580.0" />
+      <ListView fx:id="listMatiere" layoutX="6.0" layoutY="162.0" onMouseClicked="#fillforum" prefHeight="362.0" prefWidth="580.0" />
       <Button layoutX="622.0" layoutY="491.0" mnemonicParsing="false" onAction="#supprimerMatiere" text="Supprimer" />
       <Button layoutX="837.0" layoutY="491.0" mnemonicParsing="false" onAction="#modifierMatiere" text="Modifier" />
+      <ImageView fitHeight="51.0" fitWidth="124.0" layoutX="14.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/esprit-withoutpg.png" />
+         </image>
+      </ImageView>
+      <ComboBox fx:id="cbsemester" layoutX="789.0" layoutY="330.0" prefWidth="150.0" promptText="Semester" />
    </children>
 </AnchorPane>

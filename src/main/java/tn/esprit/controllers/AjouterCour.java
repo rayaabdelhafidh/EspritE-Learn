@@ -2,13 +2,21 @@ package tn.esprit.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+import tn.esprit.FXMain;
 import tn.esprit.models.Cour;
 import tn.esprit.models.Matiere;
 import tn.esprit.models.PlanDetude;
 import tn.esprit.service.ServiceCour;
 import tn.esprit.service.ServiceMatiere;
+
+import java.io.IOException;
+import java.util.Set;
 
 public class AjouterCour {
 
@@ -17,6 +25,14 @@ public class AjouterCour {
 
     @FXML
     private TextField tfcour;
+
+    @FXML
+    private AnchorPane anchorpane;
+
+
+
+    @FXML
+    private GridPane grid;
 
     @FXML
     private TextField tfdescription;
@@ -35,7 +51,9 @@ public class AjouterCour {
     ServiceCour sc=new ServiceCour();
     ServiceMatiere sm=new ServiceMatiere();
     public void initialize() {
+
         cbmatiere.getItems().setAll(sm.getNomMatiere());
+        refresh();
     }
     @FXML
     void ajouterCour(ActionEvent event) {
@@ -50,7 +68,42 @@ public class AjouterCour {
         c.setIdMatiere(idMatiere);
         System.out.println(c);
         sc.ajouter(c);
+       refresh();
+    }
+    @FXML
+    void modifierCour(ActionEvent event) {
 
     }
 
+    @FXML
+    void supprimerCour(ActionEvent event) {
+
+    }
+
+    public void refresh(){
+         grid.getChildren().clear();//bch nfasa5 ili f wost l matrice lkol
+        Set<Cour> cours=sc.afficher();
+        int column=0;
+        int row=1;
+        for (Cour c:cours){
+          try {
+              //  bch n3ayt ll carte w n3abi les information
+              //or l carte mawjoud f interface anchorpane
+              FXMLLoader card=new FXMLLoader(FXMain.class.getResource("/cour-card-view.fxml"));
+              AnchorPane anchorPane=card.load();//7atyna l card f interface vu que l grid fiha des interfaces
+              CourCardView item=card.getController();
+              item.remplireData(c);
+              if(column==2){
+                  column=0;
+                  row++;
+              }
+              grid.add(anchorPane,column++  ,row);
+              GridPane.setMargin(anchorPane,new Insets(10));
+          } //psk l fichier ynajm ykoun mouch mwjoud maynajmch ylowdi interface mt3 fich mch mawjoud
+          catch (IOException ex){
+
+          }
+        }
+
+    }
 }

@@ -2,21 +2,45 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.AjouterCour">
+<AnchorPane fx:id="anchorpane" prefHeight="689.0" prefWidth="942.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.AjouterCour">
    <children>
-      <Text fill="#d90c0c" layoutX="236.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter cour" wrappingWidth="87.4066162109375" />
-      <TextField fx:id="tftitre" layoutX="63.0" layoutY="87.0" promptText="titre" />
-      <TextField fx:id="tfobjectif" layoutX="64.0" layoutY="162.0" promptText="objectif" />
-      <TextField fx:id="tfduree" layoutX="64.0" layoutY="247.0" promptText="duree" />
-      <TextField fx:id="tfimage" layoutX="347.0" layoutY="87.0" promptText="image_path" />
-      <TextField fx:id="tfcour" layoutX="347.0" layoutY="162.0" promptText="coursPdfUrl" />
-      <TextField fx:id="tfdescription" layoutX="347.0" layoutY="247.0" promptText="description" />
-      <ComboBox fx:id="cbmatiere" layoutX="213.0" layoutY="293.0" prefWidth="150.0" promptText="matiere" />
-      <Button layoutX="262.0" layoutY="342.0" mnemonicParsing="false" onAction="#ajouterCour" text="ajouter" />
+      <ImageView fitHeight="709.0" fitWidth="1035.0" layoutX="-28.0" layoutY="-5.0" opacity="0.69" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/esprit-ghazela.jpg" />
+         </image>
+      </ImageView>
+      <Text fill="#d90c0c" layoutX="666.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion Cours" wrappingWidth="196.2066650390625">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font></Text>
+      <TextField fx:id="tftitre" layoutX="577.0" layoutY="260.0" promptText="titre" />
+      <TextField fx:id="tfobjectif" layoutX="577.0" layoutY="335.0" promptText="objectif" />
+      <TextField fx:id="tfduree" layoutX="791.0" layoutY="335.0" promptText="duree" />
+      <TextField fx:id="tfimage" layoutX="791.0" layoutY="183.0" promptText="image_path" />
+      <TextField fx:id="tfcour" layoutX="577.0" layoutY="183.0" promptText="coursPdfUrl" />
+      <TextField fx:id="tfdescription" layoutX="791.0" layoutY="260.0" promptText="description" />
+      <ComboBox fx:id="cbmatiere" layoutX="689.0" layoutY="415.0" prefWidth="150.0" promptText="matiere" />
+      <Button layoutX="727.0" layoutY="513.0" mnemonicParsing="false" onAction="#ajouterCour" text="ajouter" />
+      <Button layoutX="569.0" layoutY="513.0" mnemonicParsing="false" onAction="#modifierCour" text="Modifier" />
+      <Button layoutX="866.0" layoutY="513.0" mnemonicParsing="false" onAction="#supprimerCour" text="Supprimer" />
+      <ScrollPane layoutX="13.0" layoutY="17.0" prefHeight="670.0" prefWidth="514.0">
+         <content>
+            <GridPane fx:id="grid">
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+            </GridPane>
+         </content>
+      </ScrollPane>
    </children>
 </AnchorPane>

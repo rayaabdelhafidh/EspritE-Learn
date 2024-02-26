@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -9,19 +10,29 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #8B8585;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.AjouterPlanDetude">
+<AnchorPane prefHeight="538.0" prefWidth="932.0" style="-fx-background-color: #8B8585;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.AjouterPlanDetude">
    <children>
-      <Text fill="#e40b0b" layoutX="172.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter plan d'etude" wrappingWidth="285.3824462890625">
-         <font>
-            <Font size="26.0" />
-         </font></Text>
-      <TextField fx:id="tfnomprogramme" layoutX="205.0" layoutY="146.0" promptText="Nom Programme" />
-      <ComboBox fx:id="cbniveau" layoutX="204.0" layoutY="200.0" prefWidth="150.0" promptText="Niveau" />
-      <Button layoutX="244.0" layoutY="275.0" mnemonicParsing="false" onAction="#ajouterPlanDetude" text="Ajouter" />
-      <ImageView fitHeight="54.0" fitWidth="141.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="643.0" fitWidth="1034.0" layoutX="-4.0" opacity="0.52" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@images/esprit.png" />
+            <Image url="@images/esprit-ghazela.jpg" />
          </image>
       </ImageView>
+      <Text fill="#e40b0b" layoutX="327.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion plan d'etude" wrappingWidth="285.3824462890625">
+         <font>
+            <Font name="System Bold" size="26.0" />
+         </font></Text>
+      <TextField fx:id="tfnomprogramme" layoutX="569.0" layoutY="255.0" promptText="Nom Programme" />
+      <Button layoutX="710.0" layoutY="459.0" mnemonicParsing="false" onAction="#ajouterPlanDetude" text="Ajouter" />
+      <TextField fx:id="tfdureetotal" layoutX="569.0" layoutY="346.0" promptText="Duree Toital" />
+      <TextField fx:id="tfcreditsrequistotal" layoutX="766.0" layoutY="346.0" promptText="Credits Requis Total" />
+      <Button layoutX="844.0" layoutY="459.0" mnemonicParsing="false" onAction="#supprimerPlanDetude" text="Supprimer" />
+      <Button layoutX="569.0" layoutY="459.0" mnemonicParsing="false" onAction="#modifierPlanDetude" text="Modifier" />
+      <ListView fx:id="listPlanDetude" layoutX="55.0" layoutY="178.0" onMouseClicked="#fillforum" prefHeight="362.0" prefWidth="470.0" />
+      <ImageView fitHeight="61.0" fitWidth="140.0" layoutX="6.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/esprit-withoutpg.png" />
+         </image>
+      </ImageView>
+      <ComboBox fx:id="cbniveau" layoutX="765.0" layoutY="255.0" prefWidth="150.0" promptText="Niveau" />
    </children>
 </AnchorPane>

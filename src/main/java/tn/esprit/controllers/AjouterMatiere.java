@@ -53,21 +53,23 @@ public class AjouterMatiere {
     void ajouterMatiere(ActionEvent event) {
      // sm.ajouter(new Matiere(tfnommatiere.getText(),1,tfnbrheures.getText(),tfcoeff.getText(),cbsemester.getValue(),tfcredit.getText(),cbplandetude.getValue()));
 
-        Matiere m=new Matiere();
-        m.setCoefficient(Integer.valueOf(tfcoeff.getText()));
-        m.setNbrHeure(Integer.valueOf(tfnbrheures.getText()));
-        m.setCredit(Integer.valueOf(tfcredit.getText()));
-        m.setNomM(tfnommatiere.getText());
-        m.setIdEnseignant(1);
-        m.setSemester(cbsemester.getValue());
-        int idPlanDetude=sp.getIdByNomProgramme(cbplandetude.getValue());
-        m.setIdPlanDetude(idPlanDetude);
-        PlanDetude planDetude=sp.getById(idPlanDetude);
-        planDetude.setDureeTotal(planDetude.getDureeTotal()+m.getNbrHeure());
-        planDetude.setCreditsRequisTotal(planDetude.getCreditsRequisTotal()+m.getCredit());
-        sp.modifier(planDetude);
-        sm.ajouter(m);
-        refresh();
+
+           Matiere m=new Matiere();
+           m.setCoefficient(Integer.valueOf(tfcoeff.getText()));
+           m.setNbrHeure(Integer.valueOf(tfnbrheures.getText()));
+           m.setCredit(Integer.valueOf(tfcredit.getText()));
+           m.setNomM(tfnommatiere.getText());
+           m.setIdEnseignant(1);
+           m.setSemester(cbsemester.getValue());
+           int idPlanDetude=sp.getIdByNomProgramme(cbplandetude.getValue());
+           m.setIdPlanDetude(idPlanDetude);
+           PlanDetude planDetude=sp.getById(idPlanDetude);
+           planDetude.setDureeTotal(planDetude.getDureeTotal()+m.getNbrHeure());
+           planDetude.setCreditsRequisTotal(planDetude.getCreditsRequisTotal()+m.getCredit());
+           sp.modifier(planDetude);
+           sm.ajouter(m);
+           refresh();
+
 
     }
 
