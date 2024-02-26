@@ -93,5 +93,16 @@ public class emploi {
         this.salle = salle;
     }
 
-
+    @Override
+    public String toString() {
+        return "emploi{" +
+                "emploiId=" + emploiId +
+                ", matiere=" + matiere +
+                ", salle=" + salle +
+                ", premierDate=" + premierDate +
+                ", dernierDate=" + dernierDate +
+                ", jourSemaine=" + jourSemaine +
+                ", heure=" + heure +
+                '}';
+    }
 }

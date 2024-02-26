@@ -5,7 +5,7 @@ import tn.esprit.Models.Enum.Bloc;
 public class Salle {
     private int salleId;
     private Bloc bloc;
-    private int numeroSalle; //hedha fih el etage w num classe ya3ni ma test7a9ech attribut etage. toul 106
+    private int numeroSalle;
 
     public Salle(int salleId, Bloc bloc, int numeroSalle) {
         this.salleId = salleId;
@@ -50,7 +50,6 @@ public class Salle {
     @Override
     public String toString() {
         return "Salle{" +
-                "salleId=" + salleId +
                 ", bloc=" + bloc +
                 ", numeroSalle=" + numeroSalle +
                 '}';

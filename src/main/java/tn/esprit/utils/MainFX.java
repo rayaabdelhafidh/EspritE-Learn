@@ -1,7 +1,12 @@
 package tn.esprit.utils;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class MainFX extends Application {
 
@@ -9,8 +14,22 @@ public class MainFX extends Application {
         launch(args);
     }
 
-    @Override
-    public void start(Stage primaryStage) {
+        @Override
+        public void start(Stage primaryStage) {
+            FXMLLoader loader=new FXMLLoader(getClass().getResource("/AjouterSalle.fxml"));
+            try {
+                Parent root = loader.load();
+                Scene scene =new Scene(root);
+            //    scene.getStylesheets().add(getClass().getResource("/tn/esprit/style/styleAjouterSalle.css").toExternalForm());
+                primaryStage.setTitle("gestion salle");
+                primaryStage.setScene(scene);
+                primaryStage.show();
 
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
+
+
+        }
     }
-}
+

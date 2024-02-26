@@ -1,0 +1,32 @@
+
+.anchor-pane {
+    -fx-background-color: #8b1515;
+}
+
+.tab-pane {
+    -fx-background-color: #fce6e6;
+}
+.tab {
+    -fx-background-color: #851717;
+    -fx-text-fill: #333333;
+    -fx-padding: 60px 5px;
+}
+
+.tab:hover {
+    -fx-background-color: #a17f7f;
+}
+
+.tab:hover .text {
+    -fx-text-fill: #666666;
+}
+
+
+.tab .tab-label {
+    -fx-rotate: 90;
+    -fx-translate-x: -50%;
+    -fx-translate-y: 50%;
+    -fx-min-width: 120px;
+    -fx-pref-width: 120px;
+    -fx-max-width: 200px;
+}
+

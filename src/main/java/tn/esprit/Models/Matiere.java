@@ -11,6 +11,10 @@ public class Matiere {
         this.nomMatiere = nomMatiere;
     }
 
+    public Matiere(String nomMatiere) {
+        this.nomMatiere = nomMatiere;
+    }
+
     public int getMatiereId() {
         return MatiereId;
     }

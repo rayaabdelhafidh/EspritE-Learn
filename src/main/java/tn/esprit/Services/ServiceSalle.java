@@ -31,13 +31,13 @@ public class ServiceSalle implements IServiceSalle<Salle> {
     @Override
     public ArrayList<Salle> afficherTousSalles() {
         ArrayList<Salle> salles = new ArrayList<>();
-        String qry = "SELECT * FROM `salle`";
+        String qry = "SELECT bloc, numeroSalle FROM `salle`";
         try {
             Statement stm = cnx.createStatement();
             ResultSet rs = stm.executeQuery(qry);
             while (rs.next()){
                 Salle s = new Salle();
-                s.setSalleId(rs.getInt("salleId"));
+//                s.setSalleId(rs.getInt("salleId"));
                 // traja3 el valeur mta3 bloc ka string m BD
                 //5ater el BD k traja3 valeur traja3ha de types primitives, string int etc mouch enum
                 String blocString = rs.getString("bloc");
