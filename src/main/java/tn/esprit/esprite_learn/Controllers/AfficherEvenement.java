@@ -2,15 +2,20 @@ package tn.esprit.esprite_learn.Controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 import tn.esprit.esprite_learn.Models.Clubs;
 import tn.esprit.esprite_learn.Models.Evenement;
 import tn.esprit.esprite_learn.Services.ServiceClub;
 import tn.esprit.esprite_learn.Services.ServiceEvenement;
 import tn.esprit.esprite_learn.utils.DataBase;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.SQLException;
@@ -39,6 +44,8 @@ public class AfficherEvenement {
     @FXML
     private ImageView image;
 
+    Evenement e;
+
     @FXML
     void AfficherEvenement(ActionEvent event) throws SQLException {
         DataBase db = DataBase.getInstance();
@@ -55,7 +62,6 @@ public class AfficherEvenement {
 
     }
     public void initialize() {
-        // Add context menu to the clubView
         ContextMenu contextMenu = new ContextMenu();
         MenuItem showMenuItem = new MenuItem("Show");
         showMenuItem.setOnAction(this::ShowDetails);
@@ -66,28 +72,22 @@ public class AfficherEvenement {
     void ShowDetails(ActionEvent event){
         Evenement selectedClub = onSelectedItem();
         Image defaultImage=new Image("C:/Users/abdel/OneDrive/Bureau/1.png");
-        // Display details in the detailsView
         detailsList.getItems().clear();
         detailsList.getItems().add("ID de l'evenement: " + selectedClub.getIdEvenement());
         detailsList.getItems().add("Nom de l'evenement: " + selectedClub.getNomEvenement());
         detailsList.getItems().add("Date de l'evenement: " + selectedClub.getDateEvenement());
         detailsList.getItems().add("Lieu de l'evenement: " + selectedClub.getLieuEvenement());
         detailsList.getItems().add("Club responsable:  " + selectedClub.getClub());
-        // Rest of the code remains unchanged
         String url = selectedClub.getAfficheEvenement();
         String imageURL=normalizePath(url);
         if (imageURL != null && !imageURL.isEmpty()) {
             try {
-                // Try to create the Image object from the URL
                 Image image1 = new Image(imageURL);
                 image.setImage(image1);
             } catch (Exception e) {
-                // Handle the case where the URL is invalid or resource not found
-                // You can set a default image or hide the ImageView
                 image.setImage(defaultImage);  // Set a default image
             }
         } else {
-            // Handle the case where there is no image URL (optional)
             image.setImage(defaultImage);
         }
         }
@@ -109,7 +109,6 @@ public class AfficherEvenement {
         ArrayList<Evenement> evenements = sc.display();
         Evenement selectedEvent = null;
         if (selectedEventName != null) {
-            // Retrieve details based on the selected club name
             selectedEvent = sc.find(selectedEventName);
 
         }
@@ -117,8 +116,24 @@ public class AfficherEvenement {
     }
 
     @FXML
-    void ModifierEvenement(ActionEvent event) {
+    void ModifierEvenement(ActionEvent event) throws SQLException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/tn/esprit/esprite_learn/ModifierEvenement.fxml"));
+        Parent root = null;
+        try {
+            root = fxmlLoader.load();
+        } catch (IOException e) {
+            System.out.println("Error loading ModifierClub.fxml: " + e.getMessage());
+            e.printStackTrace();
+        }
+        ModifierEvenement controller = fxmlLoader.getController();
+        e=onSelectedItem();
+        controller.setEvenement(e);
 
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setTitle("Evenement");
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
@@ -138,7 +153,6 @@ public class AfficherEvenement {
         ArrayList<Evenement> evenements = sc.display();
         Evenement ev = null;
         if (selectedEvenement != null) {
-            // Retrieve details based on the selected club name
             ev = sc.find(selectedEvenement);
             sc.delete(ev);
             detailsList.getItems().clear();
@@ -148,14 +162,53 @@ public class AfficherEvenement {
     }
 
         private String normalizePath(String originalPath) {
-            // Create a Path object from the original path
             Path path = Paths.get(originalPath);
-
-            // Normalize the path
             Path normalizedPath = path.normalize();
-
-            // Convert the normalized path to a string
             return normalizedPath.toString();
         }
+
+        void show(Clubs c) throws SQLException {
+            ServiceEvenement sc=new ServiceEvenement();
+            ArrayList<Evenement> evenements= new ArrayList<>();
+            evenements= sc.findByClub(c);
+            for(Evenement selectedClub:evenements) {
+                Image defaultImage = new Image("C:/Users/abdel/OneDrive/Bureau/1.png");
+                detailsList.getItems().clear();
+                detailsList.getItems().add("ID de l'evenement: " + selectedClub.getIdEvenement());
+                detailsList.getItems().add("Nom de l'evenement: " + selectedClub.getNomEvenement());
+                detailsList.getItems().add("Date de l'evenement: " + selectedClub.getDateEvenement());
+                detailsList.getItems().add("Lieu de l'evenement: " + selectedClub.getLieuEvenement());
+                detailsList.getItems().add("Club responsable:  " + selectedClub.getClub());
+                String url = selectedClub.getAfficheEvenement();
+                String imageURL = normalizePath(url);
+                if (imageURL != null && !imageURL.isEmpty()) {
+                    try {
+                        Image image1 = new Image(imageURL);
+                        image.setImage(image1);
+                    } catch (Exception e) {
+                        image.setImage(defaultImage);
+                    }
+                } else {
+                    image.setImage(defaultImage);
+                }
+            }
+        }
+    @FXML
+    void AjouterEvenement(ActionEvent event) {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/tn/esprit/esprite_learn/AjoutEvenement.fxml"));
+        try{
+            Parent root = fxmlLoader.load();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setTitle("Ajouter");
+            stage.setScene(scene);
+            stage.show();
+        }
+        catch (IOException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
 
 }

@@ -9,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import tn.esprit.esprite_learn.Models.Clubs;
+import tn.esprit.esprite_learn.Models.Evenement;
 import tn.esprit.esprite_learn.Services.ServiceClub;
 import tn.esprit.esprite_learn.utils.DataBase;
 
@@ -44,22 +45,15 @@ public class AfficherClub {
 
     private Clubs c;
 
+    Evenement e;
+
     public AfficherClub() {
     }
 
-    /* public ListView<String> getClubView() {
-            return clubView;
-        }
-
-        public void setClubView(String clubView) {
-            this.clubView.getItems();
-        }
-    */
     public void AfficherClub(ActionEvent event) throws SQLException {
         DataBase db = DataBase.getInstance();
         ServiceClub sc = new ServiceClub();
         ArrayList<Clubs> clubs = sc.display();
-        // Clear existing items
         clubView.getItems().clear();
 
         for (Clubs club : clubs) {
@@ -67,8 +61,6 @@ public class AfficherClub {
             System.out.println("Club Name: " + name);
             clubView.getItems().add(name);
         }
-
-        // Adding a default item, for example
         clubView.getItems().add("jhdjdh");
 
     }
@@ -80,7 +72,7 @@ public class AfficherClub {
             Parent root = fxmlLoader.load();
             Scene scene = new Scene(root);
             Stage stage = new Stage();
-            stage.setTitle("Affichage");
+            stage.setTitle("Ajouter");
             stage.setScene(scene);
             stage.show();
         }
@@ -107,7 +99,6 @@ public class AfficherClub {
         ArrayList<Clubs> clubs = sc.display();
         Clubs selectedClub = null;
         if (selectedClubName != null) {
-            // Retrieve details based on the selected club name
             selectedClub = sc.find(selectedClubName);
             sc.delete(selectedClub);
             detailsView.getItems().clear();
@@ -135,7 +126,6 @@ public class AfficherClub {
         }
         ModifierClub controller = fxmlLoader.getController();
         c=onSelectedItem();
-        // passage des détails du menu sélectionné au contrôleur
         controller.setClub(c);
 
         Scene scene = new Scene(root);
@@ -146,7 +136,6 @@ public class AfficherClub {
     }
 
    public void initialize() {
-        // Add context menu to the clubView
         ContextMenu contextMenu = new ContextMenu();
         MenuItem showMenuItem = new MenuItem("Show");
         showMenuItem.setOnAction(this::ShowDetails);
@@ -157,7 +146,6 @@ public class AfficherClub {
     void ShowDetails(ActionEvent event){
             Clubs selectedClub = onSelectedItem();
 
-            // Display details in the detailsView
             detailsView.getItems().clear();
            detailsView.getItems().add("ID du club: " + selectedClub.getIdClub());
             detailsView.getItems().add("Nom du club: " + selectedClub.getNomClub());
@@ -184,10 +172,30 @@ public class AfficherClub {
         ArrayList<Clubs> clubs = sc.display();
         Clubs selectedClub = null;
         if (selectedClubName != null) {
-            // Retrieve details based on the selected club name
             selectedClub = sc.find(selectedClubName);
 
         }
         return selectedClub;
+    }
+
+    @FXML
+    void AfficherEvenementclub(ActionEvent event) throws SQLException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/tn/esprit/esprite_learn/AfficherEvenement.fxml"));
+        Parent root = null;
+        try {
+            root = fxmlLoader.load();
+        } catch (IOException e) {
+            System.out.println("Error loading AfficherEvenement.fxml: " + e.getMessage());
+            e.printStackTrace();
+        }
+        AfficherEvenement controller = fxmlLoader.getController();
+        c=onSelectedItem();
+        controller.show(c);
+
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setTitle("Evenements");
+        stage.setScene(scene);
+        stage.show();
     }
 }

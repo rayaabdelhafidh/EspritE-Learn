@@ -92,7 +92,6 @@ public class ModifierClub {
     @FXML
     void ModifierClub(ActionEvent event) {
         try {
-            // Fetch user data from the database
             ServiceClub SM = new ServiceClub();
             Clubs c = SM.find(NomClub);
 
@@ -102,7 +101,6 @@ public class ModifierClub {
                 return;
             }
 
-            // Handling Date
             Date DateFondation;
             try {
                 LocalDate localDate = DateTF.getValue();
@@ -121,8 +119,6 @@ public class ModifierClub {
                 showAlert(Alert.AlertType.ERROR, "Error", "Le champ date est invalide");
                 return;
             }
-
-            // Update user data
             c.setNomClub(nomTF.getText());
             c.setDescription(DescriptionTF.getText());
             c.setTypeActivite(ActiviteTF.getText());
@@ -130,10 +126,8 @@ public class ModifierClub {
             c.setDateFondation(DateFondation);
             c.setActive(ouiBT.isSelected());
 
-            // Call the modifier method to update the user
             SM.update(c);
 
-            // Show success message
             showAlert(Alert.AlertType.INFORMATION, "Success", "Modification réussie !!");
         } catch (SQLException e) {
             showAlert(Alert.AlertType.ERROR, "Error", "An error occurred while updating user data!");

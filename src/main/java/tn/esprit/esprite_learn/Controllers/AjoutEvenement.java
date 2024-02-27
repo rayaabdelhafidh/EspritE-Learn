@@ -164,7 +164,7 @@ public class AjoutEvenement {
         // Description
         String affiche = AfficheTF.getText();
 
-// Vérification du champ description
+// Vérification du champ affiche
         if (affiche.trim().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur de saisie: champ affiche est vide");
@@ -192,7 +192,7 @@ public class AjoutEvenement {
         alert.setContentText("L'evenement est ajouté avec succées");
         alert.showAndWait();
         nomTF.clear();
-        DateTF.getEditor().clear(); //Type: datePeaker
+        DateTF.getEditor().clear();
         PrixTF.clear();
         AfficheTF.clear();
         LieuTF.clear();
@@ -204,15 +204,10 @@ public class AjoutEvenement {
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif")
         );
-
-        // Show the file chooser dialog
         Stage stage = (Stage) AfficheTF.getScene().getWindow();
         File selectedFile = fileChooser.showOpenDialog(stage);
-
-        // Update AfficheTF with the selected image file path
         if (selectedFile != null) {
             AfficheTF.setText(selectedFile.getAbsolutePath());
-            // Update the Evenement object with the image path
         }
     }
 

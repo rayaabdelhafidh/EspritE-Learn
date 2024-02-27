@@ -41,6 +41,7 @@
                                     </image>
                                  </ImageView>
                               </children></AnchorPane>
+                           <Button fx:id="AfficherBtn1" layoutX="292.0" layoutY="201.0" mnemonicParsing="false" onAction="#AfficherEvenementclub" styleClass="custom-button" stylesheets="@app.css" text="Evenements de ce club" />
                         </children>
                      </AnchorPane>
                   </content>

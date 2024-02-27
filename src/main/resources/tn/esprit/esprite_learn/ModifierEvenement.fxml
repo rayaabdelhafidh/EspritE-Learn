@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.ParallelCamera?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.esprite_learn.Controllers.ModifierEvenement">
+   <children>
+      <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="410.0" prefWidth="610.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="410.0" prefWidth="610.0" styleClass="anchor-pane-background" stylesheets="@app.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <ParallelCamera />
+                  <Label layoutX="8.0" layoutY="8.0" styleClass="custom-label" stylesheets="@app.css" text="Ajouter Evenement" textAlignment="CENTER" textFill="#f20909" textOverrun="CENTER_ELLIPSIS">
+                     <font>
+                        <Font name="Gill Sans MT Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="40.0" layoutY="36.0" styleClass="custom-label-one" stylesheets="@app.css" text="Nom Evenement: " />
+                  <Label layoutX="40.0" layoutY="99.0" styleClass="custom-label-one" stylesheets="@app.css" text="Date Evenement:" />
+                  <Label layoutX="40.0" layoutY="164.0" styleClass="custom-label-one" stylesheets="@app.css" text="Lieu Evenement:" />
+                  <Label layoutX="40.0" layoutY="236.0" styleClass="custom-label-one" stylesheets="@app.css" text="Affiche:" />
+                  <Label layoutX="40.0" layoutY="308.0" styleClass="custom-label-one" stylesheets="@app.css" text="Prix Evenement:" />
+                  <Label layoutX="40.0" layoutY="362.0" styleClass="custom-label-one" stylesheets="@app.css" text="Club:" />
+                  <TextField fx:id="nomTF" alignment="TOP_LEFT" layoutX="161.0" layoutY="27.0" prefHeight="25.0" prefWidth="201.0" promptText="inserer nom" styleClass="custom-text-field" stylesheets="@app.css" />
+                  <TextField fx:id="PrixTF" alignment="TOP_CENTER" layoutX="197.0" layoutY="298.0" prefHeight="39.0" prefWidth="168.0" promptText="inserer prix" styleClass="custom-text-field" stylesheets="@app.css" />
+                  <TextArea fx:id="AfficheTF" layoutX="161.0" layoutY="214.0" prefHeight="64.0" prefWidth="108.0" promptText="URL" styleClass="custom-text-field" stylesheets="@app.css" />
+                  <Button fx:id="ModifierBtn" defaultButton="true" layoutX="468.0" layoutY="159.0" mnemonicParsing="false" onAction="#ModifierEvenement" styleClass="custom-button" stylesheets="@app.css" text="Modifier" textFill="#b90606" />
+                  <TextField fx:id="LieuTF" alignment="TOP_LEFT" layoutX="161.0" layoutY="154.0" prefHeight="39.0" prefWidth="201.0" promptText="inserer lieu" styleClass="custom-text-field" stylesheets="@app.css" />
+                  <DatePicker fx:id="DateTF" layoutX="161.0" layoutY="84.0" prefHeight="25.0" prefWidth="201.0" styleClass="custom-text-field" stylesheets="@app.css" />
+                  <Button fx:id="AfficherBtn" defaultButton="true" layoutX="468.0" layoutY="214.0" mnemonicParsing="false" onAction="#AfficherEvenement" prefHeight="32.0" prefWidth="64.0" styleClass="custom-button" stylesheets="@app.css" text="Liste" textAlignment="CENTER" textFill="#3e433fbd" textOverrun="CENTER_ELLIPSIS" wrapText="true" />
+                  <Separator layoutX="407.0" layoutY="-1.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="0.0" />
+                  <ComboBox fx:id="clubCombo" layoutX="99.0" layoutY="360.0" prefWidth="150.0" />
+                  <Button fx:id="upload" layoutX="300.0" layoutY="231.0" mnemonicParsing="false" onAction="#uploadImage" styleClass="custom-button" stylesheets="@app.css" text="Upload" />
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

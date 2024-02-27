@@ -13,11 +13,11 @@
    <children>
       <BorderPane layoutX="30.0" layoutY="100.0" prefHeight="400.0" prefWidth="600.0" styleClass="border-pane-one" stylesheets="@app.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
-            <TitledPane fx:id="pane" animated="false" prefHeight="303.0" prefWidth="600.0" stylesheets="@app.css" text="Evenements" BorderPane.alignment="CENTER">
+            <TitledPane fx:id="pane" animated="false" prefHeight="351.0" prefWidth="600.0" stylesheets="@app.css" text="Evenements" BorderPane.alignment="CENTER">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="305.0" prefWidth="598.0" styleClass="border-pane-two" stylesheets="@app.css">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="296.0" prefWidth="598.0" styleClass="border-pane-two" stylesheets="@app.css">
                      <children>
-                        <ListView fx:id="eventList" layoutX="7.0" layoutY="8.0" prefHeight="216.0" prefWidth="200.0" stylesheets="@app.css">
+                        <ListView fx:id="eventList" layoutX="8.0" layoutY="6.0" prefHeight="216.0" prefWidth="200.0" stylesheets="@app.css">
                            <contextMenu>
                               <ContextMenu>
                                 <items>
@@ -26,12 +26,12 @@
                               </ContextMenu>
                            </contextMenu>
                         </ListView>
-                        <ListView fx:id="detailsList" layoutX="253.0" layoutY="20.0" prefHeight="133.0" prefWidth="200.0" stylesheets="@app.css" />
-                        <ImageView fx:id="image" fitHeight="111.0" fitWidth="180.0" layoutX="263.0" layoutY="157.0" pickOnBounds="true" preserveRatio="true" />
+                        <ListView fx:id="detailsList" layoutX="253.0" layoutY="6.0" prefHeight="160.0" prefWidth="200.0" stylesheets="@app.css" />
+                        <ImageView fx:id="image" fitHeight="132.0" fitWidth="141.0" layoutX="283.0" layoutY="172.0" pickOnBounds="true" preserveRatio="true" />
                         <Button fx:id="AfficherBtn" layoutX="75.0" layoutY="238.0" mnemonicParsing="false" onAction="#AfficherEvenement" styleClass="custom-button" stylesheets="@app.css" text="Refresh" />
                         <Button fx:id="ModifierBtn" layoutX="501.0" layoutY="20.0" mnemonicParsing="false" onAction="#ModifierEvenement" prefHeight="30.0" prefWidth="80.0" styleClass="custom-button" stylesheets="@app.css" text="Modifier" />
                         <Button fx:id="SupprimerBtn" layoutX="500.0" layoutY="57.0" mnemonicParsing="false" onAction="#SupprimerEvenement" styleClass="custom-button" stylesheets="@app.css" text="Supprimer" />
-                        <Button fx:id="SupprimerBtn1" layoutX="500.0" layoutY="124.0" mnemonicParsing="false" onAction="#SupprimerEvenement" prefHeight="30.0" prefWidth="83.0" styleClass="custom-button" stylesheets="@app.css" text="Ajouter" />
+                        <Button fx:id="AjouterBtn" layoutX="500.0" layoutY="124.0" mnemonicParsing="false" onAction="#AjouterEvenement" prefHeight="30.0" prefWidth="83.0" styleClass="custom-button" stylesheets="@app.css" text="Ajouter" />
                      </children>
                   </AnchorPane>
               </content>
