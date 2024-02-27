@@ -13,4 +13,9 @@
       <module name="workshopjdbc3a25" target="17" />
     </bytecodeTargetLevel>
   </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="prj3a22" options="" />
+    </option>
+  </component>
 </project>

@@ -1,6 +1,6 @@
 package tn.esprit.Models;
 
-import java.time.LocalDate;
+//import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -38,8 +38,10 @@ private classe classe;
         this.nomClasse = nomClasse;
     }
 
-    public Presence(EtatPresence etatPresence, LocalDate date, Seance seance, String nomClasse) {
+    public Presence() {
+
     }
+
 
     public String getNomClasse() {
         return nomClasse;
@@ -74,11 +76,11 @@ private classe classe;
         this.idPresence = idPresence;
     }
 
-    public tn.esprit.Models.EtatPresence getEtatPresence() {
+    public EtatPresence getEtatPresence() {
         return EtatPresence;
     }
 
-    public void setEtatPresence(tn.esprit.Models.EtatPresence etatPresence) {
+    public void setEtatPresence(EtatPresence etatPresence) {
         EtatPresence = etatPresence;
     }
 

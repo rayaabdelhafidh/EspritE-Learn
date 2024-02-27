@@ -1,7 +1,8 @@
 package tn.esprit.Models;
 
 public class Personne {
-    private int idP,age;
+    private int idP,age,idClasse;
+
     private String nom,prenom;
 
     public Personne() {
@@ -46,6 +47,14 @@ public class Personne {
         this.prenom = prenom;
         this.age = age;
 
+    }
+
+    public int getIdClasse(int idClasse) {
+        return this.idClasse;
+    }
+
+    public void setIdClasse(int idClasse) {
+        this.idClasse = idClasse;
     }
 
     @Override

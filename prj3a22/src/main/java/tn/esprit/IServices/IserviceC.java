@@ -12,6 +12,8 @@ public interface IserviceC <classe>{
     classe update(classe id);
     void delete(int cl) throws SQLException;
     boolean deleteNom(classe cl) throws SQLException;
+    boolean deleteByName(String nomClasse);
+    public tn.esprit.Models.classe getClasseByNom(String nomClasse);
 
 
 

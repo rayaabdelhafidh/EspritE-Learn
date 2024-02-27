@@ -1,6 +1,7 @@
 package tn.esprit.IServices;
 
 import tn.esprit.Models.Personne;
+import tn.esprit.Models.classe;
 import tn.esprit.utilse.Database;
 
 import java.sql.*;
@@ -8,6 +9,8 @@ import java.util.ArrayList;
 
 public class ServicePersonne implements IService<Personne> {
     final Connection cnx ;
+    //private Connection connection;
+
     public ServicePersonne(){
         cnx =Database.getInstance().getCnx();
 
@@ -105,4 +108,34 @@ public class ServicePersonne implements IService<Personne> {
             }
             return false;
     }
+
+
+    public ArrayList<Personne> getEtudiantsDeLaClasse(classe classe) {
+        ArrayList<Personne> etudiants = new ArrayList<>();
+        String query = "SELECT * FROM personne WHERE idClasse = ?";
+        try {
+         PreparedStatement statement = cnx.prepareStatement(query);
+            statement.setInt(1, classe.getidC());
+
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                Personne etudiant = new Personne();
+                etudiant.getIdClasse(resultSet.getInt("idClasse"));
+                etudiant.setNom(resultSet.getString("nom"));
+                etudiant.setPrenom(resultSet.getString("prenom"));
+                etudiant.setAge(resultSet.getInt("age"));
+                // Vous devrez définir les autres attributs de l'étudiant en fonction de votre modèle
+
+                etudiants.add(etudiant);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return etudiants;
+    }
+
+
+
+
 }
