@@ -1,0 +1,113 @@
+.main-bg{
+    -fx-background-image: url(images/Logo_ESPRIT_Ariana.jpg);
+}
+.border-pane-one{
+    -fx-background-image: url(images/Logo_ESPRIT_Ariana.jpg);
+    -fx-background-size: cover; /* Adjust as needed */
+    /* Other background properties */
+}
+.border-pane-two{
+    -fx-background-image: url(images/1.png);
+    -fx-background-size: cover; /* Adjust as needed */
+    /* Other background properties */
+}
+.anchor-pane-background {
+    -fx-background-color: #d03838; /* Set your desired color */
+    /* Other background properties */
+}
+.custom-button:hover{
+    -fx-background-color: #000000; /* Green background color */
+    -fx-font-family: "Open Sans"; /* Specify your font family */
+    -fx-text-fill: white; /* White text color */
+    -fx-font-size: 14px; /* Font size */
+    /* Add more styling properties as needed */
+}
+.custom-button:pressed {
+    -fx-background-color: white; /* Green background color */
+    -fx-font-family: "Open Sans"; /* Specify your font family */
+    -fx-text-fill: black; /* White text color */
+    -fx-font-size: 14px; /* Font size */
+    /* Add more styling properties as needed */
+}
+.custom-button{
+    -fx-background-color: #ffffff; /* Green background color */
+    -fx-font-family: "Open Sans"; /* Specify your font family */
+    -fx-text-fill: #f60606; /* White text color */
+    -fx-font-size: 14px; /* Font size */
+    /* Add more styling properties as needed */
+}
+.list-view {
+    -fx-background-color: #f0f0f0; /* Light gray background color */
+    -fx-border-color: #000000; /* Light gray border color */
+    -fx-border-width: 3px; /* Border width */
+}
+.list-view .cell:hover {
+    -fx-background-color: #e6e6e6; /* Lighter gray on hover */
+}
+.list-view .cell:selected {
+    -fx-background-color: #fd8282; /* Blue background for selected item */
+    -fx-text-fill: white; /* White text color for selected item */
+}
+.list-view .cell {
+    -fx-padding: 5px; /* Padding around each cell */
+    -fx-font-size: 14px; /* Font size for the items */
+}
+.list-view .scroll-bar {
+    -fx-background-color: #e0e0e0; /* Light gray scrollbar background */
+}
+.custom-label {
+    -fx-text-fill: #360000; /* Text color */
+    -fx-font-family: "Open Sans"; /* Specify your font family */
+    -fx-font-size: 16px; /* Font size */
+    -fx-font-weight: bold; /* Font weight */
+    /* Add more styling properties as needed */
+}
+/* styles.css */
+
+.custom-text-field {
+    -fx-background-color: #f0f0f0;
+    -fx-border-color: #f1dbdb; /* Couleur de la bordure */
+    -fx-border-width: 2px; /* Largeur de la bordure */
+    -fx-border-radius: 5px; /* Rayon de la bordure */
+    -fx-padding: 5px; /* Espace intérieur du champ de texte */
+    -fx-font-size: 16px;
+    -fx-text-fill: #333;
+    -fx-background-radius: 5px; /* Rayon du fond */
+    -fx-effect: innershadow(gaussian, #050202, 10, 0, 2, 2); /* Effet d'ombre intérieure */
+    -fx-prompt-text-fill: derive(-fx-control-inner-background, -30%); /* Couleur du texte de l'invite */
+    -fx-alignment: top-center; /* Centre le texte de l'invite horizontalement */
+}
+
+.custom-text-field:hover {
+    -fx-background-color: #ecf0f1; /* Couleur de fond au survol */
+}
+
+.custom-text-field:focused {
+    -fx-border-color: #36130f; /* Couleur de la bordure au focus */
+    -fx-effect: innershadow(gaussian, #110504, 10, 0, 2, 2); /* Effet d'ombre intérieure au focus */
+}
+.custom-anchor-pane {
+    -fx-background-color: #c50d0d; /* Rouge */
+}
+.custom-label-one{
+    -fx-text-fill: #fc9c9c; /* Text color */
+    -fx-font-family: "Open Sans"; /* Specify your font family */
+    -fx-font-size: 14px; /* Font size */
+    -fx-font-weight: bold; /* Font weight */
+    /* Add more styling properties as needed */
+}
+.custom-radio-button {
+    -fx-font-size: 14px; /* Taille de la police */
+    -fx-text-fill: white; /* Couleur du texte */
+    -fx-padding: 5px; /* Espace intérieur du bouton */
+    -fx-background-color: #fc9c9c; /* Couleur de fond du bouton non sélectionné */
+    -fx-border-color: #360000; /* Couleur de la bordure du bouton non sélectionné */
+    -fx-border-width: 1px; /* Largeur de la bordure du bouton non sélectionné */
+    -fx-border-radius: 3px; /* Rayon de la bordure du bouton non sélectionné */
+}
+
+.custom-radio-button:selected {
+    -fx-background-color: #050202; /* Couleur de fond du bouton sélectionné */
+    -fx-border-color: #ffffff; /* Couleur de la bordure du bouton sélectionné */
+    -fx-text-fill: #ffffff; /* Couleur du texte du bouton sélectionné */
+}
