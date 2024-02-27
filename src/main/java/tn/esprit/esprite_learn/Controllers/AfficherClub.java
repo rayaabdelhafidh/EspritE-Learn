@@ -19,10 +19,16 @@ import java.util.ArrayList;
 public class AfficherClub {
 
     @FXML
-    private Button AjouterBtn;
+    private Button AfficherBtn;
 
     @FXML
-    private ImageView back;
+    private Button ModifierBtn;
+
+    @FXML
+    private Button SupprimerBtn;
+
+    @FXML
+    private Button SupprimerBtn1;
 
     @FXML
     private ListView<String> clubView;
@@ -31,7 +37,7 @@ public class AfficherClub {
     private ListView<String> detailsView;
 
     @FXML
-    private ImageView logo;
+    private TitledPane pane;
 
     @FXML
     private MenuItem show;
@@ -86,6 +92,28 @@ public class AfficherClub {
 
     @FXML
     void SupprimerClub(ActionEvent event) {
+        String selectedClubName = clubView.getSelectionModel().getSelectedItem();
+        try {
+            DataBase db = DataBase.getInstance();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        ServiceClub sc = null;
+        try {
+            sc = new ServiceClub();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        ArrayList<Clubs> clubs = sc.display();
+        Clubs selectedClub = null;
+        if (selectedClubName != null) {
+            // Retrieve details based on the selected club name
+            selectedClub = sc.find(selectedClubName);
+            sc.delete(selectedClub);
+            detailsView.getItems().clear();
+
+
+        }
 
     }
 
@@ -128,8 +156,8 @@ public class AfficherClub {
             detailsView.getItems().clear();
            detailsView.getItems().add("ID du club: " + selectedClub.getIdClub());
             detailsView.getItems().add("Nom du club: " + selectedClub.getNomClub());
-            detailsView.getItems().add("Date de Fondation du club: " + selectedClub.getDateFondation());
-            detailsView.getItems().add("Type d'activité du club: " + selectedClub.getTypeActivite());
+            detailsView.getItems().add("Date de Fondation: " + selectedClub.getDateFondation());
+            detailsView.getItems().add("Type d'activité: " + selectedClub.getTypeActivite());
             detailsView.getItems().add("De quoi il s'agit? " + selectedClub.getDescription());
             detailsView.getItems().add("Encore actif? " + selectedClub.isActive());
         }

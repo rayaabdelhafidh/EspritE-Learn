@@ -1,5 +1,6 @@
 package tn.esprit.esprite_learn.Services;
 import tn.esprit.esprite_learn.IService.IService;
+import tn.esprit.esprite_learn.Models.Clubs;
 import tn.esprit.esprite_learn.Models.Evenement;
 import tn.esprit.esprite_learn.utils.DataBase;
 import java.sql.*;
@@ -17,7 +18,7 @@ public class ServiceEvenement implements IService<Evenement>{
         String sDateDebut = "31/12/1998";
         java.util.Date dateDebut = new SimpleDateFormat("dd/MM/yyyy").parse(sDateDebut);
 
-        String qry ="INSERT INTO `evenement`( `NomEvenement`, `DateEvenement`, `LieuEvenement`, `PrixEvenement`,`AfficheEvenement`,`club`) VALUES (?,?,?,?,?,?)";
+        String qry ="INSERT INTO `evenement`(`NomEvenement`, `DateEvenement`, `LieuEvenement`, `PrixEvenement`, `AfficheEvenement`, `club`) VALUES (?,?,?,?,?,?)";
         try {
             PreparedStatement stm = cnx.prepareStatement(qry);
             stm.setString(1,evenement.getNomEvenement());
@@ -88,5 +89,30 @@ public class ServiceEvenement implements IService<Evenement>{
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+    }
+
+    public Evenement find(String nom) {
+        ArrayList<Evenement> evenements = new ArrayList();
+        String qry = "SELECT `IdEvenement`, `NomEvenement`, `DateEvenement`, `LieuEvenement`, `PrixEvenement`, `AfficheEvenement`, `club` FROM `evenement` WHERE NomEvenement=?";
+        Evenement c;
+        try {
+            PreparedStatement ps = cnx.prepareStatement(qry);
+            ps.setString(1, nom);
+            ResultSet rs = ps.executeQuery();
+            c = new Evenement();
+            while (rs.next()) {
+                c.setIdEvenement(rs.getInt(1));
+                c.setNomEvenement(rs.getString(2));
+                c.setDateEvenement(rs.getDate(3));
+                c.setLieuEvenement(rs.getString(4));
+                c.setPrixEvenement(rs.getInt(5));
+                c.setAfficheEvenement(rs.getString(6));
+                c.setClub(rs.getInt(7));
+                System.out.println("L'evenement cherche est : " + c.toString());
+            }
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+        return c;
     }
 }

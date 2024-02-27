@@ -7,6 +7,7 @@ import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class ServiceClub implements IService<Clubs> {
 
@@ -125,5 +126,12 @@ public class ServiceClub implements IService<Clubs> {
             throw new RuntimeException(ex);
         }
         return c;
+    }
+    public int getIdByName(String nom){
+        return display().stream().filter(m->m.getNomClub().equals(nom)).findAny().orElse(null).getIdClub();
+    }
+
+    public ArrayList<String> getNom(){
+        return (ArrayList<String>) display().stream().map(m->m.getNomClub()).collect(Collectors.toList());
     }
 }

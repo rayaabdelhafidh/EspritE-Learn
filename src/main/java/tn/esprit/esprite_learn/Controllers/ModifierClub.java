@@ -53,6 +53,11 @@ public class ModifierClub {
         private RadioButton ouiBT;
 
 
+    private AfficherClub af;
+
+    public void setAfficherClub(AfficherClub af){
+        this.af=af;
+    }
 
         @FXML
         void AfficherClub(ActionEvent event) {
@@ -74,7 +79,26 @@ public class ModifierClub {
         @FXML
         void ModifierClub(ActionEvent event) {
 
+            Clubs c=null;
+
+            c=af.onSelectedItem();
+            nomTF.setText(c.getNomClub());
+            Date date = c.getDateFondation();
+            LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            DateTF.setValue(localDate);
+            ActiviteTF.setText(c.getTypeActivite());
+            DescriptionTF.setText(c.getDescription());
+            NbMembresTF.setText(String.valueOf(c.getNbMembres()));
+            if (c.isActive()) {
+                ouiBT.setSelected(true);
+                NonBT.setSelected(false);
+            } else {
+                ouiBT.setSelected(false);
+                NonBT.setSelected(true);
+            }
+
+
+        }
         }
 
-}
 

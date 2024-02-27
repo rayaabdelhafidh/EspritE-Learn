@@ -1,14 +1,15 @@
 .main-bg{
-    -fx-background-image: url(images/Logo_ESPRIT_Ariana.jpg);
+    -fx-background-image: url(1.png);
 }
 .border-pane-one{
-    -fx-background-image: url(images/Logo_ESPRIT_Ariana.jpg);
+    -fx-background-image: url(11.jpg);
     -fx-background-size: cover; /* Adjust as needed */
     /* Other background properties */
 }
 .border-pane-two{
-    -fx-background-image: url(images/1.png);
-    -fx-background-size: cover; /* Adjust as needed */
+    -fx-background-color: #949494; /* Green background color */    -fx-background-size: cover; /* Adjust as needed */
+    -fx-alignment: top-center; /* Centre le texte de l'invite horizontalement */
+
     /* Other background properties */
 }
 .anchor-pane-background {
@@ -38,7 +39,7 @@
 }
 .list-view {
     -fx-background-color: #f0f0f0; /* Light gray background color */
-    -fx-border-color: #000000; /* Light gray border color */
+    -fx-border-color: #f17979; /* Light gray border color */
     -fx-border-width: 3px; /* Border width */
 }
 .list-view .cell:hover {

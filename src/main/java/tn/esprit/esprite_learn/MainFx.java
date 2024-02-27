@@ -13,7 +13,7 @@ public class MainFx extends Application {
     }
     @Override
     public void start(Stage stage) {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AjoutClub.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AjoutEvenement.fxml"));
         try{
             Parent root = fxmlLoader.load();
             Scene scene = new Scene(root);
