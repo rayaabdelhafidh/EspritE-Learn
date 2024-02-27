@@ -127,6 +127,7 @@ public class ServiceClub implements IService<Clubs> {
         }
         return c;
     }
+
     public int getIdByName(String nom){
         return display().stream().filter(m->m.getNomClub().equals(nom)).findAny().orElse(null).getIdClub();
     }

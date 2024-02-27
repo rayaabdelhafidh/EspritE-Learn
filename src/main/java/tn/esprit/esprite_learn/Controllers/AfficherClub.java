@@ -126,18 +126,23 @@ public class AfficherClub {
     @FXML
     void ModifierClub(ActionEvent event) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/tn/esprit/esprite_learn/ModifierClub.fxml"));
-        try{
-            Parent root = fxmlLoader.load();
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.setTitle("Modifier");
-            stage.setScene(scene);
-            stage.show();
-        }
-        catch (IOException e) {
+        Parent root = null;
+        try {
+            root = fxmlLoader.load();
+        } catch (IOException e) {
             System.out.println("Error loading ModifierClub.fxml: " + e.getMessage());
             e.printStackTrace();
         }
+        ModifierClub controller = fxmlLoader.getController();
+        c=onSelectedItem();
+        // passage des détails du menu sélectionné au contrôleur
+        controller.setClub(c);
+
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setTitle("Modifier");
+        stage.setScene(scene);
+        stage.show();
     }
 
    public void initialize() {
