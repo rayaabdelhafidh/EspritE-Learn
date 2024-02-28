@@ -64,7 +64,7 @@
             <!-- Default configuration for running with: mvn clean javafx:run -->
             <id>default-cli</id>
             <configuration>
-              <mainClass>tn.esprit.esprit/tn.esprit.esprit.test.MainFx</mainClass>
+              <mainClass>tn.esprit.esprit/tn.esprit.esprit.MainFx</mainClass>
               <launcher>app</launcher>
               <jlinkZipName>app</jlinkZipName>
               <jlinkImageName>app</jlinkImageName>

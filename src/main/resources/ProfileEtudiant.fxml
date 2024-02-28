@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="912.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.esprit.controller.ProfileEtudiantController">
+   <left>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c90219;" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="22.0" layoutY="29.0" text="Bienvenue Etudiant" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Label>
+            <Button fx:id="logout" layoutX="66.0" layoutY="522.0" mnemonicParsing="false" onAction="#GoToLogin" text="logout">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font></Button>
+            <Button layoutX="36.0" layoutY="181.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" text="Profile">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button layoutX="36.0" layoutY="233.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" text="cours">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button layoutX="36.0" layoutY="284.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" text="Emploi">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button layoutX="36.0" layoutY="336.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" text="Evaluation">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button layoutX="36.0" layoutY="390.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" text="Clubs">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </left>
+   <right>
+      <AnchorPane prefHeight="600.0" prefWidth="912.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextField fx:id="nomf" layoutX="255.0" layoutY="205.0" prefHeight="40.0" prefWidth="200.0" style="-fx-border-color: #c90219;" />
+            <TextField fx:id="emailf" layoutX="255.0" layoutY="280.0" prefHeight="40.0" prefWidth="200.0" style="-fx-border-color: #c90219;" />
+            <Button fx:id="modif" layoutX="26.0" layoutY="521.0" mnemonicParsing="false" onAction="#UpdateProfilEtudiant" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #c90219;" text="Modifier" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font></Button>
+            <Button fx:id="cpass" layoutX="509.0" layoutY="521.0" mnemonicParsing="false" onAction="#GoTocpass" prefHeight="50.0" prefWidth="170.0" style="-fx-background-color: #c90219;" text="Changer mot de passe" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font></Button>
+            <Label layoutX="153.0" layoutY="210.0" text="Nom">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font></Label>
+            <Label layoutX="153.0" layoutY="285.0" text="E-mail">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font></Label>
+         </children></AnchorPane>
+   </right>
+</BorderPane>

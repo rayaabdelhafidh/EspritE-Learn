@@ -6,4 +6,8 @@ module tn.esprit.esprit {
 
     exports tn.esprit.esprit.test;
     opens tn.esprit.esprit.test to javafx.fxml;
+    exports tn.esprit.esprit.controller;
+    opens tn.esprit.esprit.controller to javafx.fxml;
+    exports tn.esprit.esprit;
+    opens tn.esprit.esprit to javafx.fxml;
 }

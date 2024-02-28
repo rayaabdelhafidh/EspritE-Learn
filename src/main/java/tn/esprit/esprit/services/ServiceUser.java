@@ -7,7 +7,6 @@ import tn.esprit.esprit.utils.MyDb;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -19,8 +18,11 @@ public class ServiceUser implements IUser<User> {
         cnx= MyDb.getInstance().getCnx();
     }
 
+
+
+
     @Override
-    public void addUser(User user){
+    public  void addUser(User user){
         String hashed = BCrypt.hashpw(user.getMdp(), BCrypt.gensalt());
         try {
             String qry = "INSERT INTO `user`( `nom`, `mdp`, `email`, `role`) VALUES (?,?,?,?)";
@@ -60,16 +62,7 @@ public class ServiceUser implements IUser<User> {
         }
         return false;
     }
-    @Override
-    public void registerUser(User user) {
-        if (!EmailExiste(user.getEmail())) {
-            String encryptmdp = encrypt(user.getMdp());
-            user.setMdp(encryptmdp);
-            addUser(user);
-        } else {
-            System.out.println("User with email " + user.getEmail() + " already exists.");
-        }
-    }
+
 
     @Override
     public void Supprimer(User user) {
@@ -80,7 +73,6 @@ public class ServiceUser implements IUser<User> {
     public void Supprimer(User user, int user_id) {
 
     }
-
     @Override
     public void Supprimer(int user_id) {
         try {
@@ -97,8 +89,9 @@ public class ServiceUser implements IUser<User> {
     }
 
     @Override
-    public void modifier(User user) {
+    public boolean modifier(User user) {
 
+        return false;
     }
 
     @Override
@@ -128,12 +121,6 @@ public class ServiceUser implements IUser<User> {
     @Override
     public ArrayList<User> getAll() {
 
-
-        //retourner toute les perosnnes dans la bd
-        //1- req SQL done
-        //2 -execution de la req done
-        // 3- remplire la liste done
-        // 4 - retourner la liste done
         ArrayList<User> users = new ArrayList();
         String qry ="SELECT * FROM `user`";
         try {
@@ -148,9 +135,6 @@ public class ServiceUser implements IUser<User> {
                 user.setRole(rs.getString("role"));
                 users.add(user);
             }
-
-
-
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -192,35 +176,84 @@ public class ServiceUser implements IUser<User> {
         }
         return user;
     }
-    @Override
-    public String encrypt(String mdp) {
+    public String login(String email, String mdp) {
+        String message = "";
+        String role = "";
 
-        return Base64.getEncoder().encodeToString(mdp.getBytes());
+        try {
+            // Vérifiez si l'email et le mot de passe ne sont pas vides et non nuls
+            if (email != null && !email.isEmpty() && mdp != null && !mdp.isEmpty()) {
+
+                // Requête SQL pour récupérer les informations de l'utilisateur
+                String query = "SELECT * FROM user WHERE email = ?";
+                PreparedStatement pst = cnx.prepareStatement(query);
+                pst.setString(1, email);
+                ResultSet rs = pst.executeQuery();
+
+                // Vérifiez si les informations d'identification sont valides
+                if (rs.next() && BCrypt.checkpw(mdp, rs.getString("mdp"))) {
+                    // Récupérez les informations de l'utilisateur
+                    int userId = rs.getInt("user_id");
+                    String nom = rs.getString("nom");
+                    role = rs.getString("role");
+
+                    // Affichez un message de bienvenue
+                    System.out.println("Bonjour, " + nom + " !");
+
+                } else {
+                    System.err.println("Vérifiez vos identifiants !");
+                    return "Vérifiez vos identifiants !";
+                }
+            } else {
+                System.out.println("Champs vides");
+                return "Veuillez fournir votre email et votre mot de passe.";
+            }
+        } catch (SQLException e) {
+            System.err.println("Erreur SQL : " + e.getMessage());
+            return "Une erreur est survenue lors de la connexion. Veuillez réessayer.";
+        }
+
+        // Si aucun rôle n'a été défini, il y a eu un problème
+        if (role.isEmpty()) {
+            message = "Impossible de récupérer le rôle de l'utilisateur.";
+        }
+
+        return role.isEmpty() ? message : role;
     }
-    @Override
-    public String decrypt(String mdp) {
 
-        return new String(Base64.getMimeDecoder().decode(mdp));
-    }
-    @Override
-    public void ban(User u) throws SQLException {
-
-        String req = "UPDATE user SET is_blocked = 1 where User_id = ?";
-        PreparedStatement ps = cnx.prepareStatement(req);
-        ps.setInt(1, u.getUser_id());
-        ps.executeUpdate();
-
-    }
-    @Override
-
-    public void unban(User u) throws SQLException {
-
-        String req = "UPDATE user SET is_blocked = 0 where User_id = ?";
-        PreparedStatement ps = cnx.prepareStatement(req);
-        ps.setInt(1, u.getUser_id());
-        ps.executeUpdate();
+    public int GetIDByEmail(String email) throws SQLException {
+            String qry = "SELECT user_id FROM user WHERE email = ?";
+            try (PreparedStatement statement = cnx.prepareStatement(qry)) {
+                statement.setString(1, email);
+                try (ResultSet rs = statement.executeQuery()) {
+                    if (rs.next()) {
+                        return rs.getInt("user_id");
+                    }
+                }
+            }
+            return -1; // Retourne une valeur par défaut si aucun utilisateur n'est trouvé
 
     }
+    public User getUserById(int userId) throws SQLException {
+        String query = "SELECT * FROM user WHERE user_id = ?";
+        try (PreparedStatement statement = cnx.prepareStatement(query)) {
+            statement.setInt(1, userId);
+            try (ResultSet rs = statement.executeQuery()) {
+                if (rs.next()) {
+                    // Extract user data from the result set
+                    String username = rs.getString("nom");
+                    String email = rs.getString("email");
+                    // Create a new User object
+                    User user = new User(userId, username, email);
+                    return user;
+                }
+            }
+        }
+        // If no user found with the given ID, return null or throw an exception
+        return null;
+    }
+
+
 
 
 

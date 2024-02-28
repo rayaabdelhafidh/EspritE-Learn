@@ -9,17 +9,25 @@ public class User {
     private String mdp;
     private String email;
     private String role;
-    private boolean is_blocked;
+
 
     public User() {
     }
 
-    public User(String nom, String mdp, String email, String role,Boolean is_blocked) {
+    public User(int user_id, String nom, String mdp, String email, String role) {
+        this.user_id = user_id;
         this.nom = nom;
         this.mdp = mdp;
         this.email = email;
         this.role = role;
-        this.is_blocked=is_blocked;
+    }
+
+    public User(String nom, String mdp, String email, String role) {
+        this.nom = nom;
+        this.mdp = mdp;
+        this.email = email;
+        this.role = role;
+
     }
 
     public User(String nom, String mdp) {
@@ -28,7 +36,7 @@ public class User {
         this.mdp = mdp;
         this.email = email;
         this.role = role;
-        this.is_blocked=is_blocked;
+
 
     }
 
@@ -38,13 +46,6 @@ public class User {
         this.role = role;
     }
 
-    public boolean isIs_blocked() {
-        return is_blocked;
-    }
-
-    public void setIs_blocked(boolean is_blocked) {
-        this.is_blocked = is_blocked;
-    }
 
     public int getUser_id() {
         return user_id;
@@ -91,12 +92,12 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return user_id == user.user_id && is_blocked == user.is_blocked && Objects.equals(nom, user.nom) && Objects.equals(mdp, user.mdp) && Objects.equals(email, user.email) && Objects.equals(role, user.role);
+        return user_id == user.user_id && Objects.equals(nom, user.nom) && Objects.equals(mdp, user.mdp) && Objects.equals(email, user.email) && Objects.equals(role, user.role);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(user_id, nom, mdp, email, role, is_blocked);
+        return Objects.hash(user_id, nom, mdp, email, role);
     }
 
     @Override
@@ -107,7 +108,7 @@ public class User {
                 ", mdp='" + mdp + '\'' +
                 ", email='" + email + '\'' +
                 ", role='" + role + '\'' +
-                ", is_blocked=" + is_blocked +
+
                 '}';
     }
 }
