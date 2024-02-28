@@ -127,6 +127,30 @@ public class ServiceClub implements IService<Clubs> {
         }
         return c;
     }
+    public Clubs findbyId(int id) {
+        ArrayList<Clubs> clubs = new ArrayList();
+        String qry = "SELECT `IdClub`, `NomClub`, `DateFondation`, `TypeActivite`, `Description`, `NbMembres`, `Active` FROM `club` WHERE IdClub=?";
+        Clubs c;
+        try {
+            PreparedStatement ps = cnx.prepareStatement(qry);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            c = new Clubs();
+            while (rs.next()) {
+                c.setIdClub(rs.getInt(1));
+                c.setNomClub(rs.getString(2));
+                c.setDateFondation(rs.getDate(3));
+                c.setTypeActivite(rs.getString(4));
+                c.setDescription(rs.getString(5));
+                c.setNbMembres(rs.getInt(6));
+                c.setActive(rs.getBoolean(7));
+                System.out.println("Le club cherchée est : " + c.toString());
+            }
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+        return c;
+    }
 
     public int getIdByName(String nom){
         return display().stream().filter(m->m.getNomClub().equals(nom)).findAny().orElse(null).getIdClub();

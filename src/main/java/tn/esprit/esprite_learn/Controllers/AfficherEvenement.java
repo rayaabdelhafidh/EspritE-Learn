@@ -44,7 +44,12 @@ public class AfficherEvenement {
     @FXML
     private ImageView image;
 
+    ServiceClub scc=new ServiceClub();
+
     Evenement e;
+
+    public AfficherEvenement() throws SQLException {
+    }
 
     @FXML
     void AfficherEvenement(ActionEvent event) throws SQLException {
@@ -71,13 +76,14 @@ public class AfficherEvenement {
     @FXML
     void ShowDetails(ActionEvent event){
         Evenement selectedClub = onSelectedItem();
+        Clubs cl=scc.findbyId(selectedClub.getClub());
         Image defaultImage=new Image("C:/Users/abdel/OneDrive/Bureau/1.png");
         detailsList.getItems().clear();
-        detailsList.getItems().add("ID de l'evenement: " + selectedClub.getIdEvenement());
         detailsList.getItems().add("Nom de l'evenement: " + selectedClub.getNomEvenement());
         detailsList.getItems().add("Date de l'evenement: " + selectedClub.getDateEvenement());
+        detailsList.getItems().add("Prix pass: " + selectedClub.getPrixEvenement());
         detailsList.getItems().add("Lieu de l'evenement: " + selectedClub.getLieuEvenement());
-        detailsList.getItems().add("Club responsable:  " + selectedClub.getClub());
+        detailsList.getItems().add("Club responsable:  " + cl.getNomClub());
         String url = selectedClub.getAfficheEvenement();
         String imageURL=normalizePath(url);
         if (imageURL != null && !imageURL.isEmpty()) {
@@ -173,12 +179,13 @@ public class AfficherEvenement {
             evenements= sc.findByClub(c);
             for(Evenement selectedClub:evenements) {
                 Image defaultImage = new Image("C:/Users/abdel/OneDrive/Bureau/1.png");
+                Clubs cl=scc.findbyId(selectedClub.getClub());
                 detailsList.getItems().clear();
-                detailsList.getItems().add("ID de l'evenement: " + selectedClub.getIdEvenement());
                 detailsList.getItems().add("Nom de l'evenement: " + selectedClub.getNomEvenement());
                 detailsList.getItems().add("Date de l'evenement: " + selectedClub.getDateEvenement());
+                detailsList.getItems().add("Prix pass: " + selectedClub.getPrixEvenement());
                 detailsList.getItems().add("Lieu de l'evenement: " + selectedClub.getLieuEvenement());
-                detailsList.getItems().add("Club responsable:  " + selectedClub.getClub());
+                detailsList.getItems().add("Club responsable:  " + cl.getNomClub());
                 String url = selectedClub.getAfficheEvenement();
                 String imageURL = normalizePath(url);
                 if (imageURL != null && !imageURL.isEmpty()) {

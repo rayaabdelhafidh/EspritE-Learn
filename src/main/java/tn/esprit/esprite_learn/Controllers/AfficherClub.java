@@ -147,7 +147,6 @@ public class AfficherClub {
             Clubs selectedClub = onSelectedItem();
 
             detailsView.getItems().clear();
-           detailsView.getItems().add("ID du club: " + selectedClub.getIdClub());
             detailsView.getItems().add("Nom du club: " + selectedClub.getNomClub());
             detailsView.getItems().add("Date de Fondation: " + selectedClub.getDateFondation());
             detailsView.getItems().add("Type d'activité: " + selectedClub.getTypeActivite());
