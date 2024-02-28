@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.ObservableSet;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -20,7 +21,7 @@ public class AjouterMatiere {
     private ComboBox<String> cbenseignant;
 
     @FXML
-    private ComboBox<String > cbplandetude;
+    private ComboBox<String> cbplandetude;
 
     @FXML
     private ComboBox<Integer> cbsemester;
@@ -48,27 +49,62 @@ public class AjouterMatiere {
         cbplandetude.getItems().setAll(sp.getNomPlanDetude());
         refresh();
     }
+    public String controleDeSaisire(){
+        String erreur="";
+        if(tfnommatiere.getText().isEmpty()){
+            erreur+="-Nom matiere vide\n";
+        }
+        if(tfcredit.getText().isEmpty()){
+            erreur+="-Champ credit vide\n";
+        }
+        if(tfcoeff.getText().isEmpty()){
+            erreur+="-Champ Coefficient  vide\n";
+        }
 
+        if(cbplandetude.getValue()==null){
+            erreur+="-Plan d'etude vide\n";
+        }
+        if(cbenseignant.getValue()==null){
+            erreur+="-Champ enseignant vide\n";
+        }
+        if(cbsemester.getValue()==null){
+            erreur+="-Champ semester vide\n";
+        }
+        if(tfnbrheures.getText().isEmpty() || !tfnbrheures.getText().matches("^(2[1-9]|3[0-9]|4[0-2])$")){
+
+            erreur+="-Duree doit etre un nombre entre 21 et 42\n";
+        }
+
+        return erreur;
+    }
     @FXML
     void ajouterMatiere(ActionEvent event) {
      // sm.ajouter(new Matiere(tfnommatiere.getText(),1,tfnbrheures.getText(),tfcoeff.getText(),cbsemester.getValue(),tfcredit.getText(),cbplandetude.getValue()));
+        String erreur=controleDeSaisire();
+        if(erreur.length()>0){
+            Alert alert=new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Formulaire invalide!");
+            alert.setContentText(erreur);
+            alert.showAndWait();
+        }
+          else {
+            Matiere m=new Matiere();
+            m.setCoefficient(Integer.valueOf(tfcoeff.getText()));
+            m.setNbrHeure(Integer.valueOf(tfnbrheures.getText()));
+            m.setCredit(Integer.valueOf(tfcredit.getText()));
+            m.setNomM(tfnommatiere.getText());
+            m.setIdEnseignant(1);
+            m.setSemester(cbsemester.getValue());
+            int idPlanDetude=sp.getIdByNomProgramme(cbplandetude.getValue());
+            m.setIdPlanDetude(idPlanDetude);
+            PlanDetude planDetude=sp.getById(idPlanDetude);
+            planDetude.setDureeTotal(planDetude.getDureeTotal()+m.getNbrHeure());
+            planDetude.setCreditsRequisTotal(planDetude.getCreditsRequisTotal()+m.getCredit());
+            sp.modifier(planDetude);
+            sm.ajouter(m);
+            refresh();
+        }
 
-
-           Matiere m=new Matiere();
-           m.setCoefficient(Integer.valueOf(tfcoeff.getText()));
-           m.setNbrHeure(Integer.valueOf(tfnbrheures.getText()));
-           m.setCredit(Integer.valueOf(tfcredit.getText()));
-           m.setNomM(tfnommatiere.getText());
-           m.setIdEnseignant(1);
-           m.setSemester(cbsemester.getValue());
-           int idPlanDetude=sp.getIdByNomProgramme(cbplandetude.getValue());
-           m.setIdPlanDetude(idPlanDetude);
-           PlanDetude planDetude=sp.getById(idPlanDetude);
-           planDetude.setDureeTotal(planDetude.getDureeTotal()+m.getNbrHeure());
-           planDetude.setCreditsRequisTotal(planDetude.getCreditsRequisTotal()+m.getCredit());
-           sp.modifier(planDetude);
-           sm.ajouter(m);
-           refresh();
 
 
     }
@@ -93,25 +129,37 @@ public class AjouterMatiere {
     }
     @FXML
     void modifierMatiere(ActionEvent event) {
-        Matiere m=listMatiere.getSelectionModel().getSelectedItem();
-        int nbHeure=m.getNbrHeure();
-        int credit=m.getCredit();
-        if(m!=null){
-            m.setCoefficient(Integer.valueOf(tfcoeff.getText()));
-            m.setNbrHeure(Integer.valueOf(tfnbrheures.getText()));
-            m.setCredit(Integer.valueOf(tfcredit.getText()));
-            m.setNomM(tfnommatiere.getText());
-            m.setIdEnseignant(1);
-            m.setSemester(cbsemester.getValue());
-            int idPlanDetude=sp.getIdByNomProgramme(cbplandetude.getValue());
-            m.setIdPlanDetude(idPlanDetude);
-            PlanDetude planDetude=sp.getById(idPlanDetude);
-            planDetude.setDureeTotal(planDetude.getDureeTotal()+(m.getNbrHeure()-nbHeure));
-            planDetude.setCreditsRequisTotal(planDetude.getCreditsRequisTotal()+(m.getCredit()-credit));
-            sp.modifier(planDetude);
-            sm.modifier(m);
-            refresh();
+
+
+        String erreur=controleDeSaisire();
+        if(erreur.length()>0){
+            Alert alert=new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Formulaire invalide!");
+            alert.setContentText(erreur);
+            alert.showAndWait();
         }
+        else {
+            Matiere m=listMatiere.getSelectionModel().getSelectedItem();
+            int nbHeure=m.getNbrHeure();
+            int credit=m.getCredit();
+            if(m!=null){
+                m.setCoefficient(Integer.valueOf(tfcoeff.getText()));
+                m.setNbrHeure(Integer.valueOf(tfnbrheures.getText()));
+                m.setCredit(Integer.valueOf(tfcredit.getText()));
+                m.setNomM(tfnommatiere.getText());
+                m.setIdEnseignant(1);
+                m.setSemester(cbsemester.getValue());
+                int idPlanDetude=sp.getIdByNomProgramme(cbplandetude.getValue());
+                m.setIdPlanDetude(idPlanDetude);
+                PlanDetude planDetude=sp.getById(idPlanDetude);
+                planDetude.setDureeTotal(planDetude.getDureeTotal()+(m.getNbrHeure()-nbHeure));
+                planDetude.setCreditsRequisTotal(planDetude.getCreditsRequisTotal()+(m.getCredit()-credit));
+                sp.modifier(planDetude);
+                sm.modifier(m);
+                refresh();
+            }
+        }
+
     }
 
     @FXML

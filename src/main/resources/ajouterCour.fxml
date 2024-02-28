@@ -19,21 +19,20 @@
             <Image url="@images/esprit-ghazela.jpg" />
          </image>
       </ImageView>
-      <Text fill="#d90c0c" layoutX="666.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion Cours" wrappingWidth="196.2066650390625">
+      <Text fill="#f22e2e" layoutX="662.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion Cours" wrappingWidth="247.40673828125">
          <font>
-            <Font name="System Bold" size="25.0" />
+            <Font name="System Bold" size="32.0" />
          </font></Text>
-      <TextField fx:id="tftitre" layoutX="577.0" layoutY="260.0" promptText="titre" />
-      <TextField fx:id="tfobjectif" layoutX="577.0" layoutY="335.0" promptText="objectif" />
-      <TextField fx:id="tfduree" layoutX="791.0" layoutY="335.0" promptText="duree" />
-      <TextField fx:id="tfimage" layoutX="791.0" layoutY="183.0" promptText="image_path" />
-      <TextField fx:id="tfcour" layoutX="577.0" layoutY="183.0" promptText="coursPdfUrl" />
-      <TextField fx:id="tfdescription" layoutX="791.0" layoutY="260.0" promptText="description" />
+      <TextField fx:id="tftitre" layoutX="614.0" layoutY="260.0" promptText="titre" />
+      <TextField fx:id="tfobjectif" layoutX="614.0" layoutY="335.0" promptText="objectif" />
+      <TextField fx:id="tfduree" layoutX="814.0" layoutY="335.0" promptText="duree" />
+      <TextField fx:id="tfimage" layoutX="814.0" layoutY="183.0" promptText="image_path" />
+      <TextField fx:id="tfcour" layoutX="614.0" layoutY="183.0" promptText="coursPdfUrl" />
+      <TextField fx:id="tfdescription" layoutX="814.0" layoutY="260.0" promptText="description" />
       <ComboBox fx:id="cbmatiere" layoutX="689.0" layoutY="415.0" prefWidth="150.0" promptText="matiere" />
-      <Button layoutX="727.0" layoutY="513.0" mnemonicParsing="false" onAction="#ajouterCour" text="ajouter" />
-      <Button layoutX="569.0" layoutY="513.0" mnemonicParsing="false" onAction="#modifierCour" text="Modifier" />
-      <Button layoutX="866.0" layoutY="513.0" mnemonicParsing="false" onAction="#supprimerCour" text="Supprimer" />
-      <ScrollPane layoutX="13.0" layoutY="17.0" prefHeight="670.0" prefWidth="514.0">
+      <Button layoutX="821.0" layoutY="513.0" mnemonicParsing="false" onAction="#ajouterCour" text="ajouter" />
+      <Button layoutX="689.0" layoutY="513.0" mnemonicParsing="false" onAction="#modifierCour" text="Modifier" />
+      <ScrollPane layoutX="5.0" layoutY="17.0" prefHeight="670.0" prefWidth="598.0">
          <content>
             <GridPane fx:id="grid">
               <rowConstraints>
@@ -42,5 +41,10 @@
             </GridPane>
          </content>
       </ScrollPane>
+      <ImageView fitHeight="140.0" fitWidth="128.0" layoutX="900.0" layoutY="597.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/logo.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

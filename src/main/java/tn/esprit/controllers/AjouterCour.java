@@ -4,11 +4,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import tn.esprit.FXMain;
+import tn.esprit.iservice.OnChangeListener;
 import tn.esprit.models.Cour;
 import tn.esprit.models.Matiere;
 import tn.esprit.models.PlanDetude;
@@ -18,7 +20,7 @@ import tn.esprit.service.ServiceMatiere;
 import java.io.IOException;
 import java.util.Set;
 
-public class AjouterCour {
+public class AjouterCour implements OnChangeListener {
 
     @FXML
     private ComboBox<String> cbmatiere;
@@ -48,6 +50,7 @@ public class AjouterCour {
 
     @FXML
     private TextField tftitre;
+    int idModifier;
     ServiceCour sc=new ServiceCour();
     ServiceMatiere sm=new ServiceMatiere();
     public void initialize() {
@@ -55,30 +58,85 @@ public class AjouterCour {
         cbmatiere.getItems().setAll(sm.getNomMatiere());
         refresh();
     }
+
+    public String controleDeSaisire(){
+        String erreur="";
+        if(tftitre.getText().isEmpty()){
+            erreur+="-Titre vide\n";
+        }
+        if(tfobjectif.getText().isEmpty()){
+            erreur+="-Objectif vide\n";
+        }
+        if(tfcour.getText().isEmpty()){
+            erreur+="-Url cour vide\n";
+        }
+        if(tfimage.getText().isEmpty()){
+            erreur+="-Image vide\n";
+        }
+        if(tfdescription.getText().isEmpty() || tfdescription.getText().length()>200){
+            erreur+="-Description vide ou invalide (max:200 caractere)\n";
+        }
+        if(cbmatiere.getValue()==null){
+            erreur+="-Matiere vide\n";
+        }
+        /*if(tfduree.getText().isEmpty() || !tfduree.getText().matches("^(2[1-9]|3[0-9]|4[0-2])$")){
+
+            erreur+="-Duree doit etre un nombre entre 21 et 42\n";
+        }*/
+        if(tfduree.getText().isEmpty() || !tfduree.getText().matches("\\d+")){
+
+            erreur+="-Duree doit etre un nombre positif\n";
+        }
+        return erreur;
+    }
     @FXML
     void ajouterCour(ActionEvent event) {
-        Cour c=new Cour();
-        c.setTitre(tftitre.getText());
-        c.setObjectif(tfobjectif.getText());
-        c.setDuree(Integer.valueOf(tfduree.getText()));
-        c.setImage(tfimage.getText());
-        c.setCoursPdfUrl(tfcour.getText());
-        c.setDescription(tfdescription.getText());
-        int idMatiere= sm.getIdByName(cbmatiere.getValue());
-        c.setIdMatiere(idMatiere);
-        System.out.println(c);
-        sc.ajouter(c);
-       refresh();
+        String erreur=controleDeSaisire();
+        if(erreur.length()>0){
+            Alert alert=new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Formulaire invalide!");
+            alert.setContentText(erreur);
+            alert.showAndWait();
+        }
+        else{Cour c=new Cour();
+            c.setTitre(tftitre.getText());
+            c.setObjectif(tfobjectif.getText());
+            c.setDuree(Integer.valueOf(tfduree.getText()));
+            c.setImage(tfimage.getText());
+            c.setCoursPdfUrl(tfcour.getText());
+            c.setDescription(tfdescription.getText());
+            int idMatiere= sm.getIdByName(cbmatiere.getValue());
+            c.setIdMatiere(idMatiere);
+            System.out.println(c);
+            sc.ajouter(c);
+            refresh();}
+
     }
     @FXML
     void modifierCour(ActionEvent event) {
+        String erreur=controleDeSaisire();
+        if(erreur.length()>0){
+            Alert alert=new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Formulaire invalide!");
+            alert.setContentText(erreur);
+            alert.showAndWait();
+        }
+        else {Cour c=new Cour();
+            c.setId(idModifier);
+            c.setTitre(tftitre.getText());
+            c.setObjectif(tfobjectif.getText());
+            c.setDuree(Integer.valueOf(tfduree.getText()));
+            c.setImage(tfimage.getText());
+            c.setCoursPdfUrl(tfcour.getText());
+            c.setDescription(tfdescription.getText());
+            int idMatiere= sm.getIdByName(cbmatiere.getValue());
+            c.setIdMatiere(idMatiere);
+            System.out.println(c);
+            sc.modifier(c);
+            refresh();}
 
     }
 
-    @FXML
-    void supprimerCour(ActionEvent event) {
-
-    }
 
     public void refresh(){
          grid.getChildren().clear();//bch nfasa5 ili f wost l matrice lkol
@@ -93,6 +151,7 @@ public class AjouterCour {
               AnchorPane anchorPane=card.load();//7atyna l card f interface vu que l grid fiha des interfaces
               CourCardView item=card.getController();
               item.remplireData(c);
+              item.setOnChangeListener(this);
               if(column==2){
                   column=0;
                   row++;
@@ -105,5 +164,23 @@ public class AjouterCour {
           }
         }
 
+    }
+
+
+    @Override
+    public void onSupprimerClicked() {
+        refresh();
+    }
+
+    @Override
+    public void onModdifierClicked(Cour c) {
+      idModifier=c.getId();
+      tfcour.setText(c.getCoursPdfUrl());
+      tfdescription.setText(c.getDescription());
+      tfduree.setText(String.valueOf(c.getDuree()));
+      tfimage.setText(c.getImage());
+      tftitre.setText(c.getTitre());
+      tfobjectif.setText(c.getObjectif());
+      cbmatiere.setValue(sm.getById(c.getId()).getNomM());
     }
 }

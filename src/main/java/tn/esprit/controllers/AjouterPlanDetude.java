@@ -40,16 +40,38 @@ public class AjouterPlanDetude {
          cbniveau.getItems().setAll(Niveau.values());
           refresh();
      }
+
+    public String controleDeSaisire(){
+        String erreur="";
+        if(tfnomprogramme.getText().isEmpty()){
+            erreur+="-Nom programme vide vide\n";
+        }
+
+        if(cbniveau.getValue()==null){
+            erreur+="-Niveau vide\n";
+        }
+
+
+        return erreur;
+    }
     @FXML
     void ajouterPlanDetude(ActionEvent event) {
         //ps.add(new Personne(0,nomtf.getText(),prenomTF.getText(),Integer.parseInt(ageTF.getText())));
+        String erreur=controleDeSaisire();
+        if(erreur.length()>0){
+            Alert alert=new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Formulaire invalide!");
+            alert.setContentText(erreur);
+            alert.showAndWait();
+        }
+        else {
+            PlanDetude p=new PlanDetude();
+            p.setNomProgramme(tfnomprogramme.getText());
+            p.setNiveau(cbniveau.getValue());
+            sp.ajouter(p);
+            refresh();
+        }
 
-        PlanDetude p=new PlanDetude();
-        p.setNomProgramme(tfnomprogramme.getText());
-        p.setNiveau(cbniveau.getValue());
-      //  p.setCreditsRequisTotal(0);
-       // p.setDureeTotal(0);
-         refresh();
     }
 
 
@@ -66,12 +88,21 @@ public class AjouterPlanDetude {
 
     @FXML
     void modifierPlanDetude(ActionEvent event) {
+        String erreur=controleDeSaisire();
+        if(erreur.length()>0){
+            Alert alert=new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Formulaire invalide!");
+            alert.setContentText(erreur);
+            alert.showAndWait();
+        }
+        else {
+            PlanDetude p=listPlanDetude.getSelectionModel().getSelectedItem();
+            p.setNomProgramme(tfnomprogramme.getText());
+            p.setNiveau(cbniveau.getValue());
+            sp.modifier(p);
+            refresh();
+        }
 
-        PlanDetude p=listPlanDetude.getSelectionModel().getSelectedItem();
-        p.setNomProgramme(tfnomprogramme.getText());
-        p.setNiveau(cbniveau.getValue());
-        sp.modifier(p);
-        refresh();
     }
 
     @FXML
