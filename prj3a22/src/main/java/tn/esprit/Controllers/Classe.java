@@ -2,6 +2,8 @@ package tn.esprit.Controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -26,12 +28,35 @@ import static java.lang.String.*;
 //import static jdk.javadoc.internal.doclets.formats.html.markup.HtmlStyle.title;
 
 public class Classe implements Initializable {
+    private FilteredList<classe> filteredList;
+
+    @FXML
+    private TableColumn<classe, filiere> filiereListSearch;
+    @FXML
+    private TableColumn<classe, Integer> idListSearch;
+
+    @FXML
+    private TableColumn<classe, String> classNameListSearch;
+
+    @FXML
+    private TableColumn<classe, niveaux> ListSearchNiv;
+
+    @FXML
+    private TextField searchFieldFilier;
+
+
+
+    @FXML
+    private TableColumn<classe, String> NbEtudiSearchList;
+    @FXML
+    private TableView<classe> searchListeDesClasses;
     @FXML
     private TextField idClasseSupp;
     public TableView<classe> tableClasse2;
     @FXML
     private TableColumn<classe, String> classeNameC2;
-
+    @FXML
+    private TableColumn<classe, Integer> IddansListe;
     @FXML
     private TableColumn<classe, String> filiereC2;
 
@@ -46,6 +71,9 @@ public class Classe implements Initializable {
 
     @FXML
     private TableColumn<classe, String> classeNameC1;
+    @FXML
+    private ListView<classe> afficherListeDesClasse;
+
 
     @FXML
     private TableColumn<classe, String> filiereC1;
@@ -59,6 +87,7 @@ public class Classe implements Initializable {
     @FXML
     private TextField classeNameLabel;
 
+
     @FXML
     private ChoiceBox<String> lbFiliere;
 
@@ -70,6 +99,8 @@ public class Classe implements Initializable {
 
     @FXML
     private TextField nomclasseSupp;
+    @FXML
+    private TableColumn<classe, Integer> idsuppListe;
 
     @FXML
     private TextField idDonnePourModif;
@@ -82,6 +113,8 @@ public class Classe implements Initializable {
 
     @FXML
     private TextField NbreEtudeLabel;
+    @FXML
+    private TextField searchField;
 
     @FXML
     private ChoiceBox<String> lbNiveauModif;
@@ -154,6 +187,38 @@ public class Classe implements Initializable {
 
     }
 
+    private void initializeSearchFilter() {
+        // Créez une FilteredList à partir de votre ObservableList de classes
+        filteredList = new FilteredList<>(data2, p -> true);
+
+        // Ajoutez un écouteur de changement de texte au champ de recherche
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredList.setPredicate(classe -> {
+                // Si la recherche est vide, afficher toutes les classes
+                if ((newValue == null) || newValue.isEmpty()) {
+                    return true;
+                }
+
+                // Convertissez la recherche en minuscules pour une recherche insensible à la casse
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                // Vérifiez si le nom de la classe contient la chaîne de recherche
+                if (classe.getNomClasse().toLowerCase().contains(lowerCaseFilter)) {
+                    return true; // Correspondance trouvée
+                }
+
+                // Aucune correspondance trouvée
+                return false;
+            });
+        });
+
+        // Enveloppez la FilteredList dans une SortedList
+        SortedList<classe> sortedList = new SortedList<>(filteredList);
+
+        // Liez la SortedList à votre TableView
+        searchListeDesClasses.setItems(sortedList);
+
+    }
 
 
 
@@ -184,6 +249,18 @@ lbNiveau.setItems(niveauxList);
         classees.addAll(c);
         loadDate();
         loadDate2();
+
+        ServiceClasse SCAff=new ServiceClasse();
+        ObservableList<classe> listeDesClasses = FXCollections.observableArrayList(SCAff.getAll());
+        // Afficher la liste dans la ListView
+        afficherListeDesClasse.setItems(listeDesClasses);
+        //****************************recherche****************
+        initializeSearchFilter();
+        loadDateSearch();
+
+
+
+
 
 
     }
@@ -273,17 +350,29 @@ lbNiveau.setItems(niveauxList);
     private void loadDate() {
         ServiceClasse serviceClasse = new ServiceClasse();
         List<classe> classes = serviceClasse.getAll();
+        idsuppListe.setCellValueFactory(new PropertyValueFactory<>("idClasse"));
         nbEtudiantC1.setCellValueFactory(new PropertyValueFactory<>("nbreEtud"));
         classeNameC1.setCellValueFactory(new PropertyValueFactory<>("nomClasse"));
         filiereC1.setCellValueFactory(new PropertyValueFactory<>("filiere"));
         niveauC1.setCellValueFactory(new PropertyValueFactory<>("niveaux"));
         // Ajout des données à la table 1
         tableClasse1.setItems(FXCollections.observableArrayList(classes));
+    }    private void loadDateSearch() {
+        ServiceClasse serviceClassesearch = new ServiceClasse();
+        List<classe> classes = serviceClassesearch.getAll();
+        idListSearch.setCellValueFactory(new PropertyValueFactory<>("idClasse"));
+        NbEtudiSearchList.setCellValueFactory(new PropertyValueFactory<>("nbreEtud"));
+        classNameListSearch.setCellValueFactory(new PropertyValueFactory<>("nomClasse"));
+        filiereListSearch.setCellValueFactory(new PropertyValueFactory<>("filiere"));
+        filiereListSearch.setCellValueFactory(new PropertyValueFactory<>("niveaux"));
+        // Ajout des données à la table 1
+        searchListeDesClasses.setItems(FXCollections.observableArrayList(classes));
     }
 
     private void loadDate2() {
         ServiceClasse serviceClasse = new ServiceClasse();
         List<classe> classes = serviceClasse.getAll();
+        IddansListe.setCellValueFactory(new PropertyValueFactory<>("idClasse"));
         nbEtudiantC2.setCellValueFactory(new PropertyValueFactory<>("nbreEtud"));
         classeNameC2.setCellValueFactory(new PropertyValueFactory<>("nomClasse"));
         filiereC2.setCellValueFactory(new PropertyValueFactory<>("filiere"));
@@ -298,26 +387,27 @@ lbNiveau.setItems(niveauxList);
 
         // Rafraîchissement des données de la table 2
         loadDate2();
+        loadDateSearch();
     }
 
     @FXML
     public void fillForumm(MouseEvent mouseEvent) {
         classe selectedClasse = tableClasse2.getSelectionModel().getSelectedItem();
         if (selectedClasse != null) {
-            classeNameC2.setText(selectedClasse.getNomClasse());
-            filiereC2.setText(String.valueOf(selectedClasse.getFiliere()));
-            nbEtudiantC2.setText(String.valueOf(selectedClasse.getNbreEtud()));
-            niveauC2.setText(String.valueOf(selectedClasse.getNiveaux()));
+            idDonnePourModif.setText(String.valueOf(selectedClasse.getidC()));
+            labelNomModif.setText(selectedClasse.getNomClasse());
+            lbFiliereModif.getSelectionModel();
+            NbreEtudeLabel.setText(String.valueOf(selectedClasse.getNbreEtud()));
+            lbNiveauModif.getSelectionModel().getSelectedItem();
         }
     }
-
+@FXML
     public void fillForum(MouseEvent mouseEvent) {
         classe selectedClasse = tableClasse1.getSelectionModel().getSelectedItem();
         if (selectedClasse != null) {
-            classeNameC1.setText(selectedClasse.getNomClasse());
-            filiereC1.setText(String.valueOf(selectedClasse.getFiliere()));
-            nbEtudiantC1.setText(String.valueOf(selectedClasse.getNbreEtud()));
-            niveauC1.setText(String.valueOf(selectedClasse.getNiveaux()));
+            idClasseSupp.setText(String.valueOf(selectedClasse.getidC()));
+            nomclasseSupp.setText(selectedClasse.getNomClasse());
+
         }
     }
 
@@ -386,6 +476,70 @@ lbNiveau.setItems(niveauxList);
         // Effacer le TextField après la suppression
         nomclasseSupp.clear();
     }
+
+    @FXML
+    void searchByNom(ActionEvent event) {
+        String searchTerm = searchField.getText().trim(); // Récupérer le texte saisi dans le champ de recherche
+
+        if (searchTerm.isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, "Erreur de recherche", "Veuillez saisir un terme de recherche !");
+            return;
+        }
+
+        // Appeler la méthode de service pour rechercher la classe par nom
+        ServiceClasse serviceClasse = new ServiceClasse();
+        classe foundClasse = serviceClasse.getClasseByNom(searchTerm);
+
+        if (foundClasse != null) {
+            // Créer une nouvelle liste observable contenant uniquement la classe trouvée
+            ObservableList<classe> foundClasseList = FXCollections.observableArrayList();
+            foundClasseList.add(foundClasse);
+
+            // Mettre à jour la liste filtrée pour afficher uniquement la classe trouvée
+            filteredList.setPredicate(classe -> classe.getidC() == foundClasse.getidC());
+
+            // Rafraîchir la liste des classes affichées dans la TableView
+            searchListeDesClasses.setItems(foundClasseList);
+        } else {
+            // Afficher un message d'erreur si aucune classe n'est trouvée
+            showAlert(Alert.AlertType.ERROR, "Erreur de recherche", "Aucune classe trouvée avec le nom : " + searchTerm);
+        }
+        searchField.clear();
+    }
+
+
+
+
+    @FXML
+    void SearchByID(ActionEvent event) {
+        String searchTerm = searchFieldFilier.getText().trim(); // Récupérer le texte saisi dans le champ de recherche
+
+        if (searchTerm.isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, "Erreur de recherche", "Veuillez saisir un terme de recherche !");
+            return;
+        }
+
+        // Appeler la méthode de service pour rechercher la classe par nom
+        ServiceClasse serviceClasse = new ServiceClasse();
+        classe foundClasse = serviceClasse.getClasse(Integer.parseInt(searchTerm));
+
+        if (foundClasse != null) {
+            // Créer une nouvelle liste observable contenant uniquement la classe trouvée
+            ObservableList<classe> foundClasseList = FXCollections.observableArrayList();
+            foundClasseList.add(foundClasse);
+
+            // Mettre à jour la liste filtrée pour afficher uniquement la classe trouvée
+            filteredList.setPredicate(classe -> classe.getidC() == foundClasse.getidC());
+
+            // Rafraîchir la liste des classes affichées dans la TableView
+            searchListeDesClasses.setItems(foundClasseList);
+        } else {
+            // Afficher un message d'erreur si aucune classe n'est trouvée
+            showAlert(Alert.AlertType.ERROR, "Erreur de recherche", "Aucune classe trouvée avec l'id : " + searchTerm);
+        }
+        searchFieldFilier.clear();
+    }
+
 
 }
 

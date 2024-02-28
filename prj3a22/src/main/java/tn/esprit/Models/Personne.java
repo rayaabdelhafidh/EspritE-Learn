@@ -4,9 +4,15 @@ public class Personne {
     private int idP,age,idClasse;
 
     private String nom,prenom;
+    private classe classeEtudiants;
+    EtatPresence EtatPresence;
+
 
     public Personne() {
 
+    }
+
+    public Personne(int idPersonne, String nom, String prenom) {
     }
 
     public int getIdP() {
@@ -41,15 +47,25 @@ public class Personne {
         this.prenom = prenom;
     }
 
-    public Personne(int idP, int age, String nom, String prenom) {
+    public Personne(int idP, int age, int idClasse, String nom, String prenom) {
         this.idP = idP;
+        this.age = age;
+        this.idClasse = idClasse;
+        this.nom = nom;
+        this.prenom = prenom;
+    }
+
+
+
+    public Personne(int idClasse, int age, String nom, String prenom) {
+        this.idClasse = idClasse;
         this.nom = nom;
         this.prenom = prenom;
         this.age = age;
 
     }
 
-    public int getIdClasse(int idClasse) {
+    public int getIdClasse() {
         return this.idClasse;
     }
 
@@ -66,5 +82,9 @@ public class Personne {
                 ", prenom='" + prenom + '\'' +
                 '}';
     }
+
+    public void getIdClasse(int idClasse) {
+    }
+
 
 }

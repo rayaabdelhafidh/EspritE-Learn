@@ -10,7 +10,7 @@ public class classe {
 
     niveaux niveaux;
     private List<Presence> presences;
-
+    private List<Personne> etudiants;
 
     public classe(String nomClasse,filiere filiere, int nbreEtud,  niveaux niveaux) {
         this.nomClasse = nomClasse;

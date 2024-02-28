@@ -6,15 +6,14 @@ import tn.esprit.utilse.Database;
 import java.sql.*;
 import java.util.ArrayList;
 
-import static tn.esprit.Models.niveaux.valueOf;
+public class ServicePresence implements InServicePresence {
 
-public class ServicePresence implements InServicePresence{
+    final Connection cnx;
 
-    final Connection cnx ;
-    public ServicePresence(){
+    public ServicePresence() {
         cnx = Database.getInstance().getCnx();
-
     }
+
     @Override
     public void addPresence(Presence pr) throws SQLException, IllegalArgumentException {
         // Vérifier si le nom de classe fourni correspond à une classe existante dans la base de données
@@ -29,15 +28,14 @@ public class ServicePresence implements InServicePresence{
                 String nomClasse = pr.getNomClasse();
 
                 // Insérer la présence dans la base de données avec l'ID de la classe et le nom de la classe
-                String qryPresence = "INSERT INTO `presence`(`etat`, `date`, `seance`, `idClasse`, `nomClasse`) VALUES (?, ?, ?, ?, ?)";
+                String qryPresence = "INSERT INTO `presence`(`date`, `seance`, `idClasse`, `nomClasse`) VALUES (?, ?, ?, ?)";
                 try (PreparedStatement stmPresence = cnx.prepareStatement(qryPresence)) {
-                    stmPresence.setString(1, pr.getEtat().name());
                     java.util.Date utilDate = pr.getDate();
                     Date sqlDate = new Date(utilDate.getTime());
-                    stmPresence.setDate(2, sqlDate);
-                    stmPresence.setString(3, pr.getSeance().name());
-                    stmPresence.setInt(4, idClasse);
-                    stmPresence.setString(5, nomClasse);
+                    stmPresence.setDate(1, sqlDate);
+                    stmPresence.setString(2, pr.getSeance().name());
+                    stmPresence.setInt(3, idClasse);
+                    stmPresence.setString(4, nomClasse);
 
                     stmPresence.executeUpdate();
                     System.out.println("Nouvelle présence ajoutée avec succès !");
@@ -48,59 +46,53 @@ public class ServicePresence implements InServicePresence{
         }
     }
 
-
-
-
-
     @Override
     public ArrayList<Presence> getAll() {
-
         ArrayList<Presence> presencess = new ArrayList<>();
         String qry = "SELECT * FROM `presence`";
         try {
             Statement stm = cnx.createStatement();
             ResultSet rs = stm.executeQuery(qry);
-            while (rs.next())
-            {
+            while (rs.next()) {
                 Presence P = new Presence();
                 P.setIdPresence(rs.getInt("idPresence"));
-                P.setEtatPresence(EtatPresence.valueOf(rs.getString("etat")));
                 P.setDate(rs.getDate("date"));
                 P.setSeance(Seance.valueOf(rs.getString("seance")));
-              P.setNomClasse(rs.getString("nomClasse"));
-              presencess.add(P);
+                P.setIdClasse(rs.getInt("idClasse"));
+                P.setNomClasse(rs.getString("nomClasse"));
+                presencess.add(P);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return presencess;
-       // return null;
     }
 
-    @Override
-    public Presence update(Presence Pr, EtatPresence EtP) {
 
+    @Override
+    public Presence update(Presence Pr, Date newDate, Seance newSeance) {
         try {
-            String req = "UPDATE presence SET etat = ? WHERE idPresence = ?";
+            String req = "UPDATE presence SET  date = ?, seance = ? WHERE idPresence = ?";
             PreparedStatement pstmt = cnx.prepareStatement(req);
-            pstmt.setString(1, String.valueOf(Pr.getEtat()));
-            pstmt.setInt(2, Pr.getIdPresence()); // Set the id for the WHERE clause
+          //  pstmt.setString(1, EtP.name());
+            pstmt.setDate(1, new java.sql.Date(newDate.getTime())); // Convertir la date en java.sql.Date
+            pstmt.setString(2, newSeance.name());
+            pstmt.setInt(3, Pr.getIdPresence()); // Set the id for the WHERE clause
 
             int rowsUpdated = pstmt.executeUpdate();
 
             if (rowsUpdated > 0) {
-                System.out.println("Classe " + Pr.getIdPresence() + " Modifiée !");
+                System.out.println("Présence " + Pr.getIdPresence() + " modifiée !");
+                Pr.setDate(newDate); // Mettre à jour la date dans l'objet Presence
+                Pr.setSeance(newSeance); // Mettre à jour la séance dans l'objet Presence
             } else {
-                System.out.println("Aucune classe modifiée !");
+                System.out.println("Aucune présence modifiée !");
             }
         } catch (SQLException e) {
-            System.err.println("Erreur lors de la mise à jour de la classe : " + e.getMessage());
+            System.err.println("Erreur lors de la mise à jour de la présence : " + e.getMessage());
         }
 
         return Pr;
-
-
-
-        //return null;
     }
 }
+

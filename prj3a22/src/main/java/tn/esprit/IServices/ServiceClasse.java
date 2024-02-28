@@ -42,7 +42,8 @@ public class ServiceClasse implements IserviceC <classe> {
     }
 
     @Override
-    public ArrayList<classe> getAll() {
+    public ArrayList<classe> getAll()
+    {
         ArrayList<classe> classees = new ArrayList<>();
         String qry = "SELECT * FROM `classe`";
         try {
@@ -50,7 +51,7 @@ public class ServiceClasse implements IserviceC <classe> {
             ResultSet rs = stm.executeQuery(qry);
             while (rs.next()) {
                 classe C = new classe();
-                C.setidC(rs.getInt("idClasse"));
+                C.setidC(rs.getInt("idClasse")); // Affichage de l'ID
                 C.setNomClasse(rs.getString("nomClasse"));
                 C.setFiliere(filiere.valueOf(rs.getString("filiere")));
                 C.setNbreEtud(rs.getInt("nbreEtudi"));
@@ -58,8 +59,6 @@ public class ServiceClasse implements IserviceC <classe> {
                 if (niveauStr != null && !niveauStr.isEmpty()) {
                     C.setNiveaux(valueOf(niveauStr));
                 } else {
-                    // Traiter le cas où le niveau est vide ou null
-                    // Par exemple, vous pouvez affecter une valeur par défaut
                     C.setNiveaux(niveaux._2A);
                 }
                 classees.add(C);
@@ -214,6 +213,22 @@ public class ServiceClasse implements IserviceC <classe> {
             throw new RuntimeException(e);
         }
     }
+    public ArrayList<String> getNomClasses() {
+        ArrayList<String> nomClasses = new ArrayList<>();
+        String query = "SELECT nomClasse FROM classe";
+        try (Statement statement = cnx.createStatement();
+             ResultSet resultSet = statement.executeQuery(query)) {
+            while (resultSet.next()) {
+                String nomClasse = resultSet.getString("nomClasse");
+                nomClasses.add(nomClasse);
+            }
+        } catch (SQLException e) {
+            System.err.println("Erreur lors de la récupération des noms de classe : " + e.getMessage());
+            // Vous pouvez choisir de lever une exception ou de gérer l'erreur d'une autre manière
+        }
+        return nomClasses;
+    }
+
 
 
 

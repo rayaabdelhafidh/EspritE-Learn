@@ -1,72 +1,51 @@
 package tn.esprit.Models;
 
-//import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-
 public class Presence {
     private int idPresence; // Primary Key
-   // private ArrayList<classe> classes; // Liste des classes
-     EtatPresence EtatPresence;
     private Date date;
-
-
-private classe classe;
+    private classe classe;
     private Seance seance;
     private List<classe> classes; //relation manyToMany
     private String nomClasse;
+    private int idClasse;
 
-
-    public Presence(int idPresence, ArrayList<classe> classes, EtatPresence EtatPresence, Date date, Seance seance) {
+    public Presence(int idPresence, List<classe> classes, Date date, Seance seance) {
         this.idPresence = idPresence;
         this.classes = classes;
-        this.EtatPresence = EtatPresence;
         this.date = date;
         this.seance = seance;
     }
 
-    public Presence(EtatPresence EtatPresence, Date date, Seance seance, String nomClasse) {
-        if (EtatPresence == null) {
-            throw new IllegalArgumentException("L'état de la présence ne peut pas être null !");
-        }
+    public Presence(int idPresence, Date date, tn.esprit.Models.classe classe, Seance seance, List<tn.esprit.Models.classe> classes, String nomClasse, int idClasse) {
+        this.idPresence = idPresence;
+        this.date = date;
+        this.classe = classe;
+        this.seance = seance;
+        this.classes = classes;
+        this.nomClasse = nomClasse;
+        this.idClasse = idClasse;
+    }
 
-        this.EtatPresence = EtatPresence;
+    public int getIdClasse() {
+        return idClasse;
+    }
+
+    public void setIdClasse(int idClasse) {
+        this.idClasse = idClasse;
+    }
+
+    public Presence(Date date, Seance seance, String nomClasse) {
         this.date = date;
         this.seance = seance;
         this.nomClasse = nomClasse;
     }
 
-    public Presence() {
-
-    }
 
 
-    public String getNomClasse() {
-        return nomClasse;
-    }
-
-    public void setNomClasse(String nomClasse) {
-        this.nomClasse = nomClasse;
-    }
-
-    public Presence(int idPresence, EtatPresence EtatPresence, Date date, Seance seance, List<classe> classes, classe cl) {
-        this.idPresence = idPresence;
-        this.EtatPresence = EtatPresence;
-        this.date = date;
-        this.seance = seance;
-        this.classes = classes;
-    }
-    // Getters and Setters
-
-    public classe getClasse() {
-        return classe;
-    }
-
-    public void setClasse(classe cl) {
-        this.classe = cl;
-    }
+    public Presence() {}
 
     public int getIdPresence() {
         return idPresence;
@@ -74,22 +53,6 @@ private classe classe;
 
     public void setIdPresence(int idPresence) {
         this.idPresence = idPresence;
-    }
-
-    public EtatPresence getEtatPresence() {
-        return EtatPresence;
-    }
-
-    public void setEtatPresence(EtatPresence etatPresence) {
-        EtatPresence = etatPresence;
-    }
-
-    public EtatPresence getEtat() {
-        return EtatPresence;
-    }
-
-    public void setEtat(EtatPresence EtatPresence) {
-        this.EtatPresence = EtatPresence;
     }
 
     public Date getDate() {
@@ -108,7 +71,6 @@ private classe classe;
         this.seance = seance;
     }
 
-
     public List<classe> getClasses() {
         return classes;
     }
@@ -117,16 +79,35 @@ private classe classe;
         this.classes = classes;
     }
 
+    public String getNomClasse() {
+        return nomClasse;
+    }
+
+    public void setNomClasse(String nomClasse) {
+        this.nomClasse = nomClasse;
+    }
+
+    public classe getClasse() {
+        return classe;
+    }
+
+    public void setClasse(classe classe) {
+        this.classe = classe;
+    }
+
     @Override
     public String toString() {
         return "Presence{" +
                 "idPresence=" + idPresence +
-                ", etat=" + EtatPresence +
                 ", date=" + date +
                 ", classe=" + classe +
                 ", seance=" + seance +
                 ", classes=" + classes +
                 ", nomClasse='" + nomClasse + '\'' +
+                ", idClasse=" + idClasse +
                 '}';
     }
+
+
+
 }

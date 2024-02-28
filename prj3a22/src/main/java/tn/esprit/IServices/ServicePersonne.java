@@ -1,15 +1,16 @@
 package tn.esprit.IServices;
 
+import tn.esprit.Models.EtatPresence;
 import tn.esprit.Models.Personne;
 import tn.esprit.Models.classe;
 import tn.esprit.utilse.Database;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ServicePersonne implements IService<Personne> {
     final Connection cnx ;
-    //private Connection connection;
 
     public ServicePersonne(){
         cnx =Database.getInstance().getCnx();
@@ -21,12 +22,15 @@ public class ServicePersonne implements IService<Personne> {
         // ajouter une personne dans la bd
         //1 - req SQL done
         //2 - executer la req SQL done
-        String qry ="INSERT INTO `Personne`(`nom`, `prenom`, `age`) VALUES (?,?,?)";
+        String qry ="INSERT INTO `Personne`(`age`, `nom`, `prenom`,`idClasse` ) VALUES (?,?,?,?)";
         try {
             PreparedStatement stm = cnx.prepareStatement(qry);
-            stm.setString(1,personne.getNom());
-            stm.setString(2,personne.getPrenom());
-            stm.setInt(3,personne.getAge());
+            stm.setInt(1,personne.getAge());
+
+            stm.setString(2,personne.getNom());
+            stm.setString(3,personne.getPrenom());
+            stm.setInt(4,personne.getIdClasse());
+
 
             stm.executeUpdate();
 
@@ -136,6 +140,112 @@ public class ServicePersonne implements IService<Personne> {
     }
 
 
+    public List<Personne> getEtudiantsParClasse(String nomClasse) {
+        List<Personne> etudiants = new ArrayList<>();
+        String query = "SELECT p.idPersonne, p.nom, p.prenom FROM Personne p " +
+                "JOIN Classe c ON p.idClasse = c.idClasse " +
+                "WHERE c.nomClasse = ?";
+
+        try (PreparedStatement pstmt = cnx.prepareStatement(query)) {
+            pstmt.setString(1, nomClasse);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                int idPersonne = rs.getInt("idPersonne");
+                String nom = rs.getString("nom");
+                String prenom = rs.getString("prenom");
+                // Créer un objet Personne pour chaque enregistrement récupéré
+                Personne etudiant = new Personne(idPersonne, nom, prenom);
+                // Ajouter l'étudiant à la liste des étudiants
+                etudiants.add(etudiant);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return etudiants;
+    }
 
 
+    public void enregistrerEtatPresence(int idPersonne, EtatPresence etatPresence) {
+        String query = "UPDATE Personne SET etat_presence = ? WHERE idPersonne = ?";
+        try (PreparedStatement pstmt = cnx.prepareStatement(query)) {
+            pstmt.setString(1, etatPresence.toString());
+            pstmt.setInt(2, idPersonne);
+            pstmt.executeUpdate();
+            System.out.println("État de présence enregistré avec succès pour l'étudiant avec l'ID : " + idPersonne);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public EtatPresence getStatusOfStudent(int idPersonne) {
+        EtatPresence etatPresence = null;
+        String query = "SELECT etat_presence FROM Personne WHERE idPersonne = ?";
+        try (PreparedStatement pstmt = cnx.prepareStatement(query)) {
+            pstmt.setInt(1, idPersonne);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                String etat = rs.getString("etat_presence");
+                etatPresence = EtatPresence.valueOf(etat);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return etatPresence;
+    }
+
+
+    public void afficherPresenceEtat() {
+        String query = "SELECT nom, prenom, etat_presence FROM Personne";
+        try (PreparedStatement pstmt = cnx.prepareStatement(query)) {
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                String nom = rs.getString("nom");
+                String prenom = rs.getString("prenom");
+                String etatPresence = rs.getString("etat_presence");
+
+                System.out.println("Nom: " + nom + ", Prénom: " + prenom + ", État de présence: " + etatPresence);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public boolean isAbsent(Personne personne) {
+        String query = "SELECT etat_presence FROM Personne WHERE idPersonne = ?";
+        try (PreparedStatement pstmt = cnx.prepareStatement(query)) {
+            pstmt.setInt(1, personne.getIdP());
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                String etatPresence = rs.getString("etat_presence");
+                return "Absent".equals(etatPresence);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean isPresent(Personne personne) {
+        String query = "SELECT etat_presence FROM Personne WHERE idPersonne = ?";
+        try (PreparedStatement pstmt = cnx.prepareStatement(query)) {
+            pstmt.setInt(1, personne.getIdP());
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                String etatPresence = rs.getString("etat_presence");
+                return "Présent".equals(etatPresence);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }
+
+
+
+
+
+
+
