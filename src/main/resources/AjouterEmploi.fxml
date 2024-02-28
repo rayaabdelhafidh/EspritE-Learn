@@ -1,14 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.calendarfx.view.DetailedWeekView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="tn.esprit.controllers.AjouterEmploi"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="696.0" prefWidth="1113.0" stylesheets="style/styleAjouterEmploi.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.AjouterEmploi">
+   <children>
+      <Pane prefHeight="74.0" prefWidth="1140.0">
+         <children>
+            <ImageView fitHeight="98.0" fitWidth="197.0" layoutX="536.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/logo.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <DetailedWeekView fx:id="emploi" layoutX="14.0" layoutY="205.0" prefHeight="480.0" prefWidth="786.0" />
+      <ListView fx:id="matieresList" layoutX="814.0" layoutY="373.0" prefHeight="295.0" prefWidth="278.0" />
+      <Label layoutX="905.0" layoutY="330.0" text="Matières">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <Label fx:id="titre" layoutX="25.0" layoutY="110.0" text="Emploi de la semaine ">
+         <font>
+            <Font name="System Bold" size="29.0" />
+         </font>
+      </Label>
+      <Button fx:id="modifierEmploi" layoutX="848.0" layoutY="185.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="211.0" styleClass="modifierEmploi" text="Modifier ">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Button>
+      <Label fx:id="dates" layoutX="62.0" layoutY="151.0" text="Emploi de la semaine ">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="522.0" layoutY="150.0" text="Salle :">
+         <font>
+            <Font name="System Bold Italic" size="17.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="listeSalles" layoutX="589.0" layoutY="153.0" prefWidth="150.0" />
+      <Button fx:id="enregistrerEmploi" layoutX="848.0" layoutY="137.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="211.0" styleClass="enregistrerEmploi" text="Ajouter">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Button>
+      <Label layoutX="521.0" layoutY="111.0" text="Bloc :">
+         <font>
+            <Font name="System Bold Italic" size="17.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="blocListe" layoutX="588.0" layoutY="114.0" prefWidth="150.0" />
+      <Button fx:id="supprimerEmploi" layoutX="848.0" layoutY="237.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="211.0" styleClass="modifierEmploi" text="Supprimer">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Button>
+   </children>
 </AnchorPane>

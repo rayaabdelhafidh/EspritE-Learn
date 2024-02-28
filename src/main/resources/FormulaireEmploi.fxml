@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.CheckListView?>
+
+<AnchorPane fx:id="root" prefHeight="696.0" prefWidth="1113.0" styleClass="main-pane" stylesheets="@style/styleFormulaireEmploi.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.FormulaireEmploi">
+    <children>
+        <Pane prefHeight="74.0" prefWidth="1125.0">
+            <children>
+                <ImageView fitHeight="98.0" fitWidth="197.0" layoutX="536.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@images/logo.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </Pane>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                <children>
+                    <Label layoutX="50.0" layoutY="98.0" prefHeight="43.0" prefWidth="214.0" styleClass="spec-label" text="Spécifications :">
+                        <font>
+                            <Font size="29.0" />
+                        </font>
+                    </Label>
+                    <HBox fx:id="formEmploi" layoutX="34.0" layoutY="164.0" prefHeight="350.0" prefWidth="554.0">
+                        <children>
+                            <GridPane prefHeight="418.0" prefWidth="618.0">
+                                <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="535.2000122070312" minWidth="10.0" prefWidth="188.2000244140625" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="639.2000122070312" minWidth="10.0" prefWidth="366.59997558593744" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                    <RowConstraints maxHeight="156.60001220703126" minHeight="10.0" prefHeight="115.00000610351563" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="207.79999389648438" minHeight="10.0" prefHeight="121.7999938964844" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="211.00000610351566" minHeight="10.0" prefHeight="133.8000061035156" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="211.00000610351566" minHeight="10.0" prefHeight="133.8000061035156" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="211.00000610351566" minHeight="10.0" prefHeight="133.8000061035156" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="211.00000610351566" minHeight="10.0" prefHeight="133.8000061035156" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                <children>
+                                    <Label fx:id="niveau" alignment="CENTER" prefHeight="34.0" prefWidth="409.0" styleClass="niveau-label" text="Niveau : ">
+                                        <font>
+                                            <Font size="23.0" />
+                                        </font>
+                                    </Label>
+                                    <ComboBox fx:id="niveauVals" prefHeight="40.0" prefWidth="314.0" styleClass="niveau-combobox" GridPane.columnIndex="1" />
+                                    <Label fx:id="filiere" alignment="CENTER" prefHeight="34.0" prefWidth="409.0" styleClass="filiere-label" text="Filière : " GridPane.rowIndex="1">
+                                        <font>
+                                            <Font size="23.0" />
+                                        </font>
+                                    </Label>
+                                    <Label fx:id="classe" alignment="CENTER" prefHeight="34.0" prefWidth="409.0" styleClass="classe-label" text="Classe : " GridPane.rowIndex="3">
+                                        <font>
+                                            <Font size="23.0" />
+                                        </font>
+                                    </Label>
+                                    <ComboBox fx:id="filiereVals" prefHeight="40.0" prefWidth="314.0" styleClass="filiere-combobox" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <Label fx:id="classe1" alignment="CENTER" prefHeight="34.0" prefWidth="409.0" styleClass="classe-label" text="De : " GridPane.rowIndex="4">
+                                        <font>
+                                            <Font size="23.0" />
+                                        </font>
+                                    </Label>
+                                    <DatePicker fx:id="premierDate" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <Label fx:id="classe11" alignment="CENTER" prefHeight="34.0" prefWidth="409.0" styleClass="classe-label" text="Jusqu'à : " GridPane.rowIndex="5">
+                                        <font>
+                                            <Font size="23.0" />
+                                        </font>
+                                    </Label>
+                                    <DatePicker fx:id="dernierDate" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                    <ComboBox fx:id="optionVals" prefHeight="40.0" prefWidth="314.0" styleClass="classe-combobox" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Label fx:id="classe2" alignment="CENTER" prefHeight="34.0" prefWidth="409.0" styleClass="classe-label" text="Option : " GridPane.rowIndex="2">
+                                        <font>
+                                            <Font size="23.0" />
+                                        </font>
+                                    </Label>
+                                    <ComboBox fx:id="classeVals" prefHeight="40.0" prefWidth="314.0" styleClass="classe-combobox" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                </children>
+                            </GridPane>
+                        </children>
+                    </HBox>
+                    <Label layoutX="656.0" layoutY="164.0" styleClass="matieres-label" text="Les matières :">
+                        <font>
+                            <Font size="23.0" />
+                        </font>
+                    </Label>
+                    <Button fx:id="buttonCreer" layoutX="218.0" layoutY="564.0" onAction="#handleButtonCreerClicked" prefHeight="49.0" prefWidth="162.0" styleClass="creer-button" text="Céer">
+                        <font>
+                            <Font size="27.0" />
+                        </font>
+                    </Button>
+
+                    <CheckListView fx:id="matieres" layoutX="639.0" layoutY="221.0" prefHeight="401.0" prefWidth="459.0" />
+                </children>
+            </AnchorPane>
+    </children>
+</AnchorPane>

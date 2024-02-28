@@ -23,12 +23,8 @@ public class AfficherSalles implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ArrayList<Salle> salles = ss.afficherTousSalles();
-// Clear existing items in the ListView
         listeSalles.getItems().clear();
-
-        // Add retrieved salles to the ListView
         listeSalles.getItems().addAll(salles);
-
         listeSalles.setCellFactory(new Callback<ListView<Salle>, ListCell<Salle>>() {
             @Override
             public ListCell<Salle> call(ListView<Salle> listView) {
@@ -38,7 +34,7 @@ public class AfficherSalles implements Initializable {
                         super.updateItem(salle, empty);
                         if (salle != null && !empty) {
                             // Customize the cell display here
-                            setText("Bloc: " + salle.getBloc() + "\nNuméro Salle: " + salle.getNumeroSalle());
+                            setText( "           " + salle.getBloc() + "                                                                                                    " + salle.getNumeroSalle());
                         } else {
                             setText(null);
                         }

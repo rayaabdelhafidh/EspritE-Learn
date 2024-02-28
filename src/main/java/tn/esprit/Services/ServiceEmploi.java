@@ -1,6 +1,7 @@
 package tn.esprit.Services;
 
 import tn.esprit.Interfaces.IServiceEmploi;
+import tn.esprit.Models.Enum.Bloc;
 import tn.esprit.Models.Enum.Heure;
 import tn.esprit.Models.Enum.JourSemaine;
 import tn.esprit.Models.Matiere;
@@ -19,41 +20,40 @@ public class ServiceEmploi implements IServiceEmploi<emploi> {
     }
     @Override
     public void ajouterEmploi(emploi emploi) {
-        String emploiQuery = "INSERT INTO `emploi`(`premierDate`, `dernierDate`, `matiereId`, `salleId`) VALUES (?,?,?,?)";
-        String jourSemaineQuery = "INSERT INTO `emploi_jourSemaine`(`emploiId`, `jourSemaine`) VALUES (?, ?)";
-        String heureQuery = "INSERT INTO `emploi_heure`(`emploiId`, `heure`) VALUES (?, ?)";
+        String emploiQuery = "INSERT INTO emploi (premierDate, dernierDate, matiereId, salleId) VALUES (?, ?, ?, ?)";
+        String jourSemaineQuery = "INSERT INTO emploi_jourSemaine (emploiId, jourSemaine) VALUES (?, ?)";
+        String heureQuery = "INSERT INTO emploi_heure (emploiId, heure) VALUES (?, ?)";
 
         try {
-            // insertion emploi
+            // Insertion into emploi
             PreparedStatement emploiStm = cnx.prepareStatement(emploiQuery, Statement.RETURN_GENERATED_KEYS);
             emploiStm.setDate(1, new java.sql.Date(emploi.getPremierDate().getTime()));
             emploiStm.setDate(2, new java.sql.Date(emploi.getDernierDate().getTime()));
-            emploiStm.setInt(3, emploi.getMatiere().getMatiereId());
+            emploiStm.setInt(3, emploi.getMatiere().getIdM());
             emploiStm.setInt(4, emploi.getSalle().getSalleId());
             emploiStm.executeUpdate();
 
             // Get the auto-generated emploiId
             ResultSet generatedKeys = emploiStm.getGeneratedKeys();
+            int emploiId = -1;
             if (generatedKeys.next()) {
-                int emploiId = generatedKeys.getInt(1);
+                emploiId = generatedKeys.getInt(1);
+            }
 
-                // insertion jourSemaine
-                PreparedStatement jourSemaineStm = cnx.prepareStatement(jourSemaineQuery);
-                for (JourSemaine jourSemaine : emploi.getJourSemaine()) {
-                    jourSemaineStm.setInt(1, emploiId);
-                    jourSemaineStm.setString(2, jourSemaine.name());
-                    jourSemaineStm.addBatch();
-                }
-                jourSemaineStm.executeBatch();
+            // Insertion into emploi_jourSemaine
+            PreparedStatement jourSemaineStm = cnx.prepareStatement(jourSemaineQuery);
+            for (JourSemaine jourSemaine : emploi.getJourSemaine()) {
+                jourSemaineStm.setInt(1, emploiId);
+                jourSemaineStm.setString(2, jourSemaine.name());
+                jourSemaineStm.executeUpdate();
+            }
 
-                // insertion heure
-                PreparedStatement heureStm = cnx.prepareStatement(heureQuery);
-                for (Heure heure : emploi.getHeure()) {
-                    heureStm.setInt(1, emploiId);
-                    heureStm.setString(2, heure.name());
-                    heureStm.addBatch();
-                }
-                heureStm.executeBatch();
+            // Insertion into emploi_heure
+            PreparedStatement heureStm = cnx.prepareStatement(heureQuery);
+            for (Heure heure : emploi.getHeure()) {
+                heureStm.setInt(1, emploiId);
+                heureStm.setString(2, heure.name());
+                heureStm.executeUpdate();
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -64,12 +64,14 @@ public class ServiceEmploi implements IServiceEmploi<emploi> {
     @Override
     public ArrayList<emploi> getAll() {
         ArrayList<emploi> emplois = new ArrayList<>();
-        String qry = "SELECT e.*, m.nomMatiere, GROUP_CONCAT(ej.jourSemaine) AS joursSemaine, GROUP_CONCAT(eh.Heure) AS heures " +
+        String qry = "SELECT e.*, m.nomM, m.idM, s.salleId, s.numeroSalle, s.bloc, GROUP_CONCAT(ej.jourSemaine) AS joursSemaine, GROUP_CONCAT(eh.Heure) AS heures " +
                 "FROM emploi e " +
-                "JOIN emploi_jourSemaine ej ON e.emploiId = ej.emploiId " +
-                "JOIN emploi_heure eh ON e.emploiId = eh.emploiId " +
-                "JOIN matiere m ON e.matiereId = m.matiereId " +
+                "JOIN matiere m ON e.matiereId = m.idM " +
+                "LEFT JOIN emploi_jourSemaine ej ON e.emploiId = ej.emploiId " +
+                "LEFT JOIN emploi_heure eh ON e.emploiId = eh.emploiId " +
+                "LEFT JOIN salle s ON e.salleId = s.salleId " +
                 "GROUP BY e.emploiId";
+
 
         try {
             Statement stm = cnx.createStatement();
@@ -79,18 +81,19 @@ public class ServiceEmploi implements IServiceEmploi<emploi> {
                 e.setEmploiId(rs.getInt("emploiId"));
                 e.setPremierDate(rs.getDate("premierDate"));
                 e.setDernierDate(rs.getDate("dernierDate"));
-//                int matiereId = rs.getInt("matiereId");
-//                Matiere matiere = new Matiere();
-//                matiere.setMatiereId(matiereId);
-//                e.setMatiere(matiere);
-                // Assuming Matiere has a constructor that accepts matiereId
-                String nomMatiere = rs.getString("nomMatiere");
-                Matiere matiere = new Matiere(nomMatiere);
+
+                // Fetch the name of the matiere based on its ID
+                ServiceMatiere matiereService = new ServiceMatiere();
+                int matiereId = rs.getInt("idM");
+
+// Assuming you have a method to get Matiere by ID
+                Matiere matiere = matiereService.getById(matiereId);
                 e.setMatiere(matiere);
 
-                int salleId = rs.getInt("salleId");
                 Salle salle = new Salle();
-                salle.setSalleId(salleId);
+                salle.setSalleId(rs.getInt("salleId"));
+                salle.setNumeroSalle(rs.getInt("numeroSalle"));
+                salle.setBloc(Bloc.valueOf(rs.getString("bloc")));
                 e.setSalle(salle);
 
                 // Splitting the concatenated strings into arrays of enum values
@@ -116,27 +119,44 @@ public class ServiceEmploi implements IServiceEmploi<emploi> {
         return emplois;
     }
 
-    // `matiereId`, `salleId`
     @Override
     public void modifierEmploi(emploi emploi) {
         try {
-            String qry = "UPDATE `emploi` SET `premierDate`=?, `dernierDate`=?, `matiereId`=?, `salleId`=? WHERE `emploiId`=?";
-            PreparedStatement stm = cnx.prepareStatement(qry);
-            stm.setDate(1, new java.sql.Date(emploi.getPremierDate().getTime()));
-            stm.setDate(2, new java.sql.Date(emploi.getDernierDate().getTime()));
-            stm.setInt(3, emploi.getMatiere().getMatiereId());
-            stm.setInt(4, emploi.getSalle().getSalleId());
-            stm.setInt(5, emploi.getEmploiId());
-            int rowsUpdated = stm.executeUpdate();
-            if (rowsUpdated > 0) {
-                System.out.println("emploi " + emploi.getEmploiId() + " Modifiée !");
-            } else {
-                System.out.println("Aucun emploi modifiée !");
-           }
+            String emploiQuery = "UPDATE `emploi` SET `premierDate`=?, `dernierDate`=?, `matiereId`=?, `salleId`=? WHERE `emploiId`=?";
+            String jourSemaineQuery = "INSERT INTO `emploi_jourSemaine` (`emploiId`, `jourSemaine`) VALUES (?, ?) ON DUPLICATE KEY UPDATE `jourSemaine` = VALUES(`jourSemaine`)";
+            String heureQuery = "INSERT INTO `emploi_heure` (`emploiId`, `heure`) VALUES (?, ?) ON DUPLICATE KEY UPDATE `heure` = VALUES(`heure`)";
+
+            // Update emploi table
+            PreparedStatement emploiStm = cnx.prepareStatement(emploiQuery);
+            emploiStm.setDate(1, new java.sql.Date(emploi.getPremierDate().getTime()));
+            emploiStm.setDate(2, new java.sql.Date(emploi.getDernierDate().getTime()));
+            emploiStm.setInt(3, emploi.getMatiere().getIdM());
+            emploiStm.setInt(4, emploi.getSalle().getSalleId());
+            emploiStm.setInt(5, emploi.getEmploiId());
+            int emploiRowsUpdated = emploiStm.executeUpdate();
+
+            // Update emploi_jourSemaine table
+            PreparedStatement jourSemaineStm = cnx.prepareStatement(jourSemaineQuery);
+            for (JourSemaine jourSemaine : emploi.getJourSemaine()) {
+                jourSemaineStm.setInt(1, emploi.getEmploiId());
+                jourSemaineStm.setString(2, jourSemaine.name());
+                jourSemaineStm.executeUpdate();
+            }
+
+            // Update emploi_heure table
+            PreparedStatement heureStm = cnx.prepareStatement(heureQuery);
+            for (Heure heure : emploi.getHeure()) {
+                heureStm.setInt(1, emploi.getEmploiId());
+                heureStm.setString(2, heure.name());
+                heureStm.executeUpdate();
+            }
+
+            System.out.println("emploi " + emploi.getEmploiId() + " Modifiée !");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
+
 
     @Override
     public boolean supprimerEmploi(emploi emploi) {
@@ -166,35 +186,52 @@ public class ServiceEmploi implements IServiceEmploi<emploi> {
     @Override
     public emploi getById(int emploiId) {
         emploi e = null;
-        String query = "SELECT e.*, ej.jourSemaine, eh.Heure " +
+
+        String query = "SELECT e.*, m.nomM, m.idM, s.salleId, s.numeroSalle, s.bloc, GROUP_CONCAT(ej.jourSemaine) AS joursSemaine, GROUP_CONCAT(eh.Heure) AS heures " +
                 "FROM emploi e " +
-                "JOIN emploi_jourSemaine ej ON e.emploiId = ej.emploiId " +
-                "JOIN emploi_heure eh ON e.emploiId = eh.emploiId " +
+                "JOIN matiere m ON e.matiereId = m.idM " +
+                "LEFT JOIN emploi_jourSemaine ej ON e.emploiId = ej.emploiId " +
+                "LEFT JOIN emploi_heure eh ON e.emploiId = eh.emploiId " +
+                "LEFT JOIN salle s ON e.salleId = s.salleId " +
                 "WHERE e.emploiId = ?";
 
         try {
             PreparedStatement pstmt = cnx.prepareStatement(query);
             pstmt.setInt(1, emploiId);
             ResultSet rs = pstmt.executeQuery();
-            while (rs.next()) {
+            if (rs.next()) {
                 e = new emploi();
                 e.setEmploiId(rs.getInt("emploiId"));
                 e.setPremierDate(rs.getDate("premierDate"));
                 e.setDernierDate(rs.getDate("dernierDate"));
-                int matiereId = rs.getInt("matiereId");
+
+                // Fetch Matiere
                 Matiere matiere = new Matiere();
-                matiere.setMatiereId(matiereId);
+                matiere.setIdM(rs.getInt("idM"));
+                matiere.setNomM(rs.getString("nomM"));
                 e.setMatiere(matiere);
-                int salleId = rs.getInt("salleId");
+
+                // Fetch Salle
                 Salle salle = new Salle();
-                salle.setSalleId(salleId);
+                salle.setSalleId(rs.getInt("salleId"));
+                salle.setNumeroSalle(rs.getInt("numeroSalle"));
+                salle.setBloc(Bloc.valueOf(rs.getString("bloc")));
+                e.setSalle(salle);
+
+                // Splitting the concatenated strings into arrays of enum values
+                String[] jourSemaineArray = rs.getString("joursSemaine").split(",");
+                String[] heureArray = rs.getString("heures").split(",");
+
                 Set<JourSemaine> jourSemaineSet = new HashSet<>();
-                JourSemaine jourSemaine = JourSemaine.valueOf(rs.getString("jourSemaine"));
-                jourSemaineSet.add(jourSemaine);
+                for (String jour : jourSemaineArray) {
+                    jourSemaineSet.add(JourSemaine.valueOf(jour));
+                }
                 e.setJourSemaine(jourSemaineSet);
+
                 Set<Heure> heureSet = new HashSet<>();
-                Heure heure = Heure.valueOf(rs.getString("Heure"));
-                heureSet.add(heure);
+                for (String heure : heureArray) {
+                    heureSet.add(Heure.valueOf(heure));
+                }
                 e.setHeure(heureSet);
             }
         } catch (SQLException ex) {

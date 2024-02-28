@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import tn.esprit.controllers.FormulaireEmploi;
 
 import java.io.IOException;
 
@@ -14,22 +15,21 @@ public class MainFX extends Application {
         launch(args);
     }
 
-        @Override
-        public void start(Stage primaryStage) {
-            FXMLLoader loader=new FXMLLoader(getClass().getResource("/AjouterSalle.fxml"));
-            try {
-                Parent root = loader.load();
-                Scene scene =new Scene(root);
-            //    scene.getStylesheets().add(getClass().getResource("/tn/esprit/style/styleAjouterSalle.css").toExternalForm());
-                primaryStage.setTitle("gestion salle");
-                primaryStage.setScene(scene);
-                primaryStage.show();
+    @Override
+    public void start(Stage primaryStage) throws IOException {
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FormulaireEmploi.fxml"));
+//        Parent root = loader.load();
+//        Scene scene = new Scene(root);
+//        primaryStage.setTitle("Gestion emploi");
+//        primaryStage.setScene(scene);
+//        primaryStage.show();
 
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
-            }
-
-
-        }
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterSalle.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        primaryStage.setTitle("Gestion Salles");
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
+}
 

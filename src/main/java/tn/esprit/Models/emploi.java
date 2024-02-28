@@ -50,12 +50,12 @@ public class emploi {
     }
 
 
-    public String getMatiereNom(){
-        if (matiere!= null){
-            return matiere.getNomMatiere();
-        } else
-            return null;
-    }
+//    public String getMatiereNom(){
+//        if (matiere!= null){
+//            return matiere.getNomMatiere();
+//        } else
+//            return null;
+//    }
 
     public Set<JourSemaine> getJourSemaine() {
         return jourSemaine;
@@ -97,7 +97,7 @@ public class emploi {
     public String toString() {
         return "emploi{" +
                 "emploiId=" + emploiId +
-                ", matiere=" + matiere +
+                ", matiere=" + matiere.getNomM() +
                 ", salle=" + salle +
                 ", premierDate=" + premierDate +
                 ", dernierDate=" + dernierDate +

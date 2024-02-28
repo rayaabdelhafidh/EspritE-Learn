@@ -89,9 +89,65 @@ public class Main {
 //        serviceEmploi.ajouterEmploi(e1);
 
 
+//
+//        emploi emploi = new emploi();
+//        emploi.setPremierDate(new Date(124, 2, 12, 10, 0, 0));
+//        emploi.setDernierDate(new Date(124, 2, 18, 10, 0, 0));
+//
+//        Matiere matiere = new Matiere();
+//        matiere.setIdM(2);
+//        emploi.setMatiere(matiere);
+//
+//        Salle salle = new Salle();
+//        salle.setSalleId(3);
+//        emploi.setSalle(salle);
+//
+//        Set<JourSemaine> jourSemaineSet = new HashSet<>();
+//        jourSemaineSet.add(JourSemaine.LUNDI);
+//        jourSemaineSet.add(JourSemaine.MARDI);
+//        jourSemaineSet.add(JourSemaine.MERCREDI);
+//        jourSemaineSet.add(JourSemaine.JEUDI);
+//        jourSemaineSet.add(JourSemaine.VENDREDI);
+//        emploi.setJourSemaine(jourSemaineSet);
+//
+//        Set<Heure> heureSet = new HashSet<>();
+//        heureSet.add(Heure.PREMIERE_SEANCE);
+//        heureSet.add(Heure.DEUXIEME_SEANCE);
+//        heureSet.add(Heure.TROISIEME_SEANCE);
+//        heureSet.add(Heure.QUATRIEME_SEANCE);
+//        emploi.setHeure(heureSet);
+//
+//        ServiceEmploi serviceEmploi = new ServiceEmploi();
+//        serviceEmploi.ajouterEmploi(emploi);
+//
         ServiceEmploi SE = new ServiceEmploi();
         System.out.println(SE.getAll());
-        System.out.println(SE.getById(4));
+        System.out.println(SE.getById(8));
+//
+//        try {
+//            emploi e1 = new emploi();
+//            e1.setEmploiId(4);
+//        e1.setPremierDate(new Date());
+//        e1.setDernierDate(new Date());
+//        Matiere matiere = new Matiere();
+//        matiere.setIdM(1);
+//        e1.setMatiere(matiere);
+//            Salle s1 = new Salle();
+//            s1.setSalleId(21);
+//            e1.setSalle(s1);
+//        Set<JourSemaine> jourSemaineSet = new HashSet<>();
+//        e1.setJourSemaine(jourSemaineSet);
+//        Set<Heure> heureSet = new HashSet<>();
+//        e1.setHeure(heureSet);
+//
+//            SE.modifierEmploi(e1);
+//        } catch (Exception e) {
+//            throw new RuntimeException(e);
+//        }
+//
+//
+//        System.out.println("aprés modif");
+//        System.out.println(SE.getById(4));
 
 
 //
