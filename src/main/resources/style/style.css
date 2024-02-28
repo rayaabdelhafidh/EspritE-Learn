@@ -1,0 +1,25 @@
+.coleurButton {
+        -fx-background-color:#444444; /* Rouge foncé brun en notation hexadécimale */
+        -fx-text-fill: black; /* Couleur du texte noir */
+}
+.hbox-red {
+
+        -fx-background-color: #8B0000; /* Rouge foncé brun en notation hexadécimale */
+}
+
+.vbox-grey {
+        -fx-background-color:#8B0000;
+}
+
+.button-red-brown {
+        -fx-background-color:#444444; /* Rouge foncé brun en notation hexadécimale */
+        -fx-text-fill: black; /* Couleur du texte noir */
+}
+
+.anchor-pane-red-background {
+        -fx-background-color:#8B0000;
+}
+
+.coleurButtton {
+        -fx-background-color: #8B0000;
+}
