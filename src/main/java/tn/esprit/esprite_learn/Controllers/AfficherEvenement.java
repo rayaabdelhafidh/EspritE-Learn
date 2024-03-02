@@ -98,7 +98,6 @@ public class AfficherEvenement {
         }
         }
 
-
     public Evenement onSelectedItem() {
         String selectedEventName = eventList.getSelectionModel().getSelectedItem();
         try {

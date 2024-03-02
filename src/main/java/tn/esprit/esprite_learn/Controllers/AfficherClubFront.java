@@ -87,7 +87,7 @@ public class AfficherClubFront {
         AfficherEvenementFront controller = fxmlLoader.getController();
         c=onSelectedItem();
         // naadi les détails mel haja eli selectionnitha fel menu lel contrôleur
-        controller.show(c);
+        //controller.show(c);
 
         Scene scene = new Scene(root);
         Stage stage = new Stage();

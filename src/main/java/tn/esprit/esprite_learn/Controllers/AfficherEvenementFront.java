@@ -2,113 +2,108 @@ package tn.esprit.esprite_learn.Controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import tn.esprit.esprite_learn.Models.Clubs;
 import tn.esprit.esprite_learn.Models.Evenement;
 import tn.esprit.esprite_learn.Services.ServiceClub;
 import tn.esprit.esprite_learn.Services.ServiceEvenement;
 import tn.esprit.esprite_learn.utils.DataBase;
 
+import java.io.IOException;
+import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-public class AfficherEvenementFront {
+public class AfficherEvenementFront implements Initializable {
 
     @FXML
     private Button AfficherBtn;
-
     @FXML
     private ListView<String> detailsList;
-
     @FXML
     private ListView<String> eventList;
-
     @FXML
     private ImageView image;
-
     @FXML
     private TitledPane pane;
-
     @FXML
     private MenuItem show;
+    @FXML
+    private GridPane EventContainer;
 
+    @FXML
+    private TextField search;
+
+    @FXML
+    private Button searchBtn;
     ServiceClub scc= new ServiceClub();
+
+    @FXML
+    void ChercherEvenement(ActionEvent event) throws SQLException {
+        ServiceEvenement se=new ServiceEvenement();
+        String nom=search.getText();
+        Evenement e=se.chercherEvenement(nom);
+        EventContainer.getChildren().clear();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/tn/esprit/esprite_learn/DetailsEvenements.fxml"));
+        Parent root = null;
+        try {
+            root = fxmlLoader.load();
+        } catch (IOException ex) {
+            System.out.println("Error loading DetailsEvenements.fxml: " + ex.getMessage());
+            ex.printStackTrace();
+        }
+        DetailsEvenements controller = fxmlLoader.getController();
+        controller.data(e);
+        Scene scene = new Scene(root);
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow(); // Get the current stage
+        currentStage.close(); // Close the current stage
+        Stage newStage = new Stage();
+        newStage.setTitle("Evenements!");
+        newStage.setScene(scene);
+        newStage.show();
+    }
 
     public AfficherEvenementFront() throws SQLException {
     }
 
-    @FXML
-    void AfficherEvenement(ActionEvent event) throws SQLException {
-        DataBase db = DataBase.getInstance();
-        ServiceEvenement se = new ServiceEvenement();
-        ArrayList<Evenement> evenements = se.display();
-        // Clear existing items
-        eventList.getItems().clear();
 
-        for (Evenement evenmt : evenements) {
-            String name = evenmt.getNomEvenement();
-            System.out.println("Event Name: " + name);
-            eventList.getItems().add(name);
-        }
-    }
-    public void initialize() {
-        // Add context menu to the clubView
-        ContextMenu contextMenu = new ContextMenu();
-        MenuItem showMenuItem = new MenuItem("Show");
-        showMenuItem.setOnAction(this::ShowDetails);
-        contextMenu.getItems().add(showMenuItem);
-        eventList.setContextMenu(contextMenu);
-    }
-
-    @FXML
-    void ShowDetails(ActionEvent event) {
-        Evenement selectedClub = onSelectedItem();
-        Image defaultImage=new Image("C:/Users/abdel/OneDrive/Bureau/1.png");
-        Clubs c=scc.findbyId(selectedClub.getClub());
-
-        detailsList.getItems().clear();
-        detailsList.getItems().add("Nom de l'evenement: " + selectedClub.getNomEvenement());
-        detailsList.getItems().add("Date de l'evenement: " + selectedClub.getDateEvenement());
-        detailsList.getItems().add("Prix pass: " + selectedClub.getPrixEvenement());
-        detailsList.getItems().add("Lieu de l'evenement: " + selectedClub.getLieuEvenement());
-        detailsList.getItems().add("Club responsable:  " + c.getNomClub());
-        String url = selectedClub.getAfficheEvenement();
-        String imageURL=normalizePath(url);
-        if (imageURL != null && !imageURL.isEmpty()) {
-            try {
-                Image image1 = new Image(imageURL);
-                image.setImage(image1);
-            } catch (Exception e) {
-                image.setImage(defaultImage);  // Set a default image
+    public void initialize(URL location, ResourceBundle resources) {
+        int column = 0;
+        int row = 1;
+        try {
+            ServiceEvenement sc = new ServiceEvenement();
+            ArrayList<Evenement> evenements = sc.display();
+            for (Evenement evenement : evenements) {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/tn/esprit/esprite_learn/Evenement.fxml"));
+                VBox eventBox = fxmlLoader.load();
+                EvenementController controller = fxmlLoader.getController();
+                controller.data(evenement);
+                if (column == 6) {
+                    column = 0;
+                    ++row;
+                }
+                EventContainer.add(eventBox, column++, row);
+                GridPane.setMargin(eventBox, new Insets(10));
             }
-        } else {
-            image.setImage(defaultImage);
-        }
-    }
-    public Evenement onSelectedItem() {
-        String selectedEventName = eventList.getSelectionModel().getSelectedItem();
-        try {
-            DataBase db = DataBase.getInstance();
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }
-        ServiceEvenement sc = null;
-        try {
-            sc = new ServiceEvenement();
-        } catch (SQLException e) {
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        ArrayList<Evenement> evenements = sc.display();
-        Evenement selectedEvent = null;
-        if (selectedEventName != null) {
-            selectedEvent = sc.find(selectedEventName);
-
-        }
-        return selectedEvent;
     }
 
     private String normalizePath(String originalPath) {
@@ -118,34 +113,9 @@ public class AfficherEvenementFront {
         return normalizedPath.toString();
     }
 
-    void show(Clubs c) throws SQLException {
-        ServiceEvenement sc = new ServiceEvenement();
-        ArrayList<Evenement> evenements = new ArrayList<>();
-        evenements = sc.findByClub(c);
-        for (Evenement selectedClub : evenements) {
-            Image defaultImage = new Image("C:/Users/abdel/OneDrive/Bureau/1.png");
-            Clubs cl=scc.findbyId(selectedClub.getClub());
-            detailsList.getItems().clear();
-            detailsList.getItems().add("Nom de l'evenement: " + selectedClub.getNomEvenement());
-            detailsList.getItems().add("Date de l'evenement: " + selectedClub.getDateEvenement());
-            detailsList.getItems().add("Prix pass: " + selectedClub.getPrixEvenement());
-            detailsList.getItems().add("Lieu de l'evenement: " + selectedClub.getLieuEvenement());
-            detailsList.getItems().add("Club responsable:  " + cl.getNomClub());
-            String url = selectedClub.getAfficheEvenement();
-            String imageURL = normalizePath(url);
-            if (imageURL != null && !imageURL.isEmpty()) {
-                try {
-                    // Try to create the Image object from the URL
-                    Image image1 = new Image(imageURL);
-                    image.setImage(image1);
-                } catch (Exception e) {
-                    // fel cas enou l url invalide
-                    image.setImage(defaultImage);
-                }
-            } else {
-                //houni mafamech url aslan
-                image.setImage(defaultImage);
-            }
-        }
+    @FXML
+    void AfficherClubFront(ActionEvent event) {
+
     }
+
 }

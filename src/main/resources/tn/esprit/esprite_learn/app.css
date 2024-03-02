@@ -112,3 +112,13 @@
     -fx-border-color: #ffffff; /* Couleur de la bordure du bouton sélectionné */
     -fx-text-fill: #ffffff; /* Couleur du texte du bouton sélectionné */
 }
+.round-layout{
+    -fx-border-radius: 50;
+    -fx-border-color: #D7D7D7D7;
+}
+.transparent{
+    -fx-background-color: rgba(0,0,0,0);
+}
+.custom-button-two{
+    -fx-background-image: url(cart.png);
+}
