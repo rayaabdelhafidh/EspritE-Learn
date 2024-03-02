@@ -9,6 +9,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.stage.FileChooser;
 import tn.esprit.FXMain;
 import tn.esprit.iservice.OnChangeListener;
 import tn.esprit.models.Cour;
@@ -17,6 +18,7 @@ import tn.esprit.models.PlanDetude;
 import tn.esprit.service.ServiceCour;
 import tn.esprit.service.ServiceMatiere;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Set;
 
@@ -57,6 +59,8 @@ public class AjouterCour implements OnChangeListener {
 
         cbmatiere.getItems().setAll(sm.getNomMatiere());
         refresh();
+        tfcour.setDisable(true);
+        tfimage.setDisable(true);
     }
 
     public String controleDeSaisire(){
@@ -182,5 +186,26 @@ public class AjouterCour implements OnChangeListener {
       tftitre.setText(c.getTitre());
       tfobjectif.setText(c.getObjectif());
       cbmatiere.setValue(sm.getById(c.getId()).getNomM());
+    }
+
+    @FXML
+    void uploadPDF(ActionEvent event) {
+       // la classe FileChooser, qui est une boîte de dialogue permettant à l'utilisateur de sélectionner un fichier sur le système de fichiers.
+        FileChooser fileChooser=new FileChooser();
+        File file=fileChooser.showOpenDialog(tfcour.getScene().getWindow());
+        if(file!=null){
+            String filename= file.getName();
+            tfcour.setText(filename);
+        }
+    }
+
+    @FXML
+    void uploadimage(ActionEvent event) {
+        FileChooser fileChooser=new FileChooser();
+        File file=fileChooser.showOpenDialog(tfcour.getScene().getWindow());
+        if(file!=null){
+            String filename= file.getName();
+            tfimage.setText(filename);
+        }
     }
 }

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="702.0" prefWidth="1018.0" style="-fx-background-color: #8B8585;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.AfficherPlanDetudeEtudiant">
+    <children>
+        <ImageView fitHeight="702.0" fitWidth="1031.0" opacity="0.59" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@images/esprit-ghazela.jpg" />
+            </image>
+        </ImageView>
+        <Text fill="#f22e2e" layoutX="397.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion plan d'etude" wrappingWidth="285.3824462890625">
+            <font>
+                <Font name="System Bold" size="27.0" />
+            </font></Text>
+        <ListView fx:id="listPlanDetude" layoutX="55.0" layoutY="178.0" prefHeight="362.0" prefWidth="470.0" />
+        <ImageView fitHeight="131.0" fitWidth="122.0" layoutX="915.0" layoutY="581.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@images/logo.png" />
+            </image>
+        </ImageView>
+    </children>
+</AnchorPane>

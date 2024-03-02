@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="anchorpane" prefHeight="689.0" prefWidth="942.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.AfficherCourEtudiant">
+    <children>
+        <ImageView fitHeight="709.0" fitWidth="1035.0" layoutX="-28.0" layoutY="-5.0" opacity="0.69" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@images/esprit-ghazela.jpg" />
+            </image>
+        </ImageView>
+        <Text fill="#f22e2e" layoutX="662.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion Cours" wrappingWidth="247.40673828125">
+            <font>
+                <Font name="System Bold" size="32.0" />
+            </font></Text>
+        <ScrollPane layoutX="5.0" layoutY="17.0" prefHeight="670.0" prefWidth="598.0">
+            <content>
+                <GridPane fx:id="grid">
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                </GridPane>
+            </content>
+        </ScrollPane>
+        <ImageView fitHeight="140.0" fitWidth="128.0" layoutX="900.0" layoutY="597.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@images/logo.png" />
+            </image>
+        </ImageView>
+    </children>
+</AnchorPane>

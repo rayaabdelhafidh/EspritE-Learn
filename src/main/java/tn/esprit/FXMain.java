@@ -27,7 +27,8 @@ public class FXMain extends Application {
         //FXMLLoader loader=new FXMLLoader(FXMain.class.getResource("/ajouterMatiere.fxml"));
        //FXMLLoader loader=new FXMLLoader(FXMain.class.getResource("/modifierPlanDetude.fxml"));
       // FXMLLoader loader=new FXMLLoader(FXMain.class.getResource("/ajouterCour.fxml"));
-        FXMLLoader loader=new FXMLLoader(FXMain.class.getResource("/gestion_Cour_Admin.fxml"));
+       //FXMLLoader loader=new FXMLLoader(FXMain.class.getResource("/gestion_Cour_Admin.fxml"));
+        FXMLLoader loader=new FXMLLoader(FXMain.class.getResource("/gestion-Cour-Etudiant.fxml"));
         Parent root=loader.load();
         Scene scene=new Scene(root);
         primaryStage.setScene(scene);
