@@ -6,6 +6,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
@@ -76,6 +77,8 @@
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Etat Presence " wrappingWidth="108.69403076171875" GridPane.rowIndex="1" />
                         <CheckBox fx:id="checkBoxAbsent" mnemonicParsing="false" text="Absent" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                         <CheckBox fx:id="checkBoxPresent" mnemonicParsing="false" text="Present" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                        <RadioButton fx:id="radioAbsent" mnemonicParsing="false" text="Absent" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <RadioButton fx:id="radioPresent" mnemonicParsing="false" text="Present" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>
                   <Button layoutX="418.0" layoutY="397.0" mnemonicParsing="false" onAction="#EnregistrerEtatPresence" text="Enregistre etat de presence" textFill="#e81010" />
@@ -87,7 +90,7 @@
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
                   <ListView fx:id="affichageEtatPresence" layoutX="32.0" layoutY="74.0" prefHeight="310.0" prefWidth="623.0" />
-                  <ComboBox fx:id="filtreClasse" layoutX="46.0" layoutY="39.0" prefWidth="150.0" />
+                  <ComboBox fx:id="filtreClasse" layoutX="46.0" layoutY="39.0" onAction="#classeSelectedEtatPresence" prefWidth="150.0" />
                </children>
             </AnchorPane>
         </content>

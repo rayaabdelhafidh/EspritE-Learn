@@ -284,6 +284,34 @@ public class ServicePersonne implements IService<Personne> {
         return false;
     }
 
+    public List<Personne> getEtudiantsAvecPresencePourClasse(String nomClasse) {
+        List<Personne> etudiantsAvecPresence = new ArrayList<>();
+        String query = "SELECT p.idP, p.nom, p.prenom, p.etatPresence " +
+                "FROM personne p JOIN classe c ON p.idClasse = c.idClasse " +
+                "WHERE c.nomClasse = ?";
+        try (PreparedStatement pstmt = cnx.prepareStatement(query)) {
+            pstmt.setString(1, nomClasse);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                Personne etudiant = new Personne();
+                etudiant.setIdP(rs.getInt("idP"));
+                etudiant.setNom(rs.getString("nom"));
+                etudiant.setPrenom(rs.getString("prenom"));
+                String etatPresence = rs.getString("etatPresence");
+                if (etatPresence != null) {
+                    etudiant.setEtatPresence(EtatPresence.valueOf(etatPresence));
+                } else {
+                    etudiant.setEtatPresence(EtatPresence.Absent);
+                }
+                etudiantsAvecPresence.add(etudiant);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return etudiantsAvecPresence;
+    }
+
+
 
 
 

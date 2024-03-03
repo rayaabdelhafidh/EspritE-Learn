@@ -19,6 +19,7 @@ public class Presence {
         this.seance = seance;
     }
 
+
     public Presence(int idPresence, Date date, tn.esprit.Models.classe classe, Seance seance, List<tn.esprit.Models.classe> classes, String nomClasse, int idClasse) {
         this.idPresence = idPresence;
         this.date = date;
@@ -28,6 +29,7 @@ public class Presence {
         this.nomClasse = nomClasse;
         this.idClasse = idClasse;
     }
+
 
     public int getIdClasse() {
         return idClasse;
@@ -98,15 +100,17 @@ public class Presence {
     @Override
     public String toString() {
         return "Presence{" +
-                "idPresence=" + idPresence +
-                ", date=" + date +
-                ", classe=" + classe +
+
+                " date=" + date +
+
                 ", seance=" + seance +
-                ", classes=" + classes +
+
                 ", nomClasse='" + nomClasse + '\'' +
-                ", idClasse=" + idClasse +
+
                 '}';
     }
+
+
 
 
 

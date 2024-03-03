@@ -130,6 +130,9 @@ public class Classe implements Initializable {
     @FXML
     private ChoiceBox<String> lbNiveauModif;
 
+    @FXML
+    private TextField filterField;
+
 
 
 
@@ -231,7 +234,35 @@ public class Classe implements Initializable {
     }
 
 
+    private void search(){
+        ServiceClasse s = new ServiceClasse();
+        ObservableList<classe> listClasse = FXCollections.observableArrayList(s.getAll());
+        FilteredList<classe> filteredData = new FilteredList<>(listClasse,p -> true);
 
+        filterField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(classe ->{
+                if(newValue == null || newValue.isEmpty()){
+                    return true;
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+                if(String.valueOf(classe.getNomClasse()).toLowerCase().contains(lowerCaseFilter)){
+                    return true;
+                }else if (classe.getFiliere() != null && classe.getFiliere().toString().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                }else if (classe.getNiveaux() != null && classe.getNiveaux().toString().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                }else if (String.valueOf(classe.getNbreEtud()).contains(lowerCaseFilter)) {
+                    return true;
+                }
+                return false;
+            });
+        });
+
+        SortedList<classe> sortedData = new SortedList<>(filteredData);
+
+        searchListeDesClasses.setItems(sortedData);
+    }
 
 
 
@@ -271,7 +302,7 @@ lbNiveau.setItems(niveauxList);
 
 
 
-
+      search();
 
     }
     public void showAlert(Alert.AlertType alertType, String title, String message)
@@ -374,7 +405,7 @@ lbNiveau.setItems(niveauxList);
         NbEtudiSearchList.setCellValueFactory(new PropertyValueFactory<>("nbreEtud"));
         classNameListSearch.setCellValueFactory(new PropertyValueFactory<>("nomClasse"));
         filiereListSearch.setCellValueFactory(new PropertyValueFactory<>("filiere"));
-        filiereListSearch.setCellValueFactory(new PropertyValueFactory<>("niveaux"));
+        ListSearchNiv.setCellValueFactory(new PropertyValueFactory<>("niveaux"));
         // Ajout des données à la table 1
         searchListeDesClasses.setItems(FXCollections.observableArrayList(classes));
     }

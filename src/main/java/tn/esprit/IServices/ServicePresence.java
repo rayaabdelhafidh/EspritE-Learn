@@ -67,6 +67,25 @@ public class ServicePresence implements InServicePresence {
         }
         return presencess;
     }
+    @Override
+    public ArrayList<Presence> getAllwithouId() {
+        ArrayList<Presence> presencess = new ArrayList<>();
+        String qry = "SELECT * FROM `presence`";
+        try {
+            Statement stm = cnx.createStatement();
+            ResultSet rs = stm.executeQuery(qry);
+            while (rs.next()) {
+                Presence P = new Presence();
+                P.setDate(rs.getDate("date"));
+                P.setSeance(Seance.valueOf(rs.getString("seance")));
+                P.setNomClasse(rs.getString("nomClasse"));
+                presencess.add(P);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return presencess;
+    }
 
 
     @Override

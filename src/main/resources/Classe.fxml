@@ -187,6 +187,7 @@
                         <Image url="@images/logo.png" />
                      </image>
                   </ImageView>
+                  <TextField fx:id="filterField" layoutX="34.0" layoutY="255.0" />
                </children>
             </AnchorPane>
          </content>
