@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import org.controlsfx.control.Rating;
 import tn.esprit.iservice.OnChangeListener;
 import tn.esprit.models.Cour;
 import tn.esprit.service.ServiceCour;
@@ -30,6 +31,8 @@ public class CourCardView {
 
     @FXML
     private Label ltitre;
+    @FXML
+    private Rating rate;
     ServiceMatiere sm=new ServiceMatiere();
     ServiceCour sc=new ServiceCour();
  private OnChangeListener onChangeListener;
@@ -39,6 +42,10 @@ public class CourCardView {
     }
 
     Cour cour;
+    @FXML
+    void initialize(){
+        rate.setDisable(true);
+    }
     public void remplireData(Cour c){
          cour=c; //nstha9ha bch n3abi l cours fl refresh nst7a9ha fl modif w supp
         ltitre.setText(c.getTitre());
@@ -49,6 +56,7 @@ public class CourCardView {
         File file=new File("D:\\Esprit_Learn - Copy\\src\\main\\resources\\images\\"+c.getImage());
         Image image=new Image(file.toURI().toString());
         img.setImage(image);
+        rate.setRating(c.getNote());
 
     }
     @FXML
@@ -66,4 +74,5 @@ public class CourCardView {
        }
 
     }
+
 }

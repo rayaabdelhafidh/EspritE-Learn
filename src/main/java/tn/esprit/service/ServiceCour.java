@@ -5,6 +5,7 @@ import tn.esprit.models.Cour;
 import tn.esprit.util.MyDataBase;
 
 import java.sql.*;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
@@ -42,7 +43,7 @@ public class ServiceCour implements IService<Cour> {
                     "(`titre`, `description`," +
                     " `duree`, `objectif`," +
                     " `image`, `idMatiere`," +
-                    " `coursPdfUrl`)" +
+                    " `coursPdfUrl`,`note`)" +
                     " VALUES (?,?,?,?,?,?,?)";
 
             PreparedStatement pst= cnx.prepareStatement(query);
@@ -53,6 +54,7 @@ public class ServiceCour implements IService<Cour> {
             pst.setString(5, cour.getImage());
             pst.setString(7, cour.getCoursPdfUrl());
             pst.setInt(6, cour.getIdMatiere());
+            pst.setInt(7, cour.getNote());
             pst.executeUpdate();
         } catch (SQLException e) {
             System.out.println("erreur:"+e.getMessage());
@@ -71,7 +73,7 @@ public class ServiceCour implements IService<Cour> {
                     "`objectif`=?," +
                     "`image`=?," +
                     "`coursPdfUrl`=?," +
-                    "`idMatiere`=? WHERE id=?";
+                    "`idMatiere`=?,`note`=? WHERE id=?";
             PreparedStatement pst= cnx.prepareStatement(query);
             pst.setString(1, cour.getTitre());
             pst.setString(2, cour.getDescription());
@@ -81,6 +83,7 @@ public class ServiceCour implements IService<Cour> {
             pst.setInt(7, cour.getIdMatiere());
             pst.setString(6, cour.getCoursPdfUrl());
             pst.setInt(8,cour.getId());
+            pst.setInt(9,cour.getId());
             pst.executeUpdate();
         } catch (SQLException e) {
             System.out.println("erreur:"+e.getMessage());
@@ -116,6 +119,7 @@ public class ServiceCour implements IService<Cour> {
                 c.setImage(rs.getString("image"));
                 c.setCoursPdfUrl(rs.getString("coursPdfUrl"));
                 c.setIdMatiere(rs.getInt("idMatiere"));
+                c.setNote(rs.getInt("note"));
                 courSet.add(c);
             }
         }catch (SQLException ex){
@@ -140,5 +144,22 @@ public class ServiceCour implements IService<Cour> {
     public TreeSet<Cour> sortByTitre(){
         return afficher().stream()
                 .collect(Collectors.toCollection(()->new TreeSet<>((c1, c2)->c1.getTitre().compareTo(c2.getTitre()))));
+    }
+    public TreeSet<Cour> sortByCritere(String critere){
+        switch (critere){
+            case "Titre":
+                return afficher().stream()
+                        .collect(Collectors.toCollection(()->new TreeSet<>(Comparator.comparing(Cour::getTitre))));
+            case "Description":
+                return afficher().stream()
+                        .collect(Collectors.toCollection(()->new TreeSet<>(Comparator.comparing(Cour::getDescription))));
+            case "Duree":
+                return afficher().stream()
+                        .collect(Collectors.toCollection(()->new TreeSet<>(Comparator.comparing(Cour::getDuree))));
+
+        }
+        return afficher().stream()
+                .collect(Collectors.toCollection(()->new TreeSet<>((c1, c2)->c1.getTitre().compareTo(c2.getTitre()))));
+
     }
 }

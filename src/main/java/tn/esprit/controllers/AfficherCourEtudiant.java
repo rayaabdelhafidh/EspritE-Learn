@@ -1,8 +1,14 @@
 package tn.esprit.controllers;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import tn.esprit.FXMain;
@@ -10,6 +16,7 @@ import tn.esprit.models.Cour;
 import tn.esprit.service.ServiceCour;
 
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.Set;
 
 
@@ -20,13 +27,19 @@ public class AfficherCourEtudiant {
     private GridPane grid;
 
     @FXML
+    private ComboBox<String> cbtri;
+    @FXML
+    private TextField tfrecherche;
+    @FXML
     public void initialize() {
-        refresh();
+        refresh(sc.afficher());
+        cbtri.getItems().setAll("Titre","Description","Duree");
+        recherche_avance();
     }
     ServiceCour sc=new ServiceCour();
-    public void refresh() {
+    public void refresh(Set<Cour> cours) {
         grid.getChildren().clear();//bch nfasa5 ili f wost l matrice lkol
-        Set<Cour> cours = sc.afficher();
+        // Set<Cour> cours=sc.afficher();
         int column = 0;
         int row = 1;
         for (Cour c : cours) {
@@ -49,5 +62,38 @@ public class AfficherCourEtudiant {
                 System.out.println(ex.getMessage());
             }
         }
+    }
+
+    @FXML
+    void tri(ActionEvent event) {
+        refresh(sc.sortByCritere(cbtri.getValue()));
+    }
+
+    public void recherche_avance(){
+        refresh(sc.afficher());
+        ObservableList<Cour> data= FXCollections.observableArrayList(sc.afficher());
+        FilteredList<Cour> filteredList=new FilteredList<>(data, c->true);
+        tfrecherche.textProperty().addListener((observable,oldValue,newValue)->{
+            filteredList.setPredicate(c->{
+                if(newValue.isEmpty()|| newValue==null){
+                    return true;
+                }
+                if(c.getTitre().contains(newValue)){
+                    return true;
+                }
+                else if(c.getDescription().contains(newValue)){
+                    return true;
+                }
+                else if(String.valueOf(c.getDuree()).contains(newValue)){
+                    return true;
+                }
+
+                else{
+                    return false;
+                }
+            });
+
+            refresh(new HashSet<>(filteredList));
+        });
     }
 }

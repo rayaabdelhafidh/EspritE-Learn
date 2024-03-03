@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -9,9 +12,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="anchorpane" prefHeight="689.0" prefWidth="942.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.AfficherCourEtudiant">
+<AnchorPane fx:id="anchorpane" prefHeight="704.0" prefWidth="1021.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.AfficherCourEtudiant">
     <children>
-        <ImageView fitHeight="709.0" fitWidth="1035.0" layoutX="-28.0" layoutY="-5.0" opacity="0.69" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="725.0" fitWidth="1051.0" layoutY="6.0" opacity="0.69" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@images/esprit-ghazela.jpg" />
             </image>
@@ -20,7 +23,7 @@
             <font>
                 <Font name="System Bold" size="32.0" />
             </font></Text>
-        <ScrollPane layoutX="5.0" layoutY="17.0" prefHeight="670.0" prefWidth="598.0">
+        <ScrollPane layoutX="36.0" layoutY="60.0" prefHeight="670.0" prefWidth="598.0">
             <content>
                 <GridPane fx:id="grid">
                     <rowConstraints>
@@ -34,5 +37,8 @@
                 <Image url="@images/logo.png" />
             </image>
         </ImageView>
+      <TextField fx:id="tfrecherche" layoutX="49.0" layoutY="25.0" text="Recherche" />
+      <ComboBox fx:id="cbtri" layoutX="395.0" layoutY="25.0" prefWidth="150.0" promptText="Tri" />
+      <Button layoutX="556.0" layoutY="25.0" mnemonicParsing="false" onAction="#tri" text="Tri" />
     </children>
 </AnchorPane>

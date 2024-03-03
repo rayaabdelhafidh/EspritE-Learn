@@ -11,11 +11,12 @@ public class Cour {
     private String image;
     private String coursPdfUrl;
     private int idMatiere;
+    private int note;
 
     public Cour() {
     }
 
-    public Cour(String titre, String description, int duree, String objectif, String image, String coursPdfUrl, int idMatiere) {
+    public Cour(String titre, String description, int duree, String objectif, String image, String coursPdfUrl, int idMatiere, int note) {
         this.titre = titre;
         this.description = description;
         this.duree = duree;
@@ -23,9 +24,10 @@ public class Cour {
         this.image = image;
         this.coursPdfUrl = coursPdfUrl;
         this.idMatiere = idMatiere;
+        this.note = note;
     }
 
-    public Cour(int id, String titre, String description, int duree, String objectif, String image, String coursPdfUrl, int idMatiere) {
+    public Cour(int id, String titre, String description, int duree, String objectif, String image, String coursPdfUrl, int idMatiere, int note) {
         this.id = id;
         this.titre = titre;
         this.description = description;
@@ -34,6 +36,7 @@ public class Cour {
         this.image = image;
         this.coursPdfUrl = coursPdfUrl;
         this.idMatiere = idMatiere;
+        this.note = note;
     }
 
     public int getId() {
@@ -96,6 +99,14 @@ public class Cour {
 
     public void setCoursPdfUrl(String coursPdfUrl) { this.coursPdfUrl = coursPdfUrl; }
 
+    public int getNote() {
+        return note;
+    }
+
+    public void setNote(int note) {
+        this.note = note;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -108,6 +119,8 @@ public class Cour {
         return Objects.hash(getId(), getTitre(), getDuree());
     }
 
+
+
     @Override
     public String toString() {
         return "Cour{" +
@@ -117,7 +130,9 @@ public class Cour {
                 ", duree=" + duree +
                 ", objectif='" + objectif + '\'' +
                 ", image='" + image + '\'' +
+                ", coursPdfUrl='" + coursPdfUrl + '\'' +
                 ", idMatiere=" + idMatiere +
-                '}'+"\n";
+                ", note=" + note +
+                '}';
     }
 }

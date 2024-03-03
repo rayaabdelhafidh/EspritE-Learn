@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import org.controlsfx.control.Rating;
 import tn.esprit.iservice.OnChangeListener;
 import tn.esprit.models.Cour;
 import tn.esprit.service.ServiceCour;
@@ -16,7 +17,10 @@ import java.io.File;
 import java.io.IOException;
 
 public class CourCardEtudiant {
-
+    @FXML
+    private Button btnnote;
+    @FXML
+    private Rating rate;
 
     @FXML
     private ImageView img;
@@ -68,4 +72,13 @@ public class CourCardEtudiant {
             }
         }
     }
+
+    @FXML
+    void putNote(ActionEvent event) {
+     cour.setNote((int)rate.getRating());
+     sc.modifier(cour);
+     btnnote.setDisable(true);
+     rate.setDisable(true);
     }
+
+}

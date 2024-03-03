@@ -6,8 +6,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import org.controlsfx.control.Rating?>
 
-<AnchorPane prefHeight="435.0" prefWidth="272.0" style="-fx-background-color: #d4d4d4; -fx-border-color: black; -fx-background-radius: 25; -fx-border-radius: 25; -fx-border-width: 3;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.CourCardEtudiant">
+<AnchorPane prefHeight="465.0" prefWidth="302.0" style="-fx-background-color: #d4d4d4; -fx-border-color: black; -fx-background-radius: 25; -fx-border-radius: 25; -fx-border-width: 3;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.CourCardEtudiant">
     <children>
         <ImageView fx:id="img" fitHeight="150.0" fitWidth="200.0" layoutX="33.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
         <Text layoutX="33.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Titre">
@@ -35,7 +36,9 @@
         <Label fx:id="lobjectif" layoutX="146.0" layoutY="282.0" text="Label" />
         <Label fx:id="lduree" layoutX="146.0" layoutY="319.0" text="Label" />
         <Label fx:id="lmatiere" layoutX="146.0" layoutY="354.0" text="Label" />
-      <Button layoutX="160.0" layoutY="385.0" mnemonicParsing="false" onAction="#telechargerPDF" text="Telecharger PDF" />
+      <Button layoutX="85.0" layoutY="425.0" mnemonicParsing="false" onAction="#telechargerPDF" text="Telecharger PDF" />
+      <Rating fx:id="rate" layoutX="33.0" layoutY="378.0" />
+      <Button fx:id="btnnote" layoutX="223.0" layoutY="381.0" mnemonicParsing="false" onAction="#putNote" text="Noter" />
 
     </children>
 </AnchorPane>

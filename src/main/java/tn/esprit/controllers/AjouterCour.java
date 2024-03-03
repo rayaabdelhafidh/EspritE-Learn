@@ -10,6 +10,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 import tn.esprit.FXMain;
 import tn.esprit.iservice.OnChangeListener;
 import tn.esprit.models.Cour;
@@ -113,6 +115,7 @@ public class AjouterCour implements OnChangeListener {
             c.setIdMatiere(idMatiere);
             System.out.println(c);
             sc.ajouter(c);
+            Notifications.create().title("Ajouter cour").text("Ajout cour avec succes").hideAfter(Duration.seconds(5)).showInformation();
             refresh();}
 
     }
