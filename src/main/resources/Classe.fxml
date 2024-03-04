@@ -79,7 +79,6 @@
                   <VBox layoutX="9.0" layoutY="14.0" prefHeight="414.0" prefWidth="278.0" spacing="5.0" stylesheets="@styles.css">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Donnez l'id de classe à modifier " />
-                        <TextField fx:id="idDonnePourModif" prefHeight="25.0" prefWidth="419.0" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="form_container" text="Nom classe" wrappingWidth="76.64453125" />
                         <TextField fx:id="labelNomModif" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Filiere" />
@@ -96,7 +95,6 @@
                   </VBox>
                   <TableView fx:id="tableClasse2" layoutX="287.0" layoutY="2.0" onMouseClicked="#fillForumm" prefHeight="439.0" prefWidth="362.0">
                      <columns>
-                        <TableColumn fx:id="IddansListe" prefWidth="75.0" text="Id" />
                         <TableColumn fx:id="classeNameC2" prefWidth="75.0" text="Classe Name" />
                         <TableColumn fx:id="filiereC2" prefWidth="75.0" text="Filiere" />
                         <TableColumn fx:id="nbEtudiantC2" prefWidth="75.0" text="Nb Etudiant" />
@@ -123,12 +121,6 @@
                   </ImageView>
                   <VBox layoutX="14.0" layoutY="14.0" prefHeight="198.0" prefWidth="245.0" spacing="20.0">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Donner l'id du classe à supprimer " />
-                        <TextField fx:id="idClasseSupp" />
-                        <Button mnemonicParsing="false" onAction="#DeleteClasse" text="Supprimer">
-                           <font>
-                              <Font name="System Italic" size="22.0" />
-                           </font></Button>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Donner le nom du classe à supprimer " />
                         <TextField fx:id="nomclasseSupp" />
                         <Button mnemonicParsing="false" onAction="#DeleteByNom" prefHeight="57.0" prefWidth="161.0" text="Supprimer">
@@ -139,7 +131,6 @@
                   </VBox>
                   <TableView fx:id="tableClasse1" layoutX="259.0" layoutY="3.0" onMouseClicked="#fillForum" prefHeight="453.0" prefWidth="379.0">
                      <columns>
-                        <TableColumn fx:id="idsuppListe" prefWidth="75.0" text="Id" />
                         <TableColumn fx:id="classeNameC1" prefWidth="75.0" text="Classe Name" />
                         <TableColumn fx:id="filiereC1" prefWidth="75.0" text="Filiere" />
                         <TableColumn fx:id="nbEtudiantC1" prefWidth="75.0" text="Nb Etudiant" />
@@ -163,19 +154,8 @@
                         <Image url="@images/background.jpg" />
                      </image>
                   </ImageView>
-                  <VBox layoutX="14.0" layoutY="14.0" prefHeight="198.0" prefWidth="245.0">
-                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Chercher classe par nom" />
-                        <TextField fx:id="searchField" />
-                        <Button mnemonicParsing="false" onAction="#searchByNom" text="Chercher" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Chercher classe par filiere" />
-                        <TextField fx:id="searchFieldFilier" />
-                        <Button mnemonicParsing="false" onAction="#SearchByID" text="Chercher" />
-                     </children>
-                  </VBox>
-                  <TableView fx:id="searchListeDesClasses" layoutX="259.0" layoutY="3.0" onMouseClicked="#fillForum" prefHeight="453.0" prefWidth="379.0">
+                  <TableView fx:id="searchListeDesClasses" layoutX="280.0" layoutY="2.0" onMouseClicked="#fillForum" prefHeight="453.0" prefWidth="305.0">
                      <columns>
-                        <TableColumn fx:id="idListSearch" prefWidth="75.0" text="Id" />
                         <TableColumn fx:id="classNameListSearch" prefWidth="75.0" text="Classe Name" />
                         <TableColumn fx:id="filiereListSearch" prefWidth="75.0" text="Filiere" />
                         <TableColumn fx:id="NbEtudiSearchList" prefWidth="75.0" text="Nb Etudiant" />
@@ -187,12 +167,14 @@
                         <Image url="@images/logo.png" />
                      </image>
                   </ImageView>
-                  <TextField fx:id="filterField" layoutX="34.0" layoutY="255.0" />
+                  <TextField fx:id="filterField" layoutX="69.0" layoutY="55.0" prefHeight="29.0" prefWidth="204.0" />
+                  <ChoiceBox fx:id="filtreParFiliere" layoutX="49.0" layoutY="184.0" prefWidth="150.0" />
+                  <ChoiceBox fx:id="filtreParNiveau" layoutX="49.0" layoutY="255.0" prefWidth="150.0" />
                </children>
             </AnchorPane>
          </content>
       </Tab>
-      <Tab text="Untitled Tab">
+      <Tab text="Afficher tous les classes ">
         <content>
           <AnchorPane fx:id="anchorpane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>

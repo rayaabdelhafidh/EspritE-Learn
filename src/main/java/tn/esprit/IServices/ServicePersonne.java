@@ -286,7 +286,7 @@ public class ServicePersonne implements IService<Personne> {
 
     public List<Personne> getEtudiantsAvecPresencePourClasse(String nomClasse) {
         List<Personne> etudiantsAvecPresence = new ArrayList<>();
-        String query = "SELECT p.idP, p.nom, p.prenom, p.etatPresence " +
+        String query = "SELECT p.nom, p.etatPresence " +
                 "FROM personne p JOIN classe c ON p.idClasse = c.idClasse " +
                 "WHERE c.nomClasse = ?";
         try (PreparedStatement pstmt = cnx.prepareStatement(query)) {
@@ -294,9 +294,7 @@ public class ServicePersonne implements IService<Personne> {
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 Personne etudiant = new Personne();
-                etudiant.setIdP(rs.getInt("idP"));
                 etudiant.setNom(rs.getString("nom"));
-                etudiant.setPrenom(rs.getString("prenom"));
                 String etatPresence = rs.getString("etatPresence");
                 if (etatPresence != null) {
                     etudiant.setEtatPresence(EtatPresence.valueOf(etatPresence));
@@ -310,6 +308,7 @@ public class ServicePersonne implements IService<Personne> {
         }
         return etudiantsAvecPresence;
     }
+
 
 
 

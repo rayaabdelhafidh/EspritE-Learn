@@ -105,7 +105,7 @@ public class PresenceController implements Initializable {
         ArrayList<String> classees = serviceClasse.getNomClasses();
         ObservableList<String> classeListe = FXCollections.observableArrayList(classes);
         filtreClasse.setItems(classeList);
-        loadDatePresence();
+        //loadDatePresence();
         // Add event handler for filtreClasse
         filtreClasse.setOnAction(this::classeSelectedEtatPresence);
 
@@ -141,22 +141,16 @@ public class PresenceController implements Initializable {
         if (!verifierSaisies()) {
             return;
         }
-
         String selectedClasseName = nomDesClasses.getValue();
         ServiceClasse serviceClasse = new ServiceClasse();
         classe selectedClasse = serviceClasse.getClasseByNom(selectedClasseName);
-
-        if (selectedClasse == null) {
-            showAlert(Alert.AlertType.ERROR, "Erreur", "Classe non trouvée !");
-            return;
-        }
-
+        if (selectedClasse == null)
+        {showAlert(Alert.AlertType.ERROR, "Erreur", "Classe non trouvée !");return;}
         LocalDate localDate = dateAjoutPr.getValue();
         Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
         Date date = Date.from(instant);
         Seance seance = Seance.valueOf(ajoutSeance.getValue());
-        String etatPresence = checkBoxAbsent.isSelected() ? "Absent" : "Présent";
-
+       // String etatPresence = checkBoxAbsent.isSelected() ? "Absent" : "Présent";
         Presence presence = new Presence(date, seance, selectedClasse.getNomClasse());
 
         try {
@@ -219,20 +213,20 @@ public class PresenceController implements Initializable {
             }
         }
     }
-    private void loadDatePresence() {
-        String selectedClasseName = nomDesClasses.getValue();
-        ServicePersonne servicePersonne = new ServicePersonne();
-        if (selectedClasseName != null) {
-
-            List<Personne> etudiantsAvecPresence = servicePersonne.getEtudiantsAvecPresencePourClasse(selectedClasseName);
-            affichageEtatPresence.getItems().clear();
-            affichageEtatPresence.getItems().addAll(etudiantsAvecPresence);
-
-        }else {
-
-            affichageEtatPresence.getItems().addAll(servicePersonne.getAll());
-        }
-    }
+//    private void loadDatePresence() {
+//        String selectedClasseName = nomDesClasses.getValue();
+//        ServicePersonne servicePersonne = new ServicePersonne();
+//        if (selectedClasseName != null) {
+//
+//            List<Personne> etudiantsAvecPresence = servicePersonne.getEtudiantsAvecPresencePourClasse(selectedClasseName);
+//            affichageEtatPresence.getItems().clear();
+//            affichageEtatPresence.getItems().addAll(etudiantsAvecPresence);
+//
+//        }else {
+//
+//            affichageEtatPresence.getItems().addAll(servicePersonne.getAll());
+//        }
+//    }
 
 
     @FXML

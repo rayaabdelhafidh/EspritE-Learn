@@ -88,6 +88,11 @@ public class Personne {
         EtatPresence = etatPresence;
     }
 
+    public Personne(String nom, tn.esprit.Models.EtatPresence etatPresence) {
+        this.nom = nom;
+        EtatPresence = etatPresence;
+    }
+
     public int getIdClasse() {
         return this.idClasse;
     }
@@ -98,10 +103,10 @@ public class Personne {
 
     @Override
     public String toString() {
-        return "Personne{" +
-                "age=" + age +
+        return "L'etudiant " + "{" +
+
                 ", nom='" + nom + '\'' +
-                ", prenom='" + prenom + '\'' +
+
                 ", EtatPresence=" + EtatPresence +
                 '}';
     }
