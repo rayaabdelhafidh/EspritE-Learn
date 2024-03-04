@@ -260,8 +260,13 @@ public class ServiceUser implements IUser<User> {
     }
 
     public List<String> getNomUser(){
-        return getAll().stream().map(m->m.getNom()).collect(Collectors.toList());
+        return getAll().stream().filter(m->m.getRole().equals("Etudiant")).map(m->m.getNom()).collect(Collectors.toList());
     }
+
+    public List<String> getRoleUser(){
+        return getAll().stream().map(m->m.getRole()).collect(Collectors.toList());
+    }
+
 
     public int getIdByNomUser(String nom){
         return getAll().stream().filter(p->p.getNom().equals(nom)).findAny().orElse(null).getUser_id();
