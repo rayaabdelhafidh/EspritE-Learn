@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.web.WebView?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="912.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.esprit.controller.loginController">
    <left>
@@ -26,9 +27,9 @@
    <center>
       <AnchorPane prefHeight="600.0" prefWidth="554.0" style="-fx-background-color: #Ffffff;" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="emailf" layoutX="180.0" layoutY="149.0" prefHeight="40.0" prefWidth="200.0" promptText="Email" style="-fx-border-color: #c90219;" />
-            <PasswordField fx:id="passf" layoutX="180.0" layoutY="219.0" prefHeight="40.0" prefWidth="200.0" promptText="PassWord" style="-fx-border-color: #c90219;" />
-            <Button layoutX="224.0" layoutY="300.0" mnemonicParsing="false" onAction="#login" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #c90219;" text="login" textFill="WHITE">
+            <TextField fx:id="emailf" layoutX="180.0" layoutY="132.0" prefHeight="40.0" prefWidth="200.0" promptText="Email" style="-fx-border-color: #c90219;" />
+            <PasswordField fx:id="passf" layoutX="180.0" layoutY="189.0" prefHeight="40.0" prefWidth="200.0" promptText="PassWord" style="-fx-border-color: #c90219;" />
+            <Button layoutX="353.0" layoutY="472.0" mnemonicParsing="false" onAction="#login" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #c90219;" text="login" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="22.0" />
                </font></Button>
@@ -44,10 +45,12 @@
                <font>
                   <Font name="System Bold" size="30.0" />
                </font></Label>
-            <Button layoutX="174.0" layoutY="386.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #c90219;" text="oublier mot de passe" textFill="WHITE">
+            <Button fx:id="reset" layoutX="60.0" layoutY="477.0" mnemonicParsing="false" onAction="#reset" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #c90219;" text="Oublier mot de passe" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font></Button>
+            <WebView fx:id="webView" layoutX="129.0" layoutY="244.0" prefHeight="146.0" prefWidth="309.0" />
+            <TextField fx:id="captchaTextField" layoutX="207.0" layoutY="408.0" promptText="captchaTextField" />
          </children>
       </AnchorPane>
    </center>

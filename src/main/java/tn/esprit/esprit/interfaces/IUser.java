@@ -2,6 +2,7 @@ package tn.esprit.esprit.interfaces;
 
 import tn.esprit.esprit.models.User;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -27,11 +28,5 @@ public interface IUser<U> {
     User FindByEmailAndPassword(String email, String mdp);
 
 
-
-
-
-
-
 }
-
 

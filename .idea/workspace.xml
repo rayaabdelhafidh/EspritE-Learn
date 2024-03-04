@@ -5,34 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="12e99c3f-d69f-4ce3-a0fb-12f240e81200" name="Changes" comment="gestionUser">
-      <change afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/esprit/controller/ChangerpassController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/esprit/controller/DashbordAdminController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/esprit/controller/ProfileEnseignantController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/esprit/controller/ProfileEtudiantController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/esprit/controller/itemUserController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/esprit/controller/registerController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/esprit/controller/usercontroller.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/DashbordAdmin.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/ProfileEnseignant.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/ProfileEtudiant.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/changerpass.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/channels4_profile.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/itemUser.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/login.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/register.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/user.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/esprit/controller/ModifierMdpController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/esprit/controller/emailChecker.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/esprit/mailing/Sendmail.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/esprit/models/Smssender.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/ModifierMdp.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/ResetPwd.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/esprit/controller/loginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/esprit/controller/loginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/esprit/controller/registerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/esprit/controller/registerController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/esprit/interfaces/IUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/esprit/interfaces/IUser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/esprit/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/esprit/models/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/esprit/services/ServiceUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/esprit/services/ServiceUser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/esprit/test/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/esprit/test/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/esprit/test/MainFx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/esprit/MainFx.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/tn/esprit/esprit/hello-view.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/tn/esprit/esprit/login.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/login.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/register.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/register.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +86,7 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;gestion__user-khalilNaddari&quot;,
     &quot;last_directory_selection&quot;: &quot;C:/Users/nadda/Desktop/esprit/src/main/java/tn/esprit/esprit&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/nadda/Desktop/esprit/src/main/java/tn/esprit/esprit/controller&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/nadda/Desktop/esprit/src/main/resources&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -111,6 +100,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\nadda\Desktop\esprit\src\main\resources" />
       <recent name="C:\Users\nadda\Desktop\esprit\src\main\java\tn\esprit\esprit\controller" />
       <recent name="C:\Users\nadda\Desktop\esprit\src\main\resources\img" />
     </key>
@@ -120,6 +110,11 @@
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="tn.esprit.esprit" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="tn.esprit.esprit.controller" />
+      <recent name="tn.esprit.esprit.services" />
+      <recent name="tn.esprit.esprit.models" />
     </key>
   </component>
   <component name="RunManager" selected="Application.MainFx">
@@ -196,6 +191,15 @@
       <workItem from="1709072892240" duration="936000" />
       <workItem from="1709078199174" duration="5413000" />
       <workItem from="1709108494151" duration="49000" />
+      <workItem from="1709108688129" duration="2968000" />
+      <workItem from="1709215489985" duration="595000" />
+      <workItem from="1709376600934" duration="709000" />
+      <workItem from="1709382059363" duration="255000" />
+      <workItem from="1709390192400" duration="14800000" />
+      <workItem from="1709428450351" duration="2932000" />
+      <workItem from="1709470310183" duration="5433000" />
+      <workItem from="1709478783862" duration="6832000" />
+      <workItem from="1709546855554" duration="4317000" />
     </task>
     <task id="LOCAL-00001" summary="gestionUser">
       <option name="closed" value="true" />

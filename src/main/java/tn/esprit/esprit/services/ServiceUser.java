@@ -14,6 +14,8 @@ import java.util.logging.Logger;
 
 public class ServiceUser implements IUser<User> {
     Connection cnx;
+    public static String email;
+
     public ServiceUser(){
         cnx= MyDb.getInstance().getCnx();
     }
@@ -25,13 +27,14 @@ public class ServiceUser implements IUser<User> {
     public  void addUser(User user){
         String hashed = BCrypt.hashpw(user.getMdp(), BCrypt.gensalt());
         try {
-            String qry = "INSERT INTO `user`( `nom`, `mdp`, `email`, `role`) VALUES (?,?,?,?)";
+            String qry = "INSERT INTO `user`( `nom`, `mdp`, `email`, `role` ,`tel`) VALUES (?,?,?,?,?)";
             PreparedStatement preparedStatement = cnx.prepareStatement(qry);
 
             preparedStatement.setString(1, user.getNom());
             preparedStatement.setString(2, user.getMdp());
             preparedStatement.setString(3, user.getEmail());
             preparedStatement.setString(4, user.getRole());
+            preparedStatement.setString(5, user.getTel());
 
 
 
@@ -252,6 +255,17 @@ public class ServiceUser implements IUser<User> {
         // If no user found with the given ID, return null or throw an exception
         return null;
     }
+
+
+    public void ModifMDP(String email, String mdp) throws SQLException{
+        String hashed = BCrypt.hashpw(mdp, BCrypt.gensalt());
+        String req = "UPDATE user SET mdp=? WHERE email=?";
+        PreparedStatement stmt = cnx.prepareStatement(req);
+        stmt.setString(1, hashed); // Utilise le mot de passe haché
+        stmt.setString(2, email);
+        stmt.executeUpdate();
+    }
+
 
 
 

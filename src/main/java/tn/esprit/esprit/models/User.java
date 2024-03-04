@@ -9,17 +9,19 @@ public class User {
     private String mdp;
     private String email;
     private String role;
+    private String tel;
 
 
     public User() {
     }
 
-    public User(int user_id, String nom, String mdp, String email, String role) {
+    public User(int user_id, String nom, String mdp, String email, String role,String tel) {
         this.user_id = user_id;
         this.nom = nom;
         this.mdp = mdp;
         this.email = email;
         this.role = role;
+        this.tel=tel;
     }
 
     public User(String nom, String mdp, String email, String role) {
@@ -46,6 +48,21 @@ public class User {
         this.role = role;
     }
 
+    public User(String nom, String mdp, String email, String role, String tel) {
+        this.nom = nom;
+        this.mdp = mdp;
+        this.email = email;
+        this.role = role;
+        this.tel = tel;
+    }
+
+    public String getTel() {
+        return tel;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel;
+    }
 
     public int getUser_id() {
         return user_id;
@@ -92,12 +109,12 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return user_id == user.user_id && Objects.equals(nom, user.nom) && Objects.equals(mdp, user.mdp) && Objects.equals(email, user.email) && Objects.equals(role, user.role);
+        return user_id == user.user_id && Objects.equals(nom, user.nom) && Objects.equals(mdp, user.mdp) && Objects.equals(email, user.email) && Objects.equals(role, user.role) && Objects.equals(tel, user.tel);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(user_id, nom, mdp, email, role);
+        return Objects.hash(user_id, nom, mdp, email, role, tel);
     }
 
     @Override
@@ -108,7 +125,7 @@ public class User {
                 ", mdp='" + mdp + '\'' +
                 ", email='" + email + '\'' +
                 ", role='" + role + '\'' +
-
+                ", tel='" + tel + '\'' +
                 '}';
     }
 }

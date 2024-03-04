@@ -10,6 +10,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import tn.esprit.esprit.Securite.BCrypt;
+import tn.esprit.esprit.models.Smssender;
 import tn.esprit.esprit.models.User;
 import tn.esprit.esprit.services.ServiceUser;
 
@@ -22,6 +23,10 @@ public class registerController implements Initializable {
 
         @FXML
         private PasswordField cpassf;
+
+
+    @FXML
+    private TextField telf;
 
         @FXML
         private TextField emailf;
@@ -48,6 +53,7 @@ public class registerController implements Initializable {
         String cmdp = cpassf.getText();
         String email = emailf.getText();
         String role = rolef.getValue();
+        String tel = telf.getText();
 
         String hashedPassword = BCrypt.hashpw(mdp, BCrypt.gensalt());
 
@@ -82,9 +88,14 @@ public class registerController implements Initializable {
         }
 
         // If all validations pass, proceed with user registration
-        User newUser = new User(nom, hashedPassword, email, role);
+        User newUser = new User(nom, hashedPassword, email, role ,tel);
         // Call your service class method to add the user
         su.addUser(newUser);
+
+        String tel1 = telf.getText();
+
+        // Appeler la méthode SMSSender de SmsSender avec le numéro de téléphone récupéré
+        Smssender.sendSMS(tel1, "Bienvenue  "+nom+ "! Votre inscription est réussie .\n  Email :" +email+" \n Password :"+mdp);
 
         // Optionally, you can clear the input fields after registration
         usernamef.clear();

@@ -32,7 +32,7 @@
             <TextField fx:id="emailf" layoutX="177.0" layoutY="201.0" prefHeight="40.0" prefWidth="200.0" promptText="Email" style="-fx-border-color: #c90219;" />
             <PasswordField fx:id="passf" layoutX="177.0" layoutY="259.0" prefHeight="40.0" prefWidth="200.0" promptText="Password" style="-fx-border-color: #c90219;" />
             <PasswordField fx:id="cpassf" layoutX="177.0" layoutY="317.0" prefHeight="40.0" prefWidth="200.0" promptText="ConfirmPassword" style="-fx-border-color: #c90219;" />
-            <ChoiceBox fx:id="rolef" layoutX="177.0" layoutY="378.0" prefHeight="40.0" prefWidth="200.0" />
+            <ChoiceBox fx:id="rolef" layoutX="177.0" layoutY="430.0" prefHeight="40.0" prefWidth="200.0" />
             <Button layoutX="76.0" layoutY="487.0" mnemonicParsing="false" onAction="#register" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #c90219;" text="Register" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="16.0" />
@@ -45,6 +45,7 @@
                <font>
                   <Font name="System Bold" size="30.0" />
                </font></Label>
+            <TextField fx:id="telf" layoutX="177.0" layoutY="370.0" prefHeight="40.0" prefWidth="200.0" promptText="Num tel" style="-fx-border-color: #c90219;" />
          </children>
       </AnchorPane>
    </right>
