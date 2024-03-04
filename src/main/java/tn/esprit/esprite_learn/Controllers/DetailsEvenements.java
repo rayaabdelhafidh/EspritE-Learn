@@ -50,8 +50,28 @@ public class DetailsEvenements {
     @FXML
     private Button Btn;
     @FXML
-    void Acheter(ActionEvent event) {
+    void Acheter(ActionEvent event) throws SQLException {
+        ServiceEvenement se=new ServiceEvenement();
+        String nom=Nom.getText();
+        Evenement e=se.chercherEvenement(nom);
         Btn.setText("Acheter");
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/tn/esprit/esprite_learn/Acheter.fxml"));
+        try{
+            Parent root = fxmlLoader.load();
+            Acheter controller = fxmlLoader.getController();
+            controller.setData(e);
+            Scene scene = new Scene(root);
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow(); // Get the current stage
+            currentStage.close(); // Close the current stage
+            Stage newStage = new Stage();
+            newStage.setTitle("Achat!");
+            newStage.setScene(scene);
+            newStage.show();
+        }
+        catch (IOException ex) {
+            System.out.println("Error loading Acheter.fxml: " + ex.getMessage());
+            ex.printStackTrace();
+        }
 
     }
     ServiceClub scc= new ServiceClub();

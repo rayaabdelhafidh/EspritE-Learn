@@ -4,6 +4,7 @@ module tn.esprit.esprite_learn {
     requires java.sql;
     requires java.desktop;
     requires javafx.web;
+    requires stripe.java;
 
     opens tn.esprit.esprite_learn to javafx.fxml;
     exports tn.esprit.esprite_learn;
