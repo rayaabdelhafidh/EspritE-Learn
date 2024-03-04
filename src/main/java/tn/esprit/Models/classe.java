@@ -86,6 +86,10 @@ public class classe {
                 ", niveaux='" + niveaux + '\'' +
                 '}';
     }
+
+    public Object getNomClasse(classe classe) {
+        return classe;
+    }
 }
 
 

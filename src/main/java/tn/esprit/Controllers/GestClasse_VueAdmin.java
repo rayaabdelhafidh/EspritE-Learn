@@ -9,11 +9,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 import tn.esprit.IServices.ServiceClasse;
 import tn.esprit.Models.classe;
 import tn.esprit.Models.filiere;
@@ -24,17 +28,13 @@ import tn.esprit.utilse.MainFX;
 //import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 import static java.lang.String.*;
 
 //import static jdk.javadoc.internal.doclets.formats.html.markup.HtmlStyle.title;
 
-public class Classe implements Initializable {
+public class GestClasse_VueAdmin implements Initializable {
     @FXML
     private AnchorPane anchorpane;
     @FXML
@@ -190,10 +190,14 @@ public class Classe implements Initializable {
         }
 
         ServiceClasse SCl = new ServiceClasse();
+        String nomClasse = classeNameLabel.getText();
         int nombreEtudiantsTexte = Integer.parseInt(NbreEtudLabel.getText());
         filiere selectedFiliere = filiere.valueOf(valueOf(lbFiliere.getValue()));
         niveaux selectedNiveau = niveaux.valueOf(valueOf(lbNiveau.getValue()));
-
+    if (!isNomCompatibleAvecNiveau(nomClasse, selectedNiveau)) {
+           showAlert(Alert.AlertType.ERROR, "Erreur", "Le nom de la classe n'est pas compatible avec le niveau sélectionné !");
+         return;
+      }
         classe cl2 = new classe(classeNameLabel.getText(), selectedFiliere, nombreEtudiantsTexte, selectedNiveau);
 
         // Ajout de la classe
@@ -219,14 +223,17 @@ public class Classe implements Initializable {
 
         // Récupération des valeurs saisies dans l'interface utilisateur
         String nomClassModif = labelNomModif.getText();
-       // String idCl = idDonnePourModif.getText();
+        // String idCl = idDonnePourModif.getText();
         int nombreEtudiants = Integer.parseInt(NbreEtudeLabel.getText());
         filiere selectedFiliere = filiere.valueOf(lbFiliereModif.getValue());
         niveaux selectedNiveau = niveaux.valueOf(lbNiveauModif.getValue());
-
+        if (!isNomCompatibleAvecNiveau(nomClassModif, selectedNiveau)) {
+            showAlert(Alert.AlertType.ERROR, "Erreur", "Le nom de la classe n'est pas compatible avec le niveau sélectionné !");
+            return;
+        }
         // Création d'un objet classe avec les valeurs saisies
         classe cl = new classe();
-       // cl.setidC(Integer.parseInt(idCl));
+        // cl.setidC(Integer.parseInt(idCl));
         cl.setNomClasse(nomClassModif);
         cl.setNbreEtud(nombreEtudiants);
         cl.setFiliere(selectedFiliere);
@@ -384,7 +391,7 @@ public class Classe implements Initializable {
     private void loadDate2() {
         ServiceClasse serviceClasse = new ServiceClasse();
         List<classe> classes = serviceClasse.getAll();
-       // IddansListe.setCellValueFactory(new PropertyValueFactory<>("idClasse"));
+        // IddansListe.setCellValueFactory(new PropertyValueFactory<>("idClasse"));
         nbEtudiantC2.setCellValueFactory(new PropertyValueFactory<>("nbreEtud"));
         classeNameC2.setCellValueFactory(new PropertyValueFactory<>("nomClasse"));
         filiereC2.setCellValueFactory(new PropertyValueFactory<>("filiere"));
@@ -406,18 +413,18 @@ public class Classe implements Initializable {
     public void fillForumm(MouseEvent mouseEvent) {
         classe selectedClasse = tableClasse2.getSelectionModel().getSelectedItem();
         if (selectedClasse != null) {
-           // idDonnePourModif.setText(String.valueOf(selectedClasse.getidC()));
+            // idDonnePourModif.setText(String.valueOf(selectedClasse.getidC()));
             labelNomModif.setText(selectedClasse.getNomClasse());
             lbFiliereModif.getSelectionModel();
             NbreEtudeLabel.setText(String.valueOf(selectedClasse.getNbreEtud()));
             lbNiveauModif.getSelectionModel().getSelectedItem();
         }
     }
-@FXML
+    @FXML
     public void fillForum(MouseEvent mouseEvent) {
         classe selectedClasse = tableClasse1.getSelectionModel().getSelectedItem();
         if (selectedClasse != null) {
-           // idClasseSupp.setText(String.valueOf(selectedClasse.getidC()));
+            // idClasseSupp.setText(String.valueOf(selectedClasse.getidC()));
             nomclasseSupp.setText(selectedClasse.getNomClasse());
 
         }
@@ -462,69 +469,83 @@ public class Classe implements Initializable {
 
 
 
-  public void refresh1(){           //******************CardView*****************************************************
-      ServiceClasse sc=new ServiceClasse();
+    public void refresh1(){           //******************CardView*****************************************************
+        ServiceClasse sc=new ServiceClasse();
 
-      grid.getChildren().clear();
-      ArrayList<classe> list=sc.getAll();
-      int column=0;
-      int row=1;
-      for(classe c:list){
-          try {
+        grid.getChildren().clear();
+        ArrayList<classe> list=sc.getAll();
+        int column=0;
+        int row=1;
+        for(classe c:list){
+            try {
 
-              FXMLLoader card=new FXMLLoader(MainFX.class.getResource("/classe-card-view.fxml"));
-              AnchorPane anchorPane=card.load();
-              ClassCardView item=card.getController();
-              item.remplireData(c);
-              if(column==2){
-                  column=0;
-                  row++;
-              }
-              grid.add(anchorPane,column++,row);
-              GridPane.setMargin(anchorPane,new Insets(10));
-          }
-          catch (IOException ex){
-              System.err.println(ex.getMessage());
-          }
-      }
+                FXMLLoader card=new FXMLLoader(MainFX.class.getResource("/classe-card-view.fxml"));
+                AnchorPane anchorPane=card.load();
+                ClassCardView item=card.getController();
+                item.remplireData(c);
+                if(column==2){
+                    column=0;
+                    row++;
+                }
+                grid.add(anchorPane,column++,row);
+                GridPane.setMargin(anchorPane,new Insets(10));
+            }
+            catch (IOException ex){
+                System.err.println(ex.getMessage());
+            }
+        }
     }
-    private boolean isNomCompatibleAvecNiveau(String nomClasse, niveaux niveau) {
+    private boolean isNomCompatibleAvecNiveau(String nomClassee, niveaux niveau) {
         // Vérifiez ici si le nom de la classe est compatible avec le niveau sélectionné
-
         switch (niveau) {
             case _1A:
                 // Exemple : Si le niveau est _1A, le nom de la classe doit commencer par "1A"
-                return nomClasse.startsWith("1A");
+                return nomClassee.startsWith("1A");
 
             case _2A:
                 // Ajoutez d'autres conditions selon votre logique métier pour le niveau _2A
-                return nomClasse.startsWith("2A");
+                return nomClassee.startsWith("2A");
 
             case _2P:
                 // Ajoutez d'autres conditions selon votre logique métier pour le niveau _2P
-                return nomClasse.startsWith("2P");
+                return nomClassee.startsWith("2P");
 
             case _3A:
                 // Ajoutez d'autres conditions selon votre logique métier pour le niveau _3A
-                return nomClasse.startsWith("3A");
+                return nomClassee.startsWith("3A");
 
             case _3B:
                 // Ajoutez d'autres conditions selon votre logique métier pour le niveau _3B
-                return nomClasse.startsWith("3B");
+                return nomClassee.startsWith("3B");
 
             case _4A:
                 // Ajoutez d'autres conditions selon votre logique métier pour le niveau _4A
-                return nomClasse.startsWith("4A");
+                return nomClassee.startsWith("4A");
 
             case _5A:
                 // Ajoutez d'autres conditions selon votre logique métier pour le niveau _5A
-                return nomClasse.startsWith("5A");
+                return nomClassee.startsWith("5A");
 
             default:
                 // Autre logique par défaut si nécessaire
                 return false;
         }
     }
+
+
+    @FXML
+    void GoToStatistique(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Statistique.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
 }

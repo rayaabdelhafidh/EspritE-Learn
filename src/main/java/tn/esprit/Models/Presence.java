@@ -1,5 +1,6 @@
 package tn.esprit.Models;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -28,6 +29,9 @@ public class Presence {
         this.classes = classes;
         this.nomClasse = nomClasse;
         this.idClasse = idClasse;
+    }
+
+    public Presence(LocalDate localDate, Seance seance, String nomClasse) {
     }
 
 

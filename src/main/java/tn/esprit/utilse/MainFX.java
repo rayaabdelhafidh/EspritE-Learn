@@ -18,11 +18,11 @@ public class MainFX extends Application {
     @Override
     public void start(Stage primaryStage)  {
 
-        //FXMLLoader loader=new FXMLLoader(getClass().getResource("/Classe.fxml"));
-       // FXMLLoader loader=new FXMLLoader(getClass().getResource("/Presence.fxml"));
-        FXMLLoader loader=new FXMLLoader(getClass().getResource("/GestionClasseAdmin.fxml"));
 
-
+     // FXMLLoader loader=new FXMLLoader(getClass().getResource("/GestPresence_VueEnseignant.fxml"));
+      FXMLLoader loader=new FXMLLoader(getClass().getResource("/GestClasse_VueAdmin.fxml"));
+        //FXMLLoader loader=new FXMLLoader(getClass().getResource("/GestPresence_VueAdmin.fxml"));
+       // FXMLLoader loader=new FXMLLoader(getClass().getResource("/Statistique.fxml"));
         try {
             Parent root = loader.load();
             Scene scene =new Scene(root);
@@ -35,9 +35,6 @@ public class MainFX extends Application {
 
 
         }
-
-
-
 
     }
 
