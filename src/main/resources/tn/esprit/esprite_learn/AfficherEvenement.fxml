@@ -28,7 +28,6 @@
                         </ListView>
                         <ListView fx:id="detailsList" layoutX="253.0" layoutY="6.0" prefHeight="160.0" prefWidth="200.0" stylesheets="@app.css" />
                         <ImageView fx:id="image" fitHeight="132.0" fitWidth="141.0" layoutX="283.0" layoutY="172.0" pickOnBounds="true" preserveRatio="true" />
-                        <Button fx:id="AfficherBtn" layoutX="75.0" layoutY="238.0" mnemonicParsing="false" onAction="#AfficherEvenement" styleClass="custom-button" stylesheets="@app.css" text="Refresh" />
                         <Button fx:id="ModifierBtn" layoutX="501.0" layoutY="20.0" mnemonicParsing="false" onAction="#ModifierEvenement" prefHeight="30.0" prefWidth="80.0" styleClass="custom-button" stylesheets="@app.css" text="Modifier" />
                         <Button fx:id="SupprimerBtn" layoutX="500.0" layoutY="57.0" mnemonicParsing="false" onAction="#SupprimerEvenement" styleClass="custom-button" stylesheets="@app.css" text="Supprimer" />
                         <Button fx:id="AjouterBtn" layoutX="500.0" layoutY="124.0" mnemonicParsing="false" onAction="#AjouterEvenement" prefHeight="30.0" prefWidth="83.0" styleClass="custom-button" stylesheets="@app.css" text="Ajouter" />

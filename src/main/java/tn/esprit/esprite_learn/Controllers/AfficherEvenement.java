@@ -3,6 +3,7 @@ package tn.esprit.esprite_learn.Controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -51,8 +52,12 @@ public class AfficherEvenement {
     public AfficherEvenement() throws SQLException {
     }
 
-    @FXML
-    void AfficherEvenement(ActionEvent event) throws SQLException {
+    public void initialize() throws SQLException {
+        ContextMenu contextMenu = new ContextMenu();
+        MenuItem showMenuItem = new MenuItem("Show");
+        showMenuItem.setOnAction(this::ShowDetails);
+        contextMenu.getItems().add(showMenuItem);
+        eventList.setContextMenu(contextMenu);
         DataBase db = DataBase.getInstance();
         ServiceEvenement se = new ServiceEvenement();
         ArrayList<Evenement> evenements = se.display();
@@ -64,20 +69,12 @@ public class AfficherEvenement {
             System.out.println("Event Name: " + name);
             eventList.getItems().add(name);
         }
-
-    }
-    public void initialize() {
-        ContextMenu contextMenu = new ContextMenu();
-        MenuItem showMenuItem = new MenuItem("Show");
-        showMenuItem.setOnAction(this::ShowDetails);
-        contextMenu.getItems().add(showMenuItem);
-        eventList.setContextMenu(contextMenu);
     }
     @FXML
     void ShowDetails(ActionEvent event){
         Evenement selectedClub = onSelectedItem();
         Clubs cl=scc.findbyId(selectedClub.getClub());
-        Image defaultImage=new Image("C:/Users/abdel/OneDrive/Bureau/1.png");
+        Image defaultImage=new Image("file:///C:/Users/abdel/OneDrive/Bureau/126.png");
         detailsList.getItems().clear();
         detailsList.getItems().add("Nom de l'evenement: " + selectedClub.getNomEvenement());
         detailsList.getItems().add("Date de l'evenement: " + selectedClub.getDateEvenement());
@@ -133,12 +130,13 @@ public class AfficherEvenement {
         ModifierEvenement controller = fxmlLoader.getController();
         e=onSelectedItem();
         controller.setEvenement(e);
-
         Scene scene = new Scene(root);
-        Stage stage = new Stage();
-        stage.setTitle("Evenement");
-        stage.setScene(scene);
-        stage.show();
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow(); // Get the current stage
+        currentStage.close(); // Close the current stage
+        Stage newStage = new Stage();
+        newStage.setTitle("Modifier Evenement!");
+        newStage.setScene(scene);
+        newStage.show();
     }
 
     @FXML
@@ -205,10 +203,12 @@ public class AfficherEvenement {
         try{
             Parent root = fxmlLoader.load();
             Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.setTitle("Ajouter");
-            stage.setScene(scene);
-            stage.show();
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow(); // Get the current stage
+            currentStage.close(); // Close the current stage
+            Stage newStage = new Stage();
+            newStage.setTitle("Ajouter Evenement!");
+            newStage.setScene(scene);
+            newStage.show();
         }
         catch (IOException e) {
             System.out.println(e.getMessage());

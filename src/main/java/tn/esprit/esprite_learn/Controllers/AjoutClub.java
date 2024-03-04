@@ -185,10 +185,12 @@ public class AjoutClub {
              try{
                  Parent root = fxmlLoader.load();
                  Scene scene = new Scene(root);
-                 Stage stage = new Stage();
-                 stage.setTitle("Affichage");
-                 stage.setScene(scene);
-                 stage.show();
+                 Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow(); // Get the current stage
+                 currentStage.close(); // Close the current stage
+                 Stage newStage = new Stage();
+                 newStage.setTitle("Clubs!");
+                 newStage.setScene(scene);
+                 newStage.show();
              }
              catch (IOException e) {
                  System.out.println("Error loading AfficherClub.fxml: " + e.getMessage());

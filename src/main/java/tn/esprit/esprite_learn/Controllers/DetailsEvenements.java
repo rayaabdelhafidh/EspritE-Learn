@@ -1,5 +1,6 @@
 package tn.esprit.esprite_learn.Controllers;
 
+import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +10,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.web.WebView;
+import javafx.scene.web.WebEngine;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
@@ -28,37 +31,50 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class DetailsEvenements {
-
     @FXML
     private GridPane EventContainer;
-
     @FXML
     private Button searchBtn;
-
     @FXML
     private Label Date;
-
     @FXML
     private Label Lieu;
-
     @FXML
     private Label Nom;
-
     @FXML
     private Label Prix;
-
     @FXML
     private ImageView image;
+    @FXML
+    private WebView MapView;
+    @FXML
+    private Button Btn;
+    @FXML
+    void Acheter(ActionEvent event) {
+        Btn.setText("Acheter");
 
+    }
     ServiceClub scc= new ServiceClub();
-
     public DetailsEvenements() throws SQLException {
     }
-
     @FXML
     void AfficherClubFront(ActionEvent event) {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/tn/esprit/esprite_learn/AfficherClubFront.fxml"));
+        try{
+            Parent root = fxmlLoader.load();
+            Scene scene = new Scene(root);
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow(); // Get the current stage
+            currentStage.close(); // Close the current stage
+            Stage newStage = new Stage();
+            newStage.setTitle("Clubs!");
+            newStage.setScene(scene);
+            newStage.show();
+        }
+        catch (IOException e) {
+            System.out.println("Error loading AfficherClubFront.fxml: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
-
     @FXML
     void revenirEvenements(ActionEvent event) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/tn/esprit/esprite_learn/AfficherEvenementFront.fxml"));
@@ -80,7 +96,7 @@ public class DetailsEvenements {
     }
 
     public void data(Evenement ev){
-        Image defaultImage=new Image("C:/Users/abdel/OneDrive/Bureau/1.png");
+        Image defaultImage=new Image("file:///C:/Users/abdel/OneDrive/Bureau/126.png");
         String url = ev.getAfficheEvenement();
         Clubs c=scc.findbyId(ev.getClub());
         String imageURL=normalizePath(url);
@@ -98,9 +114,16 @@ public class DetailsEvenements {
         Date.setText(""+ev.getDateEvenement());
         Lieu.setText(ev.getLieuEvenement());
         Prix.setText(ev.getPrixEvenement()+"dt");
+        WebEngine webEngine = MapView.getEngine();
+        String address = ev.getLieuEvenement(); // Replace with the actual address
+        String addressGPS = address.replace(" ", "+");
+
+        // Google Maps embed code
+        String googleMapEmbedCode = "<iframe src=\"https://maps.google.com/maps?q=" + addressGPS + "&output=embed\" " +
+                "width=\"100%\" height=\"365\"></iframe>";
+
+        webEngine.loadContent(googleMapEmbedCode);
     }
-
-
     private String normalizePath(String originalPath) {
         if (originalPath == null) {
             // Provide a default image path or handle accordingly
@@ -111,6 +134,4 @@ public class DetailsEvenements {
         // converti l normalized path l string
         return normalizedPath.toString();
     }
-
-
 }

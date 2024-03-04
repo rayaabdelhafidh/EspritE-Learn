@@ -115,7 +115,19 @@ public class AfficherEvenementFront implements Initializable {
 
     @FXML
     void AfficherClubFront(ActionEvent event) {
-
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/tn/esprit/esprite_learn/AfficherClubFront.fxml"));
+        try{
+            Parent root = fxmlLoader.load();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setTitle("Clubs");
+            stage.setScene(scene);
+            stage.show();
+        }
+        catch (IOException e) {
+            System.out.println("Error loading AfficherClubFront.fxml: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
 }

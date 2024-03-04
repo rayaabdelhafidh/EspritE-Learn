@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="371.0" prefWidth="178.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.esprite_learn.Controllers.EvenementController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="416.0" prefWidth="178.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.esprite_learn.Controllers.EvenementController">
    <children>
       <ImageView fx:id="image" fitHeight="289.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true" />
-      <VBox prefHeight="200.0" prefWidth="100.0">
+      <VBox prefHeight="200.0" prefWidth="100.0" styleClass="anchor-pane-background" stylesheets="@app.css">
          <children>
             <Pane prefHeight="23.0" prefWidth="178.0">
                <children>
-                  <Label fx:id="Nom" layoutX="75.0" layoutY="3.0" styleClass="custom-label-one" stylesheets="@app.css" text="Label" />
+                  <Label fx:id="Nom" layoutX="72.0" layoutY="2.0" styleClass="custom-label-one" stylesheets="@app.css" text="Label" />
                   <VBox layoutX="34.0" layoutY="23.0" prefHeight="63.0" prefWidth="141.0">
                      <children>
                         <Label fx:id="Date" text="Label" />
@@ -25,6 +26,11 @@
             <Label styleClass="cell" stylesheets="@app.css" text="Date:" />
             <Label text="Lieu:" />
             <Label text="Prix:" />
+            <Pane prefHeight="40.0" prefWidth="178.0">
+               <children>
+                  <Button layoutX="56.0" layoutY="5.0" mnemonicParsing="false" onAction="#AfficherEvenementFront" styleClass="custom-button" stylesheets="@app.css" text="Afficher" />
+               </children>
+            </Pane>
          </children>
       </VBox>
    </children>

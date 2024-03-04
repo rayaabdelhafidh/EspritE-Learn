@@ -3,6 +3,7 @@ module tn.esprit.esprite_learn {
     requires javafx.fxml;
     requires java.sql;
     requires java.desktop;
+    requires javafx.web;
 
     opens tn.esprit.esprite_learn to javafx.fxml;
     exports tn.esprit.esprite_learn;

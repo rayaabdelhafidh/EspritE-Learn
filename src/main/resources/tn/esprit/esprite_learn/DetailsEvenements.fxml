@@ -10,8 +10,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.web.WebView?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.esprite_learn.Controllers.DetailsEvenements">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="497.0" prefWidth="742.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.esprite_learn.Controllers.DetailsEvenements">
    <top>
       <HBox prefHeight="38.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
@@ -39,30 +40,31 @@
       </HBox>
    </top>
    <left>
-      <VBox alignment="TOP_CENTER" prefHeight="362.0" prefWidth="107.0" styleClass="anchor-pane-background" stylesheets="@app.css" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_CENTER" prefHeight="459.0" prefWidth="94.0" styleClass="anchor-pane-background" stylesheets="@app.css" BorderPane.alignment="CENTER">
          <children>
             <Label styleClass="custom-label-one" stylesheets="@app.css" text="Browse" />
-            <Separator prefWidth="200.0" />
+            <Separator prefHeight="3.0" prefWidth="109.0" />
             <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="116.0">
                <children>
                   <ImageView fitHeight="26.0" fitWidth="119.0" pickOnBounds="true" preserveRatio="true" />
                   <Button mnemonicParsing="false" onAction="#AfficherClubFront" styleClass="custom-button" stylesheets="@app.css" text="Clubs" />
                   <ImageView fitHeight="34.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true" />
-                  <HBox alignment="CENTER" prefHeight="48.0" prefWidth="122.0">
+                  <HBox alignment="CENTER" prefHeight="48.0" prefWidth="103.0">
                      <children>
-                        <Separator prefWidth="200.0" />
+                        <Separator prefHeight="3.0" prefWidth="118.0" />
                      </children>
                   </HBox>
                   <ImageView fitHeight="34.0" fitWidth="106.0" pickOnBounds="true" preserveRatio="true" />
+                  <Button fx:id="Btn" mnemonicParsing="false" onAction="#Acheter" styleClass="custom-button" stylesheets="@app.css" text="Button" />
                </children>
             </VBox>
          </children>
       </VBox>
    </left>
    <center>
-      <Pane prefHeight="372.0" prefWidth="481.0" styleClass="anchor-pane-background" stylesheets="@app.css" BorderPane.alignment="CENTER">
+      <Pane prefHeight="459.0" prefWidth="613.0" styleClass="anchor-pane-background" stylesheets="@app.css" BorderPane.alignment="CENTER">
          <children>
-            <VBox alignment="TOP_CENTER" layoutX="152.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="362.0" prefWidth="178.0" styleClass="list-view" stylesheets="@app.css">
+            <VBox alignment="TOP_CENTER" layoutX="40.0" layoutY="49.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="362.0" prefWidth="178.0" styleClass="list-view" stylesheets="@app.css">
                <children>
                   <ImageView fx:id="image" fitHeight="279.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true" />
                   <VBox prefHeight="96.0" prefWidth="170.0">
@@ -86,7 +88,8 @@
                   </VBox>
                </children>
             </VBox>
-            <Separator layoutX="-3.0" orientation="VERTICAL" prefHeight="363.0" prefWidth="0.0" />
+            <Separator layoutX="-6.0" orientation="VERTICAL" prefHeight="460.0" prefWidth="9.0" />
+            <WebView fx:id="MapView" layoutX="245.0" layoutY="49.0" prefHeight="363.0" prefWidth="365.0" />
          </children>
       </Pane>
    </center>

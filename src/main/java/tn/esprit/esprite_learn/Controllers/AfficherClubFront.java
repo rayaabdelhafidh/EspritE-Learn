@@ -3,6 +3,7 @@ package tn.esprit.esprite_learn.Controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -88,21 +89,32 @@ public class AfficherClubFront {
         c=onSelectedItem();
         // naadi les détails mel haja eli selectionnitha fel menu lel contrôleur
         //controller.show(c);
-
         Scene scene = new Scene(root);
-        Stage stage = new Stage();
-        stage.setTitle("Afficher");
-        stage.setScene(scene);
-        stage.show();
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow(); // Get the current stage
+        currentStage.close(); // Close the current stage
+        Stage newStage = new Stage();
+        newStage.setTitle("Evenements!");
+        newStage.setScene(scene);
+        newStage.show();
     }
 
-    public void initialize() {
+    public void initialize() throws SQLException {
         // najouti context menu ll clubView
         ContextMenu contextMenu = new ContextMenu();
         MenuItem showMenuItem = new MenuItem("Show");
         showMenuItem.setOnAction(this::ShowDetails);
         contextMenu.getItems().add(showMenuItem);
         clubView.setContextMenu(contextMenu);
+        DataBase db = DataBase.getInstance();
+        ServiceClub sc = new ServiceClub();
+        ArrayList<Clubs> clubs = sc.display();
+        clubView.getItems().clear();
+
+        for (Clubs club : clubs) {
+            String name = club.getNomClub();
+            System.out.println("Club Name: " + name);
+            clubView.getItems().add(name);
+        }
     }
     @FXML
     void ShowDetails(ActionEvent event) {

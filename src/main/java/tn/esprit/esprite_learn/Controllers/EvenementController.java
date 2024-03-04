@@ -1,17 +1,24 @@
 package tn.esprit.esprite_learn.Controllers;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 import tn.esprit.esprite_learn.Models.Clubs;
 import tn.esprit.esprite_learn.Models.Evenement;
 import tn.esprit.esprite_learn.Services.ServiceClub;
 import tn.esprit.esprite_learn.Services.ServiceEvenement;
 import tn.esprit.esprite_learn.utils.DataBase;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.SQLException;
@@ -42,9 +49,10 @@ public class EvenementController {
     }
 
     public void data(Evenement ev){
-        Image defaultImage=new Image("C:/Users/abdel/OneDrive/Bureau/1.png");
+        Image defaultImage;
+        defaultImage = new Image("file:///C:/Users/abdel/OneDrive/Bureau/126.png");
         String url = ev.getAfficheEvenement();
-        Clubs c=scc.findbyId(ev.getClub());
+        //Clubs c=scc.findbyId(ev.getClub());
         String imageURL=normalizePath(url);
         if (imageURL != null && !imageURL.isEmpty()) {
             try {
@@ -74,4 +82,28 @@ public class EvenementController {
         return normalizedPath.toString();
     }
 
+    @FXML
+    void AfficherEvenementFront(ActionEvent event) throws SQLException {
+        ServiceEvenement se=new ServiceEvenement();
+        String nom=Nom.getText();
+        Evenement e=se.chercherEvenement(nom);
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/tn/esprit/esprite_learn/DetailsEvenements.fxml"));
+        Parent root = null;
+        try {
+            root = fxmlLoader.load();
+        } catch (IOException ex) {
+            System.out.println("Error loading DetailsEvenements.fxml: " + ex.getMessage());
+            ex.printStackTrace();
+        }
+        DetailsEvenements controller = fxmlLoader.getController();
+        controller.data(e);
+        assert root != null;
+        Scene scene = new Scene(root);
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow(); // Get the current stage
+        currentStage.close(); // Close the current stage
+        Stage newStage = new Stage();
+        newStage.setTitle("Evenements!");
+        newStage.setScene(scene);
+        newStage.show();
+    }
 }
