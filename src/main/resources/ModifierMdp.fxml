@@ -3,11 +3,55 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.esprit.controller.ModifierMdpController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="912.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.esprit.controller.ModifierMdpController">
    <children>
-      <Button fx:id="valider" layoutX="234.0" layoutY="212.0" mnemonicParsing="false" onAction="#Update_password" prefHeight="25.0" prefWidth="134.0"  text="valider" />
-      <PasswordField fx:id="mdp1" alignment="CENTER" layoutX="182.0" layoutY="77.0" prefHeight="25.0" prefWidth="226.0" promptText="Entrer votre mot de passe" />
-      <PasswordField fx:id="mdp2" alignment="CENTER" layoutX="182.0" layoutY="130.0" prefHeight="25.0" prefWidth="226.0" promptText="Confirmer votre mot de passe" />
+      <Button fx:id="valider" layoutX="455.0" layoutY="398.0" mnemonicParsing="false" onAction="#Update_password" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #c90219;" text="valider" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="11.773585319519043" />
+         </font></Button>
+      <PasswordField fx:id="mdp1" alignment="CENTER" layoutX="403.0" layoutY="197.0" prefHeight="40.0" prefWidth="200.0" promptText="Entrer votre mot de passe" style="-fx-border-color: #c90219;" />
+      <PasswordField fx:id="mdp2" alignment="CENTER" layoutX="405.0" layoutY="287.0" prefHeight="40.0" prefWidth="200.0" promptText="Confirmer votre mot de passe" style="-fx-border-color: #c90219;" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="68.0" layoutX="2.0" layoutY="63.0" stroke="TRANSPARENT" strokeType="INSIDE" width="937.0">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.35686275362968445" green="0.35686275362968445" blue="0.35686275362968445" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.35686275362968445" green="0.35686275362968445" blue="0.35686275362968445" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Rectangle>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="625.0" layoutX="57.0" layoutY="-5.0" stroke="TRANSPARENT" strokeType="INSIDE" width="116.0">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.7882353067398071" green="0.007843137718737125" blue="0.09803921729326248" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.7882353067398071" green="0.007843137718737125" blue="0.09803921729326248" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Rectangle>
    </children>
 </AnchorPane>

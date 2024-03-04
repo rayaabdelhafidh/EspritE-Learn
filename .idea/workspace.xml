@@ -5,23 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="12e99c3f-d69f-4ce3-a0fb-12f240e81200" name="Changes" comment="gestionUser">
-      <change afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/esprit/controller/ModifierMdpController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/esprit/controller/emailChecker.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/esprit/mailing/Sendmail.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/esprit/models/Smssender.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/ModifierMdp.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/ResetPwd.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/esprit/controller/loginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/esprit/controller/loginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/esprit/controller/registerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/esprit/controller/registerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/esprit/interfaces/IUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/esprit/interfaces/IUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/esprit/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/esprit/models/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/esprit/services/ServiceUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/esprit/services/ServiceUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/esprit/test/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/esprit/test/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/login.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/register.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/register.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ModifierMdp.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ModifierMdp.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ResetPwd.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ResetPwd.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,25 +65,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;gestion__user-khalilNaddari&quot;,
-    &quot;last_directory_selection&quot;: &quot;C:/Users/nadda/Desktop/esprit/src/main/java/tn/esprit/esprit&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/nadda/Desktop/esprit/src/main/resources&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "gestion__user-khalilNaddari",
+    "last_directory_selection": "C:/Users/nadda/Desktop/esprit/src/main/java/tn/esprit/esprit",
+    "last_opened_file_path": "C:/Users/nadda/Downloads/EspritE-Learn-tache_islem",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\nadda\Desktop\esprit\src\main\resources" />
@@ -200,6 +186,8 @@
       <workItem from="1709470310183" duration="5433000" />
       <workItem from="1709478783862" duration="6832000" />
       <workItem from="1709546855554" duration="4317000" />
+      <workItem from="1709551212235" duration="738000" />
+      <workItem from="1709559070999" duration="2838000" />
     </task>
     <task id="LOCAL-00001" summary="gestionUser">
       <option name="closed" value="true" />
@@ -217,7 +205,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708505725592</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="gestionUser">
+      <option name="closed" value="true" />
+      <created>1709551472308</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1709551472308</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
