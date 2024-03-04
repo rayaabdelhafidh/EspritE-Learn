@@ -1,6 +1,7 @@
 package tn.esprit.Controllers;
 
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -49,7 +50,7 @@ public class GestPresence_VueAdmin implements Initializable {
         // Prepare email details
         String from = "omaimabhd3@gmail.com"; // Sender's email address
         String password = "vjgj bvoy jaio ghjo"; // Sender's email password
-        String to = "ahmedbhd97@gmail.com"; // Recipient's email address
+        String to = "islem1192002@gmail.com"; // Recipient's email address
         String subject = "Presence PDF"; // Email subject
         String message = "Please find attached the presence PDF file."; // Email message
 
@@ -73,7 +74,7 @@ public class GestPresence_VueAdmin implements Initializable {
         LocalDateTime now = LocalDateTime.now();
 
         // Calculate the time until 18:00
-        LocalTime scheduledTime = LocalTime.of(19, 52);
+        LocalTime scheduledTime = LocalTime.of(16, 35);
         LocalDateTime scheduledDateTime = LocalDateTime.of(now.toLocalDate(), scheduledTime);
 
         // If the current time is after 18:00, schedule the email for the next day
@@ -91,6 +92,14 @@ public class GestPresence_VueAdmin implements Initializable {
             sendMaill();
         }, delay, TimeUnit.MILLISECONDS);
     }
+
+
+    @FXML
+    void sendMailPdf(ActionEvent event) {
+        sendMaill();
+
+    }
+
 
 
 

@@ -13,8 +13,11 @@ import tn.esprit.IServices.ServicePresence;
 import tn.esprit.Models.*;
 
 import java.net.URL;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -23,9 +26,6 @@ public class Gest_Presence_VueEnseignant implements Initializable {
 
     @FXML
     private ListView<Personne> listViewEtudiants;
-
-    @FXML
-    private ListView<Presence> listViewAjout;
 
     @FXML
     private TextField nometudiant;
@@ -85,52 +85,53 @@ public class Gest_Presence_VueEnseignant implements Initializable {
         ObservableList<String> classeListe = FXCollections.observableArrayList(classes);
         filtreClasse.setItems(classeList);
     }
-
-    @FXML
-    void EnregistrerEtatPresence() {
+@FXML
+    public void EnregistrerEtatPresence(ActionEvent event) {
         if (verifierSaisiesEnregistrerEtat()) {
+            // Récupérer l'étudiant sélectionné, la date de la présence et la séance depuis l'interface utilisateur
             Personne etudiantSelectionne = listViewEtudiants.getSelectionModel().getSelectedItem();
             LocalDate selectedDate = dateAjoutPr.getValue();
             Seance selectedSeance = ajoutSeance.getValue() != null ? Seance.valueOf(ajoutSeance.getValue()) : null;
 
+            // Enregistrer l'état de présence dans la base de données
             if (etudiantSelectionne != null && selectedDate != null && selectedSeance != null) {
-                EtatPresence etatPresence = toggleGroup.getSelectedToggle().equals(radioAbsent) ? EtatPresence.Absent : EtatPresence.Present;
+                // Enregistrer l'état de présence dans la base de données
+                EtatPresence etatPresence = toggleGroup.getSelectedToggle().isSelected() ? EtatPresence.Absent : EtatPresence.Present;
                 ServicePersonne servicePersonne = new ServicePersonne();
                 servicePersonne.enregistrerEtatPresence(etudiantSelectionne.getIdP(), etatPresence);
+
+                // Actualiser l'interface utilisateur
                 showAlert(Alert.AlertType.INFORMATION, "Confirmation", "L'état de présence a été enregistré avec succès !");
             }
         }
     }
 
     @FXML
-    public void CreatePresence() {
+    public void CreatePresence(ActionEvent event) {
         if (!verifierSaisies()) {
             return;
         }
         String selectedClasseName = nomDesClasses.getValue();
         ServiceClasse serviceClasse = new ServiceClasse();
         classe selectedClasse = serviceClasse.getClasseByNom(selectedClasseName);
-        if (selectedClasse == null) {
-            showAlert(Alert.AlertType.ERROR, "Erreur", "Classe non trouvée !");
-            return;
-        }
+        if (selectedClasse == null)
+        {showAlert(Alert.AlertType.ERROR, "Erreur", "Classe non trouvée !");return;}
         LocalDate localDate = dateAjoutPr.getValue();
-        if (localDate == null) {
-            showAlert(Alert.AlertType.WARNING, "Attention", "Veuillez sélectionner une date !");
-            return;
-        }
-        Seance seance = ajoutSeance.getValue() != null ? Seance.valueOf(ajoutSeance.getValue()) : null;
-        Presence presence = new Presence(localDate, seance, selectedClasse.getNomClasse());
+        Instant instant = localDate.atStartOfDay(ZoneId.systemDefault()).toInstant();
+        Date date = Date.valueOf(localDate); // Convertir LocalDate en java.sql.Date
+        Seance seance = Seance.valueOf(ajoutSeance.getValue());
+        // String etatPresence = checkBoxAbsent.isSelected() ? "Absent" : "Présent";
+        Presence presence = new Presence(date, seance, selectedClasse.getNomClasse());
 
         try {
             servicePresence.addPresence(presence);
         } catch (SQLException e) {
             e.printStackTrace();
             showAlert(Alert.AlertType.ERROR, "Erreur", "Erreur lors de l'ajout de la présence : " + e.getMessage());
-            return;
         }
         showAlert(Alert.AlertType.CONFIRMATION, "Confirmation", "La présence est effectuée avec succès !");
     }
+
 
     private boolean verifierSaisies() {
         String selectedClasseName = nomDesClasses.getValue();
@@ -190,7 +191,7 @@ public class Gest_Presence_VueEnseignant implements Initializable {
         if (selectedClasseName != null) {
             ServicePersonne servicePersonne = new ServicePersonne();
             // Retrieve students with their presence status for the selected class
-            List<Personne> etudiantsAvecPresence = servicePersonne.getEtudiantsAvecPresencePourClasse(selectedClasseName);
+            List<Personne> etudiantsAvecPresence = servicePersonne.getEtudiantsAvecPresence(selectedClasseName);
             // Update the affichageEtatPresence ListView with the retrieved data
             affichageEtatPresence.getItems().clear();
             affichageEtatPresence.getItems().addAll(etudiantsAvecPresence);

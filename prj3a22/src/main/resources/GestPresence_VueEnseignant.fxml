@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
@@ -74,8 +73,6 @@
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nom de l'etudiant" />
                         <TextField fx:id="nometudiant" GridPane.columnIndex="2" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Etat Presence " wrappingWidth="108.69403076171875" GridPane.rowIndex="1" />
-                        <CheckBox fx:id="checkBoxAbsent" mnemonicParsing="false" text="Absent" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                        <CheckBox fx:id="checkBoxPresent" mnemonicParsing="false" text="Present" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                         <RadioButton fx:id="radioAbsent" mnemonicParsing="false" text="Absent" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <RadioButton fx:id="radioPresent" mnemonicParsing="false" text="Present" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                      </children>
