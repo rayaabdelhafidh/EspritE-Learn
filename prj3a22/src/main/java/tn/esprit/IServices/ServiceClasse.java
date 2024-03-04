@@ -7,6 +7,8 @@ import tn.esprit.utilse.Database;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import static tn.esprit.Models.niveaux.valueOf;
 
@@ -228,6 +230,42 @@ public class ServiceClasse implements IserviceC <classe> {
         }
         return nomClasses;
     }
+
+
+    public Map<String, Integer> getStudentsCountPerClass() {
+        Map<String, Integer> studentsCountPerClass = new HashMap<>();
+        String query = "SELECT nomClasse, nbreEtudi FROM classe";
+        try (PreparedStatement statement = cnx.prepareStatement(query);
+             ResultSet resultSet = statement.executeQuery()) {
+            while (resultSet.next()) {
+                String nomClasse = resultSet.getString("nomClasse");
+                int nbreEtudiants = resultSet.getInt("nbreEtudi");
+                studentsCountPerClass.put(nomClasse, nbreEtudiants);
+            }
+        } catch (SQLException e) {
+            System.err.println("Erreur lors de la récupération du nombre d'étudiants par classe: " + e.getMessage());
+        }
+        return studentsCountPerClass;
+    }
+
+    // Méthode pour analyser la répartition des classes par filière
+    public Map<filiere, Integer> getClassDistributionByFiliere() {
+        Map<filiere, Integer> classDistributionByFiliere = new HashMap<>();
+        String query = "SELECT filiere, COUNT(*) AS count FROM classe GROUP BY filiere";
+        try (PreparedStatement statement = cnx.prepareStatement(query);
+             ResultSet resultSet = statement.executeQuery()) {
+            while (resultSet.next()) {
+                String filiereName = resultSet.getString("filiere");
+                int count = resultSet.getInt("count");
+                filiere filiereEnum = filiere.valueOf(filiereName);
+                classDistributionByFiliere.put(filiereEnum, count);
+            }
+        } catch (SQLException e) {
+            System.err.println("Erreur lors de l'analyse de la répartition des classes par filière: " + e.getMessage());
+        }
+        return classDistributionByFiliere;
+    }
+
 
 
 

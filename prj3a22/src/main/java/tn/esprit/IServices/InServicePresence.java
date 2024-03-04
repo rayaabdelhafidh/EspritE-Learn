@@ -12,7 +12,7 @@ public interface InServicePresence {
     ArrayList<Presence> getAll();
      Presence update(Presence Pr, Date newDate, Seance newSeance)   ; //void delete(int cl) throws SQLException;
     //boolean deleteNom(classe cl) throws SQLException;
-
+     ArrayList<Presence> getAllwithouId();
 
 
 

@@ -12,7 +12,7 @@ public class Personne {
 
     }
 
-    public Personne(int idPersonne, String nom, String prenom) {
+    public Personne(int idP, String nom, String prenom) {
     }
 
     public int getIdP() {
@@ -47,6 +47,22 @@ public class Personne {
         this.prenom = prenom;
     }
 
+    public classe getClasseEtudiants() {
+        return classeEtudiants;
+    }
+
+    public void setClasseEtudiants(classe classeEtudiants) {
+        this.classeEtudiants = classeEtudiants;
+    }
+
+    public tn.esprit.Models.EtatPresence getEtatPresence() {
+        return EtatPresence;
+    }
+
+    public void setEtatPresence(tn.esprit.Models.EtatPresence etatPresence) {
+        EtatPresence = etatPresence;
+    }
+
     public Personne(int idP, int age, int idClasse, String nom, String prenom) {
         this.idP = idP;
         this.age = age;
@@ -65,6 +81,18 @@ public class Personne {
 
     }
 
+    public Personne(int age, String nom, String prenom, tn.esprit.Models.EtatPresence etatPresence) {
+        this.age = age;
+        this.nom = nom;
+        this.prenom = prenom;
+        EtatPresence = etatPresence;
+    }
+
+    public Personne(String nom, tn.esprit.Models.EtatPresence etatPresence) {
+        this.nom = nom;
+        EtatPresence = etatPresence;
+    }
+
     public int getIdClasse() {
         return this.idClasse;
     }
@@ -75,16 +103,17 @@ public class Personne {
 
     @Override
     public String toString() {
-        return "Personne{" +
-                "idP=" + idP +
-                ", age=" + age +
+        return "L'etudiant " + "{" +
+
                 ", nom='" + nom + '\'' +
-                ", prenom='" + prenom + '\'' +
+
+                ", EtatPresence=" + EtatPresence +
                 '}';
     }
 
     public void getIdClasse(int idClasse) {
     }
+
 
 
 }

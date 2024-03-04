@@ -24,13 +24,6 @@ public class ClassCardView {
           lnbretudiant.setText(String.valueOf((c.getNbreEtud())));
           lnomclasse.setText(c.getNomClasse());
 
-//        ltitre.setText(c.getTitre());
-//        lduree.setText(String.valueOf(c.getDuree()));
-//        lobjectif.setText(c.getObjectif());
-//        ldescription.setText(c.getDescription());
-//        lmatiere.setText(sm.getById(c.getIdMatiere()).getNomM());
-//        File file=new File("D:\\Esprit_Learn - Copy\\src\\main\\resources\\images\\"+c.getImage());
-//        Image image=new Image(file.toURI().toString());
-//        img.setImage(image);
+
 }
 }

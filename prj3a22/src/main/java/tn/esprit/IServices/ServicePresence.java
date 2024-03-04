@@ -67,6 +67,25 @@ public class ServicePresence implements InServicePresence {
         }
         return presencess;
     }
+    @Override
+    public ArrayList<Presence> getAllwithouId() {
+        ArrayList<Presence> presencess = new ArrayList<>();
+        String qry = "SELECT * FROM `presence`";
+        try {
+            Statement stm = cnx.createStatement();
+            ResultSet rs = stm.executeQuery(qry);
+            while (rs.next()) {
+                Presence P = new Presence();
+                P.setDate(rs.getDate("date"));
+                P.setSeance(Seance.valueOf(rs.getString("seance")));
+                P.setNomClasse(rs.getString("nomClasse"));
+                presencess.add(P);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return presencess;
+    }
 
 
     @Override
@@ -94,5 +113,30 @@ public class ServicePresence implements InServicePresence {
 
         return Pr;
     }
+
+
+    public boolean etudiantPossedePresence(int idEtudiant, Date date, Seance seance) {
+        String query = "SELECT COUNT(*) FROM etudiant_presence " +
+                "JOIN presence ON etudiant_presence.id_presence = presence.idPresence " +
+                "WHERE etudiant_presence.id_etudiant = ? AND presence.date = ? AND presence.seance = ?";
+
+        try (PreparedStatement pstmt = cnx.prepareStatement(query)) {
+            pstmt.setInt(1, idEtudiant);
+            pstmt.setDate(2, new java.sql.Date(date.getTime()));
+            pstmt.setString(3, seance.toString());
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    int count = rs.getInt(1);
+                    return count > 0;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
 }
 

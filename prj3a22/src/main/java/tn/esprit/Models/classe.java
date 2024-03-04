@@ -79,12 +79,16 @@ public class classe {
     @Override
     public String toString() {
         return "classe{" +
-                "idC =" + idC +
-                ", nomClasse='" + nomClasse + '\'' +
+
+                " nomClasse='" + nomClasse + '\'' +
                 ", filiere='" + filiere + '\'' +
                 ", nbreEtud=" + nbreEtud +
                 ", niveaux='" + niveaux + '\'' +
                 '}';
+    }
+
+    public Object getNomClasse(classe classe) {
+        return classe;
     }
 }
 
