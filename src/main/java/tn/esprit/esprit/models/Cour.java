@@ -12,11 +12,12 @@ public class Cour {
     private String coursPdfUrl;
     private int idMatiere;
     private int note;
+    private int like;
 
     public Cour() {
     }
 
-    public Cour(String titre, String description, int duree, String objectif, String image, String coursPdfUrl, int idMatiere, int note) {
+    public Cour(String titre, String description, int duree, String objectif, String image, String coursPdfUrl, int idMatiere, int note, int like) {
         this.titre = titre;
         this.description = description;
         this.duree = duree;
@@ -25,9 +26,10 @@ public class Cour {
         this.coursPdfUrl = coursPdfUrl;
         this.idMatiere = idMatiere;
         this.note = note;
+        this.like = like;
     }
 
-    public Cour(int id, String titre, String description, int duree, String objectif, String image, String coursPdfUrl, int idMatiere, int note) {
+    public Cour(int id, String titre, String description, int duree, String objectif, String image, String coursPdfUrl, int idMatiere, int note, int like) {
         this.id = id;
         this.titre = titre;
         this.description = description;
@@ -37,6 +39,15 @@ public class Cour {
         this.coursPdfUrl = coursPdfUrl;
         this.idMatiere = idMatiere;
         this.note = note;
+        this.like = like;
+    }
+
+    public int getLike() {
+        return like;
+    }
+
+    public void setLike(int like) {
+        this.like = like;
     }
 
     public int getId() {
@@ -120,19 +131,19 @@ public class Cour {
     }
 
 
-
     @Override
     public String toString() {
         return "Cour{" +
-                "id=" + id +
-                ", titre='" + titre + '\'' +
-                ", description='" + description + '\'' +
-                ", duree=" + duree +
-                ", objectif='" + objectif + '\'' +
-                ", image='" + image + '\'' +
-                ", coursPdfUrl='" + coursPdfUrl + '\'' +
-                ", idMatiere=" + idMatiere +
-                ", note=" + note +
-                '}';
+            "id=" + id +
+            ", titre='" + titre + '\'' +
+            ", description='" + description + '\'' +
+            ", duree=" + duree +
+            ", objectif='" + objectif + '\'' +
+            ", image='" + image + '\'' +
+            ", coursPdfUrl='" + coursPdfUrl + '\'' +
+            ", idMatiere=" + idMatiere +
+            ", note=" + note +
+            ", like=" + like +
+            '}';
     }
 }

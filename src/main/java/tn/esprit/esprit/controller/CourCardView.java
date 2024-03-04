@@ -32,6 +32,8 @@ public class CourCardView {
     @FXML
     private Label ltitre;
     @FXML
+    private Label llike;
+    @FXML
     private Rating rate;
     ServiceMatiere sm=new ServiceMatiere();
     ServiceCour sc=new ServiceCour();
@@ -53,6 +55,7 @@ public class CourCardView {
         lobjectif.setText(c.getObjectif());
         ldescription.setText(c.getDescription());
         lmatiere.setText(sm.getById(c.getIdMatiere()).getNomM());
+        llike.setText(String.valueOf(c.getLike()));
         File file=new File("D:\\Esprit_Learn - Copy\\src\\main\\resources\\images\\"+c.getImage());
         Image image=new Image(file.toURI().toString());
         img.setImage(image);

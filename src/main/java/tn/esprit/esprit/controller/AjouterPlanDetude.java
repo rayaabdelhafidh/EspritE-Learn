@@ -9,9 +9,16 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 import tn.esprit.esprit.models.Niveau;
 import tn.esprit.esprit.models.PlanDetude;
 import tn.esprit.esprit.services.ServicePlanDetude;
+import tn.esprit.esprit.utils.ExportToExcel;
+
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 
 public class AjouterPlanDetude {
 
@@ -115,5 +122,21 @@ public class AjouterPlanDetude {
         data.clear();
         data=FXCollections.observableArrayList(sp.afficher());
         listPlanDetude.setItems(data);
+    }
+    @FXML
+    void excel(ActionEvent event) {
+        String filename="PlandEtude.xlsx";
+        File file=new File("C:\\Users\\21646\\Downloads\\EspritE-Learn-gestion_user-khalilNaddari\\src\\main\\resources\\excel\\"+filename);
+        ExportToExcel.exportToExcel(sp.afficher(),file);
+        Notifications.create().title("Exel").text("le fichier exel et en train d'ouvrir").hideAfter(Duration.seconds(5)).showInformation();
+        if(file.exists()){
+            if(Desktop.isDesktopSupported()){
+                try {
+                    Desktop.getDesktop().open(file);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
     }
 }

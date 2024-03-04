@@ -43,8 +43,8 @@ public class ServiceCour implements IService<Cour> {
                     "(`titre`, `description`," +
                     " `duree`, `objectif`," +
                     " `image`, `idMatiere`," +
-                    " `coursPdfUrl`,`note`)" +
-                    " VALUES (?,?,?,?,?,?,?)";
+                    " `coursPdfUrl`,`note`,`nblike`)" +
+                    " VALUES (?,?,?,?,?,?,?,?,?)";
 
             PreparedStatement pst= cnx.prepareStatement(query);
             pst.setString(1, cour.getTitre());
@@ -54,7 +54,8 @@ public class ServiceCour implements IService<Cour> {
             pst.setString(5, cour.getImage());
             pst.setString(7, cour.getCoursPdfUrl());
             pst.setInt(6, cour.getIdMatiere());
-            pst.setInt(7, cour.getNote());
+            pst.setInt(8, cour.getNote());
+            pst.setInt(9, cour.getLike());
             pst.executeUpdate();
         } catch (SQLException e) {
             System.out.println("erreur:"+e.getMessage());
@@ -73,7 +74,7 @@ public class ServiceCour implements IService<Cour> {
                     "`objectif`=?," +
                     "`image`=?," +
                     "`coursPdfUrl`=?," +
-                    "`idMatiere`=?,`note`=? WHERE id=?";
+                    "`idMatiere`=?,`note`=?,`nblike`=? WHERE id=?";
             PreparedStatement pst= cnx.prepareStatement(query);
             pst.setString(1, cour.getTitre());
             pst.setString(2, cour.getDescription());
@@ -82,8 +83,9 @@ public class ServiceCour implements IService<Cour> {
             pst.setString(5, cour.getImage());
             pst.setInt(7, cour.getIdMatiere());
             pst.setString(6, cour.getCoursPdfUrl());
-            pst.setInt(8,cour.getId());
-            pst.setInt(9,cour.getId());
+            pst.setInt(8,cour.getNote());
+            pst.setInt(9,cour.getLike());
+            pst.setInt(10,cour.getId());
             pst.executeUpdate();
         } catch (SQLException e) {
             System.out.println("erreur:"+e.getMessage());
@@ -120,6 +122,7 @@ public class ServiceCour implements IService<Cour> {
                 c.setCoursPdfUrl(rs.getString("coursPdfUrl"));
                 c.setIdMatiere(rs.getInt("idMatiere"));
                 c.setNote(rs.getInt("note"));
+                c.setLike(rs.getInt("nblike"));
                 courSet.add(c);
             }
         }catch (SQLException ex){

@@ -34,5 +34,6 @@
             <Image url="@img/logo.png" />
          </image>
       </ImageView>
+      <Button layoutX="453.0" layoutY="147.0" mnemonicParsing="false" onAction="#excel" text="Excel" />
    </children>
 </AnchorPane>

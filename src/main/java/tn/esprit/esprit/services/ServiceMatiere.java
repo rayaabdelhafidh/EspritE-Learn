@@ -1,13 +1,12 @@
 package tn.esprit.esprit.services;
 
 import tn.esprit.esprit.iservice.IService;
+import tn.esprit.esprit.models.Cour;
 import tn.esprit.esprit.models.Matiere;
 import tn.esprit.esprit.utils.MyDb;
 
 import java.sql.*;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class ServiceMatiere implements IService<Matiere> {
@@ -141,4 +140,22 @@ public class ServiceMatiere implements IService<Matiere> {
     public int getIdByName(String nom){
         return afficher().stream().filter(m->m.getNomM().equals(nom)).findAny().orElse(null).getIdM();
     }
+    public TreeSet<Matiere> sortByCritere(String critere){
+        switch (critere){
+            case "Coefficient":
+                return afficher().stream()
+                    .collect(Collectors.toCollection(()->new TreeSet<>(Comparator.comparing(Matiere::getCoefficient))));
+            case "Nom":
+                return afficher().stream()
+                    .collect(Collectors.toCollection(()->new TreeSet<>(Comparator.comparing(Matiere::getNomM))));
+
+
+        }
+       /* return afficher().stream()
+            .collect(Collectors.toCollection(()->new TreeSet<>((c1, c2)->c1.getCoefficient().Integer.compare(c2.getCoefficient()))));*/
+        return afficher().stream()
+            .collect(Collectors.toCollection(() -> new TreeSet<>((c1, c2) -> Integer.compare(c1.getCoefficient(), c2.getCoefficient()))));
+
+    }
+
 }
