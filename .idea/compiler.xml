@@ -9,5 +9,16 @@
         <module name="prj3a22" />
       </profile>
     </annotationProcessing>
+<<<<<<< HEAD
+=======
+    <bytecodeTargetLevel>
+      <module name="workshopjdbc3a25" target="17" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="prj3a22" options="" />
+    </option>
+>>>>>>> b578c326e2f72e69114bbccc529b1760231de437
   </component>
 </project>

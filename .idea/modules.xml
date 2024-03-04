@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/.idea/EspritE-Learn-gestionClasse_OmaimaBhd.iml" filepath="$PROJECT_DIR$/.idea/EspritE-Learn-gestionClasse_OmaimaBhd.iml" />
+=======
+      <module fileurl="file://$PROJECT_DIR$/.idea/prj3a22.iml" filepath="$PROJECT_DIR$/.idea/prj3a22.iml" />
+>>>>>>> b578c326e2f72e69114bbccc529b1760231de437
     </modules>
   </component>
 </project>
