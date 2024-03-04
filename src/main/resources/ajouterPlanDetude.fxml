@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="702.0" prefWidth="1018.0" style="-fx-background-color: #8B8585;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.esprit.controller.AjouterPlanDetude">
+   <children>
+      <ImageView fitHeight="702.0" fitWidth="1031.0" opacity="0.59" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img/esprit-ghazela.jpg" />
+         </image>
+      </ImageView>
+      <Text fill="#f22e2e" layoutX="397.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion plan d'etude" wrappingWidth="285.3824462890625">
+         <font>
+            <Font name="System Bold" size="27.0" />
+         </font></Text>
+      <TextField fx:id="tfnomprogramme" layoutX="569.0" layoutY="255.0" promptText="Nom Programme" />
+      <Button layoutX="710.0" layoutY="459.0" mnemonicParsing="false" onAction="#ajouterPlanDetude" text="Ajouter" />
+      <TextField fx:id="tfdureetotal" layoutX="569.0" layoutY="346.0" promptText="Duree Toital" />
+      <TextField fx:id="tfcreditsrequistotal" layoutX="751.0" layoutY="346.0" promptText="Credits Requis Total" />
+      <Button layoutX="826.0" layoutY="459.0" mnemonicParsing="false" onAction="#supprimerPlanDetude" text="Supprimer" />
+      <Button layoutX="569.0" layoutY="459.0" mnemonicParsing="false" onAction="#modifierPlanDetude" text="Modifier" />
+      <ListView fx:id="listPlanDetude" layoutX="55.0" layoutY="178.0" onMouseClicked="#fillforum" prefHeight="362.0" prefWidth="470.0" />
+      <ComboBox fx:id="cbniveau" layoutX="751.0" layoutY="255.0" prefWidth="150.0" promptText="Niveau" />
+      <ImageView fitHeight="131.0" fitWidth="122.0" layoutX="915.0" layoutY="581.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img/logo.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
