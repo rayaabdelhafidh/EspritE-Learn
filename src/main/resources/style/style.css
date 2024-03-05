@@ -1,10 +1,15 @@
 .coleurButton {
         -fx-background-color:#444444; /* Rouge foncé brun en notation hexadécimale */
-        -fx-text-fill: black; /* Couleur du texte noir */
+        -fx-text-fill: #FFFFFFFF; /* Définit la couleur du texte en blanc */
+        -fx-border-radius: 5;
+        -fx-background-radius: 5;
+        -fx-padding: 10 20 10 20;
 }
 .hbox-red {
 
-        -fx-background-color: #8B0000; /* Rouge foncé brun en notation hexadécimale */
+        -fx-background-color: #8B0000;
+
+        -fx-background-radius: 5;/* Rouge foncé brun en notation hexadécimale */
 }
 
 .vbox-grey {
@@ -13,7 +18,7 @@
 
 .button-red-brown {
         -fx-background-color:#444444; /* Rouge foncé brun en notation hexadécimale */
-        -fx-text-fill: black; /* Couleur du texte noir */
+        -fx-text-fill: white; /* Couleur du texte noir */
 }
 
 .anchor-pane-red-background {
@@ -21,5 +26,42 @@
 }
 
 .coleurButtton {
+        -fx-background-color: #8B0000;
+}
+
+.anchor-pane {
+        -fx-background-color: #f0f0f0;
+}
+
+.list-view {
+        -fx-background-color: #ffffff;
+        -fx-border-color: #ced4da;
+        -fx-border-radius: 5;
+}
+
+.text-field {
+        -fx-background-color: white;
+        -fx-border-color: #ced4da;
+        -fx-border-radius: 5;
+}
+
+.text {
+        -fx-fill: #333333;
+}
+
+.vboxx {
+        -fx-background-color: #8B0000;
+
+}
+
+.coleurbt {
+        -fx-background-color: #8B0000;
+}
+
+.coleurb {
+        -fx-background-color: #8B0000;
+}
+
+.color {
         -fx-background-color: #8B0000;
 }

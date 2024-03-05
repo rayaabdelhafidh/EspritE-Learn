@@ -11,10 +11,10 @@ public class Option {
 
     }
 
-    public Option(int option_id,String option_content, boolean correctOption, Question question) {
+    public Option(int option_id,String option_content, boolean is_correct, Question question) {
         this.option_id=option_id;
         this.option_content = option_content;
-        this.is_correct = correctOption;
+        this.is_correct = is_correct;
         this.question = question;
 
     }

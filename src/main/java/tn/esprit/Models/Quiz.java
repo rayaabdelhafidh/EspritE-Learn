@@ -6,15 +6,14 @@ public class Quiz {
     private int quiz_id;
     private String description;
 
-    private int enseignantId;
+
     private String matiere;
 
 
-    public Quiz(int  quiz_id, String description, int enseignantId, String matière) {
+    public Quiz(int  quiz_id, String description, String matière) {
         this. quiz_id =  quiz_id;
         this.description = description;
 
-        this.enseignantId = enseignantId;
         this.matiere = matière;
 
     }
@@ -33,19 +32,6 @@ public class Quiz {
     public void setQuiz_id(int quiz_id) {
         this.quiz_id = quiz_id;
     }
-
-
-
-
-
-    public int getEnseignantId() {
-        return enseignantId;
-    }
-
-    public void setEnseignantId(int enseignantId) {
-        this.enseignantId = enseignantId;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -66,6 +52,6 @@ public class Quiz {
 
     @Override
     public String toString() {
-        return    description + "                                                       " + matiere ;
+        return    description + "                                                                                                                             " + matiere ;
     }
 }

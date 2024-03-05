@@ -2,45 +2,43 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="651.0" stylesheets="@style/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.AddQuizController">
+<AnchorPane prefHeight="400.0" prefWidth="749.0" stylesheets="@style/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.AddQuizController">
    <children>
-      <TextField fx:id="DescriptionTF" layoutX="192.0" layoutY="101.0" promptText="Entrer une description" />
-      <Label layoutX="45.0" layoutY="100.0" prefHeight="18.0" prefWidth="90.0" text="Description" textFill="#8e1212">
+      <TextField fx:id="DescriptionTF" layoutX="222.0" layoutY="101.0" promptText="Entrer une description" />
+      <Label layoutX="89.0" layoutY="200.0" prefHeight="27.0" prefWidth="115.0" text="Matière" textFill="#890b0b">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="45.0" layoutY="243.0" prefHeight="27.0" prefWidth="115.0" text="Matière" textFill="#890b0b">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <TextField fx:id="MatiereTF" layoutX="192.0" layoutY="244.0" promptText=" entrer matier" />
-      <Button layoutX="446.0" layoutY="156.0" mnemonicParsing="false" onAction="#AjouterQuiz" prefHeight="40.0" prefWidth="150.0" styleClass="coleurButtont" text="Ajouter Quiz">
+      <TextField fx:id="MatiereTF" layoutX="222.0" layoutY="200.0" promptText=" entrer matier" />
+      <Button layoutX="512.0" layoutY="108.0" mnemonicParsing="false" onAction="#AjouterQuiz" prefHeight="40.0" prefWidth="150.0" styleClass="coleurButtont" text="Ajouter Quiz">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Label layoutX="41.0" layoutY="165.0" prefHeight="35.0" prefWidth="124.0" text="enseignant Id" textFill="#8c1c1c">
+      <Button layoutX="512.0" layoutY="194.0" mnemonicParsing="false" onAction="#afficherQuiz" prefHeight="40.0" prefWidth="150.0" styleClass="coleurbt" text="OK">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Label layoutX="89.0" layoutY="101.0" prefHeight="18.0" prefWidth="90.0" text="Description" textFill="#8e1212">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="enseignantIdTF" layoutX="192.0" layoutY="170.0" promptText="enseignant" />
-      <Text layoutX="7.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New QUIZ" wrappingWidth="255.6171875">
+      <Text fill="#d10909" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New QUIZ" wrappingWidth="255.6171875">
          <font>
-            <Font size="36.0" />
+            <Font name="System Italic" size="36.0" />
          </font>
       </Text>
-      <Button layoutX="446.0" layoutY="224.0" mnemonicParsing="false" onAction="#afficherQuiz" prefHeight="40.0" prefWidth="150.0" text="OK">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Button>
+      <HBox layoutY="1.0" prefHeight="59.0" prefWidth="749.0" />
+      <Separator layoutY="55.0" prefHeight="8.0" prefWidth="742.0" />
    </children>
 </AnchorPane>

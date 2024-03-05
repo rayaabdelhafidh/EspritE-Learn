@@ -21,34 +21,27 @@ public class AddQuizController {
     @FXML
     private TextField MatiereTF;
 
-    @FXML
-    private TextField enseignantIdTF;
+
      private final ServiceQuiz qz=new ServiceQuiz();
     @FXML
     void AjouterQuiz(ActionEvent event) {
         String description = DescriptionTF.getText().trim();
         String matiere = MatiereTF.getText().trim();
-        String enseignantIdText = enseignantIdTF.getText().trim();
+
 
         // Vérification si les champs sont vides
-        if (description.isEmpty() || matiere.isEmpty() || enseignantIdText.isEmpty()) {
+        if (description.isEmpty() || matiere.isEmpty() ) {
             showAlert("Erreur de saisie", "Veuillez remplir tous les champs.");
             return; // Sortir de la méthode si un champ est vide
         }
 
         // Vérification si l'ID de l'enseignant est un entier
-        int enseignantId;
-        try {
-            enseignantId = Integer.parseInt(enseignantIdText);
-        } catch (NumberFormatException e) {
-            showAlert("Erreur de saisie", "L'ID de l'enseignant doit être un nombre entier.");
-            return; // Sortir de la méthode si l'ID de l'enseignant n'est pas un entier
-        }
+
 
         // Ajouter le quiz s'il passe toutes les vérifications
-        qz.add(new Quiz(0, description, enseignantId, matiere));
+        qz.add(new Quiz(0, description, matiere));
         DescriptionTF.clear();
-        enseignantIdTF.clear();
+
         MatiereTF.clear();
     }
 

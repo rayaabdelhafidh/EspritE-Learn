@@ -14,6 +14,8 @@ public class UpdateQuestionController {
 
     @FXML
     private TextField contTF;
+    @FXML
+    private TextField scoreTF;
 
     @FXML
     private Button updateButton;
@@ -23,6 +25,8 @@ public class UpdateQuestionController {
     public void setData(Question question) {
         this.selectedQuestion = question;
         contTF.setText(question.getContent());
+        scoreTF.setText(String.valueOf(question.getScore()));
+
 
     }
 
@@ -32,6 +36,7 @@ public class UpdateQuestionController {
         // Mettre à jour les détails de l'option avec les valeurs des champs de texte
 
         selectedQuestion.setContent(contTF.getText());
+        selectedQuestion.setScore(Integer.parseInt(scoreTF.getText()));
         // Appeler la méthode de mise à jour du service avec l'option mise à jour
         serviceQuestion1.update(selectedQuestion);
         System.out.println("question mise à jour avec succès.");

@@ -15,5 +15,6 @@
       </Label>
       <Button fx:id="updateButton" layoutX="306.0" layoutY="148.0" mnemonicParsing="false" onAction="#updateQuestion" prefHeight="30.0" prefWidth="123.0" text="Update" />
       <TextField fx:id="contTF" layoutX="125.0" layoutY="60.0" prefHeight="26.0" prefWidth="303.0" promptText="Modifier" />
+      <TextField fx:id="scoreTF" layoutX="128.0" layoutY="90.0" />
    </children>
 </AnchorPane>

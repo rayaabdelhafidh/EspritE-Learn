@@ -31,6 +31,8 @@ public class AddQuestionController {
 
     @FXML
     private TextField contenuTF;
+    @FXML
+    private TextField scoreTF;
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
@@ -42,6 +44,17 @@ public class AddQuestionController {
     @FXML
     void AjouterQuestion() {
         String content = contenuTF.getText().trim();
+        int score;
+        try {
+            score= Integer.parseInt(scoreTF.getText().trim());
+        }
+        catch (NumberFormatException e) {
+            showAlert("Erreur de saisie", "Le score doit être un entier.");
+            return; // Sortir de la méthode si le score n'est pas un entier
+        }
+
+
+
         if (content.isEmpty()) {
             showAlert("Erreur de saisie", "Veuillez saisir le contenu de la question.");
             return; // Sortir de la méthode si le champ est vide
@@ -49,9 +62,11 @@ public class AddQuestionController {
         // Créez une nouvelle instance de Question avec le contenu et l'ID du quiz
         Question question = new Question();
         question.setContent(content);
+
         Quiz quiz = new Quiz();
         quiz.setQuiz_id(quiz_id); // Utilisez l'ID du quiz passé
         question.setQuiz(quiz);
+        question.setScore(score);
         // Appelez la méthode add(question) du service ServiceQuestion pour ajouter la question à la base de données
         ServiceQuestion serviceQuestion = new ServiceQuestion();
         serviceQuestion.add(question);

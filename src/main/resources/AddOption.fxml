@@ -13,20 +13,20 @@
       <Pane layoutX="38.0" layoutY="56.0" prefHeight="199.0" prefWidth="524.0" style="-fx-background-color: white;">
          <children>
             <Button layoutX="363.0" layoutY="43.0" mnemonicParsing="false" onAction="#AjouterOption" prefHeight="26.0" prefWidth="81.0" style="-fx-text-fill: black; -fx-background-color: #444444;" text="Ajouter" />
-            <Text fill="#860505" layoutX="48.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Option" wrappingWidth="61.7447509765625">
+            <Text fill="#860505" layoutX="48.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="choix" wrappingWidth="61.7447509765625">
                <font>
                   <Font size="18.0" />
                </font>
             </Text>
             <Button layoutX="372.0" layoutY="106.0" mnemonicParsing="false" onAction="#afficherOption" prefHeight="25.0" prefWidth="62.0" text="OK" />
+            <TextField fx:id="IsCorrectTF" layoutX="148.0" layoutY="106.0" />
+            <Label layoutX="40.0" layoutY="104.0" prefHeight="27.0" prefWidth="95.0" text="is_correct " textFill="#810404">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
-      <TextField fx:id="optionTF" layoutX="173.0" layoutY="98.0" prefHeight="26.0" prefWidth="172.0" promptText="Entrer  Option" />
-      <Label layoutX="62.0" layoutY="170.0" prefHeight="27.0" prefWidth="95.0" text="is_correct " textFill="#810404">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <TextField fx:id="IsCorrectTF" layoutX="177.0" layoutY="166.0" prefHeight="26.0" prefWidth="164.0" />
+      <TextField fx:id="optionTF" layoutX="173.0" layoutY="98.0" prefHeight="26.0" prefWidth="172.0" promptText="Entrer ton choix" />
    </children>
 </AnchorPane>

@@ -12,12 +12,17 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane stylesheets="@style/style.css" prefHeight="501.0" prefWidth="764.0"  xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.AfficheQuizController">
+<AnchorPane styleClass="anchor-pane" prefHeight="712.0" prefWidth="967.0" stylesheets="@style/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.AfficheQuizController">
    <children>
-      <TextField fx:id="searchField" layoutX="559.0" layoutY="41.0" promptText="Search" />
-      <HBox  layoutX="163.0" layoutY="106.0" prefHeight="43.0" prefWidth="578.0" styleClass="hbox-red">
+      <ImageView fitHeight="16.0" fitWidth="22.0" layoutX="723.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../search.png" />
+         </image>
+      </ImageView>
+      <TextField styleClass="text-field" fx:id="searchField" layoutX="704.0" layoutY="41.0" promptText="Search" />
+      <HBox  layoutX="176.0" layoutY="105.0" prefHeight="43.0" prefWidth="746.0" styleClass="hbox-red">
          <children>
-            <Text fill="#181818" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" wrappingWidth="124.53680419921875">
+            <Text styleClass="text" fill="#181818" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" wrappingWidth="124.53680419921875">
                <font>
                   <Font size="18.0" />
                </font>
@@ -27,7 +32,7 @@
             </Text>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Matière" wrappingWidth="117.37618565559387">
                <HBox.margin>
-                  <Insets left="180.0" top="10.0" />
+                  <Insets left="300.0" top="10.0" />
                </HBox.margin>
                <font>
                   <Font size="18.0" />
@@ -35,22 +40,30 @@
             </Text>
          </children>
       </HBox>
-      <ListView fx:id="listView" layoutX="163.0" layoutY="150.0" prefHeight="292.0" prefWidth="578.0" />
-      <VBox styleClass="vbox-grey" layoutX="-5.0" layoutY="-1.0" prefHeight="502.0" prefWidth="157.0">
+      <ListView styleClass="list-view" fx:id="listView" layoutX="176.0" layoutY="149.0" prefHeight="554.0" prefWidth="746.0" />
+      <VBox styleClass="vboxx" layoutX="2.0" prefHeight="698.0" prefWidth="174.0">
          <children>
-            <Button fx:id="updateButton" styleClass="button-red-brown" mnemonicParsing="false" prefHeight="40.0" prefWidth="114.0" text="Update">
+            <Button fx:id="updateButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="114.0" styleClass="coleurButton" text="Update">
                <VBox.margin>
-                  <Insets left="20.0" top="120.0" />
+                  <Insets left="15.0" top="150.0" />
+               </VBox.margin>
+            </Button>
+          <Button fx:id="btt" mnemonicParsing="false" prefHeight="34.0" prefWidth="117.0" styleClass="coleurButton" text="Reponse">
+               <VBox.margin>
+                  <Insets left="15.0" top="60.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="AjouterButton" mnemonicParsing="false" prefHeight="34.0" prefWidth="120.0" styleClass="coleurButton" text="Ajouter">
+               <VBox.margin>
+                  <Insets left="15.0" top="60.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="deleteButton" mnemonicParsing="false" prefHeight="35.0" prefWidth="106.0" styleClass="coleurButton" text="Delete">
+               <VBox.margin>
+                  <Insets left="25.0" top="60.0" />
                </VBox.margin>
             </Button>
          </children>
       </VBox>
-      <Button fx:id="AjouterButton" styleClass="button-red-brown" layoutX="20.0" layoutY="215.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="106.0" text="Ajouter" />
-      <Button  fx:id="deleteButton"   layoutX="20.0" layoutY="296.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="106.0" styleClass="coleurButton" text="Delete" />
-      <ImageView fitHeight="16.0" fitWidth="22.0" layoutX="551.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../search.png" />
-         </image>
-      </ImageView>
    </children>
 </AnchorPane>

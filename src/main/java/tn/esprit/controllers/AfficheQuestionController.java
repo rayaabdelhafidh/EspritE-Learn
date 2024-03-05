@@ -34,15 +34,16 @@ public class AfficheQuestionController implements Initializable {
     private ListView<Question> listView;
     @FXML
     private Button updateButton;
-
+    @FXML
+    private Button AjouterButton;
     private ServiceQuestion serviceQuestion=new ServiceQuestion();
 
     @FXML
     public void initialize(URL url,ResourceBundle resourceBundle){
         ArrayList<Question> questions=serviceQuestion.getAll();
         listView.getItems().addAll(questions);
-        listView.setOnMouseClicked(event -> {
-            if (event.getClickCount() == 1) {// Vérifie si un élément est cliqué une fois
+        AjouterButton.setOnAction(event -> {
+             // Vérifie si un élément est cliqué une fois
                 Question question = listView.getSelectionModel().getSelectedItem(); // Récupère l'objet Question sélectionné
                 if (question != null) {
                     int questionId = question.getQuestionId(); // Récupère l'ID du question
@@ -57,7 +58,7 @@ public class AfficheQuestionController implements Initializable {
                     }
 
                 }
-            }
+
         });
         // Your existing initialization code...
         updateButton.setOnAction(event -> {

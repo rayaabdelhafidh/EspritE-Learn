@@ -12,14 +12,14 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        Quiz quiz1 = new Quiz(10, "simple quiz", 25, "subject");
+        Quiz quiz1 = new Quiz(10, "simple quiz",  "subject");
         ServiceQuiz serviceQuiz = new ServiceQuiz();
         serviceQuiz.add(quiz1);
         System.out.println("Quiz ajouté avec succès !");
-        Question question1 = new Question(14, "simple question", quiz1);
+        Question question1 = new Question(14, "simple question", quiz1,5);
         ServiceQuestion serviceQuestion = new ServiceQuestion();
         serviceQuestion.add(question1);
-        System.out.println("Question ajoutée avec succès ! Identifiant de la question : " + question1.getQuestionId());
+        System.out.println("Question ajoutée avec succès ! Identifiant de la question : " + question1);
         Option option1 = new Option(5, "Option 1", true, question1);
         ServiceOption serviceOption = new ServiceOption();
         serviceOption.add(option1);
@@ -32,7 +32,7 @@ public class Main {
         ArrayList<Quiz> allQuizzes = serviceQuiz.getAll();
         for (Quiz quiz : allQuizzes) {
             System.out.println("Description: " + quiz.getDescription());
-            System.out.println("Enseignant ID: " + quiz.getEnseignantId());
+
             System.out.println("Matière: " + quiz.getMatiere());
             System.out.println("-----------------------------");
         }
@@ -63,7 +63,7 @@ public class Main {
             System.out.println("Quiz trouvé !");
             System.out.println("ID du Quiz: " + quiz.getQuiz_id());
             System.out.println("Description: " + quiz.getDescription());
-            System.out.println("ID de l'Enseignant: " + quiz.getEnseignantId());
+
             System.out.println("Matière: " + quiz.getMatiere());
         } else {
             System.out.println("Aucun quiz trouvé pour l'ID: " + quizIdToRetrieve);
@@ -85,7 +85,7 @@ public class Main {
         serviceQuestion.update(questionToUpdate);
         Quiz quizToUpdate = new Quiz();
         quizToUpdate.setDescription("Nouvelle description du quiz");
-        quizToUpdate.setEnseignantId(123); // ID de l'enseignant
+
         quizToUpdate.setMatière("Nouvelle matière du quiz");
         quizToUpdate.setQuiz_id(10); // ID du quiz à mettre à jour
 
@@ -119,6 +119,33 @@ public class Main {
             System.out.println("Content: " + question.getContent());
             // Vous pouvez afficher d'autres attributs si nécessaire
         }
+        List<Option> options=serviceOption.getOptionByQuestion(11);
+        for (Option option3 :options){
+
+            System.out.println("OptionID" + option3.getOption_id());
+            System.out.println("contenuoption" +option3.getOption_content());
+        }
+        Question qustion8 =new Question(1,"bb",quiz1,25);
+        ServiceQuestion serviceQuestion3 = new ServiceQuestion();
+        serviceQuestion3.add(qustion8);
+        System.out.println(qustion8);
+        int optionIdToRetrieve = 133; // ID de quiz à récupérer
+        Option OPTION = serviceOption.getOptionById(optionIdToRetrieve);
+        if (OPTION != null) {
+            System.out.println("OP trouvé !");
+            System.out.println("ID du OP: " + OPTION.getOption_id());
+            System.out.println("CONTENT: " + OPTION.getOption_content());
+            System.out.println(" " +OPTION.isIs_correct());
+
+        } else {
+            System.out.println("Aucun quiz trouvé pour l'ID: " + quizIdToRetrieve);
+        }
+        boolean isCorrect = serviceOption.isOptionCorrect(185);
+        System.out.println("Option avec ID " + isCorrect);
+
+
+
+
 
     }
     }

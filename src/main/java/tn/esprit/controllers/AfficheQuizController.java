@@ -9,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import okhttp3.*;
 import tn.esprit.Models.Question;
 import tn.esprit.Models.Quiz;
 import tn.esprit.Services.ServiceQuestion;
@@ -34,6 +35,9 @@ public class AfficheQuizController implements Initializable {
     private ListView<Quiz> listView;
     @FXML
     private Button AjouterButton;
+    Question question;
+    @FXML
+    private Button btt;
 
 
     @FXML
@@ -42,6 +46,10 @@ public class AfficheQuizController implements Initializable {
     private Button deleteButton;
     private ServiceQuiz serviceQuiz=new ServiceQuiz();
     private ServiceQuestion serviceQuestion=new ServiceQuestion();
+
+
+    // Assurez-vous de définir le serviceQuestion
+
     @FXML
     public void initialize(URL url,ResourceBundle resourceBundle) {
         // Chargez les données depuis le service et ajoutez-les à la table
@@ -67,16 +75,15 @@ public class AfficheQuizController implements Initializable {
                 }
 
         });
-        listView.setOnMouseClicked(event -> {
-            if (event.getClickCount() == 1) { // Vérifie si un élément est cliqué une fois
+       btt.setOnAction(event -> {
+           { // Vérifie si un élément est cliqué une fois
                 Quiz quiz = listView.getSelectionModel().getSelectedItem(); // Récupère l'objet Quiz sélectionné
                 if (quiz != null) {
                     int quiz_id = quiz.getQuiz_id(); // Récupère l'ID du quiz
-                    List<Question> questions = serviceQuestion.getQuestionsByQuizId(quiz_id);
+
                     System.out.println("ID du quiz sélectionné : " + quiz_id);
-                    System.out.println("ID du quiz sélectionné : " +questions);
-                    // Vous pouvez utiliser cet ID pour l'interface addQuestion
-                    // Par exemple, vous pouvez passer cet ID à votre interface addQuestion
+                    openAffiche(quiz_id);
+
 
                 }
             }
@@ -148,6 +155,25 @@ public class AfficheQuizController implements Initializable {
         }
 
     }
+    public void openAffiche(int quiz_id){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficheReponse.fxml"));
+            Parent root = loader.load();
+            AfficheReponseController controller=loader.getController();
+
+            controller.setQuiz_id(quiz_id);
+            controller.setServiceQuestion(serviceQuestion);
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Questions List");
+            stage.show();
+
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 
 
 
@@ -185,6 +211,8 @@ public class AfficheQuizController implements Initializable {
           //  e.printStackTrace();
         //}
     //}
+
+
 
 
 }

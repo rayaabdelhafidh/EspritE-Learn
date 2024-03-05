@@ -20,13 +20,12 @@ public class ServiceQuiz implements IServices<Quiz> {
     }
     @Override
     public void add(Quiz quiz) {
-        String qry = "INSERT INTO `quizz`( description,  enseignantId,  matiere) VALUES (?, ?, ?)";
+        String qry = "INSERT INTO `quizz`( description,    matiere) VALUES (?, ?)";
         try {
             PreparedStatement stm = cnx.prepareStatement(qry);
             stm.setString(1,quiz.getDescription());
 
-            stm.setInt(2,quiz.getEnseignantId());
-            stm.setString(3,quiz.getMatiere());
+            stm.setString(2,quiz.getMatiere());
             stm.executeUpdate();
 
         }
@@ -45,7 +44,7 @@ public class ServiceQuiz implements IServices<Quiz> {
                 Quiz q = new Quiz();
                 q.setQuiz_id(rs.getInt("quiz_id"));
                 q.setDescription(rs.getString("description"));
-                q.setEnseignantId(rs.getInt("enseignantId"));
+
                 q.setMatière(rs.getString("matiere"));
                 quizzes.add(q);
             }
@@ -59,13 +58,13 @@ public class ServiceQuiz implements IServices<Quiz> {
 
     @Override
     public void update(Quiz quiz) {
-        String qry = "UPDATE quizz SET description = ?, enseignantId = ?, matiere = ? WHERE quiz_id = ?";
+        String qry = "UPDATE quizz SET description = ?, matiere = ? WHERE quiz_id = ?";
         try {
             PreparedStatement stm = cnx.prepareStatement(qry);
             stm.setString(1, quiz.getDescription());
-            stm.setInt(2, quiz.getEnseignantId());
-            stm.setString(3, quiz.getMatiere());
-            stm.setInt(4, quiz.getQuiz_id());
+
+            stm.setString(2, quiz.getMatiere());
+            stm.setInt(3, quiz.getQuiz_id());
 
             stm.executeUpdate();
             stm.close();
@@ -100,7 +99,7 @@ public class ServiceQuiz implements IServices<Quiz> {
                 Quiz q = new Quiz();
                 q.setQuiz_id(rs.getInt("quiz_id"));
                 q.setDescription(rs.getString("description"));
-                q.setEnseignantId(rs.getInt("enseignantId"));
+
                 q.setMatière(rs.getString("matiere"));
                 return q;
             }

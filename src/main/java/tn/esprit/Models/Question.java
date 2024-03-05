@@ -1,20 +1,23 @@
 package tn.esprit.Models;
 
-import java.util.List;
-
 public class Question {
     private int questionId ;
     private String content;
+    private int score;
 
     private Quiz quiz;
     public Question() {
     }
 
 
-    public Question(int questionId , String content, Quiz quiz) {
-        this.questionId  = questionId ;
+
+
+    public Question(int questionId, String content,  Quiz quiz,int score) {
+        this.questionId = questionId;
         this.content = content;
         this.quiz = quiz;
+        this.score = score;
+
     }
 
     public Question(int questionId) {
@@ -46,9 +49,17 @@ public class Question {
         this.quiz = quiz;
     }
 
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
     @Override
     public String toString() {
-        return   content  ;
+        return   content+ "                                                       " +score  ;
     }
 
 }
