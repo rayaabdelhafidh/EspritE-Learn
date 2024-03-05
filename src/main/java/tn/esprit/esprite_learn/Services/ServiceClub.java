@@ -8,6 +8,7 @@ import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.stream.Collectors;
 
 public class ServiceClub implements IService<Clubs> {
@@ -184,5 +185,17 @@ public class ServiceClub implements IService<Clubs> {
             throw new RuntimeException(ex);
         }
         return c;
+    }
+    public ArrayList<Clubs> TriClubs() {
+        ArrayList<Clubs> clubs = display();
+
+        // Sort the clubs by name
+        clubs.sort(Comparator.comparing(Clubs::getNomClub));
+
+        // Print the sorted clubs
+        for (Clubs club : clubs) {
+            System.out.println(club);
+        }
+        return clubs;
     }
 }

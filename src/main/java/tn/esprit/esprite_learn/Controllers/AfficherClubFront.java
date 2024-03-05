@@ -89,7 +89,7 @@ public class AfficherClubFront implements Initializable {
                 VBox eventBox = fxmlLoader.load();
                 ClubController controller = fxmlLoader.getController();
                 controller.data(club);
-                if (column == 6) {
+                if (column == 3) {
                     column = 0;
                     ++row;
                 }
@@ -100,5 +100,47 @@ public class AfficherClubFront implements Initializable {
             throw new RuntimeException(e);
         }
     }
+    @FXML
+    void retour(ActionEvent event) {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/tn/esprit/esprite_learn/interfaceUtil.fxml"));
+        try {
+            Parent root = fxmlLoader.load();
+            Scene scene = new Scene(root);
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow(); // Get the current stage
+            currentStage.close(); // Close the current stage
+            Stage newStage = new Stage();
+            newStage.setTitle("Dashboard!");
+            newStage.setScene(scene);
+            newStage.show();
+        } catch (IOException e) {
+            System.out.println("Error loading interfaceUtil.fxml: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void Tri(ActionEvent event) {
+        int column = 0;
+        int row = 1;
+        try {
+            ServiceClub sc = new ServiceClub();
+            ArrayList<Clubs> clubs = sc.TriClubs();
+            for (Clubs club: clubs) {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/tn/esprit/esprite_learn/Club.fxml"));
+                VBox eventBox = fxmlLoader.load();
+                ClubController controller = fxmlLoader.getController();
+                controller.data(club);
+                if (column == 3) {
+                    column = 0;
+                    ++row;
+                }
+                ClubContainer.add(eventBox, column++, row);
+                GridPane.setMargin(eventBox, new Insets(10));
+            }
+        } catch (SQLException | IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
 }

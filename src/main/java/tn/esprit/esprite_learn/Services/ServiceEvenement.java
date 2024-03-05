@@ -7,6 +7,7 @@ import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -177,5 +178,16 @@ public class ServiceEvenement implements IService<Evenement>{
             throw new RuntimeException(ex);
         }
         return c;
+    }
+
+    public ArrayList<Evenement> TriEvenement() {
+        ArrayList<Evenement> evenements = display();
+        evenements.sort(Comparator.comparing(Evenement::getNomEvenement));
+
+        // Print the sorted clubs
+        for (Evenement event : evenements) {
+            System.out.println(event);
+        }
+        return evenements;
     }
 }

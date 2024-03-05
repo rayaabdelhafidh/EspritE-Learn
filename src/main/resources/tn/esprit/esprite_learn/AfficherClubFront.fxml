@@ -26,6 +26,15 @@
                </font>
             </Label>
             <Separator orientation="VERTICAL" prefHeight="200.0" />
+            <Button mnemonicParsing="false" onAction="#retour" prefHeight="45.0" prefWidth="49.0" styleClass="transparent" stylesheets="@app.css">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="31.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@back.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
                   <TextField fx:id="search" promptText="Search" stylesheets="@app.css">
@@ -45,7 +54,18 @@
                   </Button>
                </children>
             </HBox>
-            <Pane prefHeight="200.0" prefWidth="200.0" />
+            <Pane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Button layoutX="148.0" layoutY="4.0" mnemonicParsing="false" onAction="#Tri" styleClass="transparent" stylesheets="@app.css">
+                     <graphic>
+                        <ImageView fitHeight="22.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons8-sort-alpha-up-32.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children></Pane>
          </children>
       </HBox>
    </top>

@@ -129,4 +129,47 @@ public class AfficherEvenementFront implements Initializable {
         }
     }
 
+    @FXML
+    void retour(ActionEvent event) {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/tn/esprit/esprite_learn/AfficherClubFront.fxml"));
+        try {
+            Parent root = fxmlLoader.load();
+            Scene scene = new Scene(root);
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow(); // Get the current stage
+            currentStage.close(); // Close the current stage
+            Stage newStage = new Stage();
+            newStage.setTitle("Dashboard!");
+            newStage.setScene(scene);
+            newStage.show();
+        } catch (IOException e) {
+            System.out.println("Error loading interfaceUtil.fxml: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void Tri(ActionEvent event) {
+        int column = 0;
+        int row = 1;
+        try {
+            ServiceEvenement sc = new ServiceEvenement();
+            ArrayList<Evenement> evenements = sc.TriEvenement();
+            for (Evenement evenement : evenements) {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/tn/esprit/esprite_learn/Evenement.fxml"));
+                VBox eventBox = fxmlLoader.load();
+                EvenementController controller = fxmlLoader.getController();
+                controller.data(evenement);
+                if (column == 6) {
+                    column = 0;
+                    ++row;
+                }
+                EventContainer.add(eventBox, column++, row);
+                GridPane.setMargin(eventBox, new Insets(10));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
