@@ -37,5 +37,10 @@
          </image>
       </ImageView>
       <ComboBox fx:id="cbsemester" layoutX="789.0" layoutY="330.0" prefWidth="150.0" promptText="Semester" />
+      <ImageView fx:id="gotoens" fitHeight="49.0" fitWidth="47.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#gotoenseignant" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img/back.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

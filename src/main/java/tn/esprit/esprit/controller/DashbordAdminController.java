@@ -13,6 +13,10 @@ public class DashbordAdminController {
     private Button logout;
     @FXML
     private Button btnu;
+    @FXML
+    private Button btnc;
+    @FXML
+    private Button presence;
 
 
     @FXML
@@ -37,6 +41,28 @@ public class DashbordAdminController {
             System.out.println(ex.getMessage());
         }
     }
+    @FXML
+    void gotopresence(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxmlclasse/GestPresence_VueAdmin.fxml"));
+            Parent root = loader.load();
+            presence.getScene().setRoot(root);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    @FXML
+    void gotoclasse(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxmlclasse/GestClasse_VueAdmin.fxml"));
+            Parent root = loader.load();
+            btnc.getScene().setRoot(root);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
 
 
 }

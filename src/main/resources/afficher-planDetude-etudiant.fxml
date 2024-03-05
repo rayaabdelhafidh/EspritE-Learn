@@ -18,11 +18,21 @@
             <font>
                 <Font name="System Bold" size="27.0" />
             </font></Text>
-        <ListView fx:id="listPlanDetude" layoutX="55.0" layoutY="178.0" prefHeight="362.0" prefWidth="470.0" />
+        <ListView fx:id="listPlanDetude" layoutX="143.0" layoutY="168.0" prefHeight="430.0" prefWidth="726.0" />
         <ImageView fitHeight="131.0" fitWidth="122.0" layoutX="915.0" layoutY="581.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@img/logo.png" />
             </image>
         </ImageView>
+      <ImageView fx:id="gotoetud" fitHeight="56.0" fitWidth="52.0" layoutX="14.0" layoutY="27.0" onMouseClicked="#gotoetudiant" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img/back.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="78.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img/plan.png" />
+         </image>
+      </ImageView>
     </children>
 </AnchorPane>

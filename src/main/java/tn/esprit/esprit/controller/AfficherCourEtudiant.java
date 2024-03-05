@@ -7,13 +7,18 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import tn.esprit.esprit.MainFx;
 import tn.esprit.esprit.models.Cour;
 import tn.esprit.esprit.services.ServiceCour;
+
 
 import java.io.IOException;
 import java.util.HashSet;
@@ -30,6 +35,8 @@ public class AfficherCourEtudiant {
     private ComboBox<String> cbtri;
     @FXML
     private TextField tfrecherche;
+    @FXML
+    private ImageView gotoetud;
     @FXML
     public void initialize() {
         refresh(sc.afficher());
@@ -95,5 +102,16 @@ public class AfficherCourEtudiant {
 
             refresh(new HashSet<>(filteredList));
         });
+    }
+
+    @FXML
+    void gotoetudiant(MouseEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ProfileEtudiant.fxml"));
+            Parent root = loader.load();
+            gotoetud.getScene().setRoot(root);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 }

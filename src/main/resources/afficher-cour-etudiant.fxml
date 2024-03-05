@@ -9,8 +9,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
 <AnchorPane fx:id="anchorpane" prefHeight="704.0" prefWidth="1021.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.esprit.controller.AfficherCourEtudiant">
     <children>
@@ -19,11 +17,7 @@
                 <Image url="@img/esprit-ghazela.jpg" />
             </image>
         </ImageView>
-        <Text fill="#f22e2e" layoutX="662.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion Cours" wrappingWidth="247.40673828125">
-            <font>
-                <Font name="System Bold" size="32.0" />
-            </font></Text>
-        <ScrollPane layoutX="36.0" layoutY="60.0" prefHeight="670.0" prefWidth="598.0">
+        <ScrollPane layoutX="93.0" layoutY="60.0" prefHeight="670.0" prefWidth="780.0">
             <content>
                 <GridPane fx:id="grid">
                     <rowConstraints>
@@ -37,8 +31,13 @@
                 <Image url="@img/logo.png" />
             </image>
         </ImageView>
-      <TextField fx:id="tfrecherche" layoutX="49.0" layoutY="25.0" promptText="Recherche" />
+      <TextField fx:id="tfrecherche" layoutX="123.0" layoutY="25.0" promptText="Recherche" />
       <ComboBox fx:id="cbtri" layoutX="395.0" layoutY="25.0" prefWidth="150.0" promptText="Tri" />
       <Button layoutX="556.0" layoutY="25.0" mnemonicParsing="false" onAction="#tri" text="Tri" />
+      <ImageView fx:id="gotoetud" fitHeight="67.0" fitWidth="60.0" onMouseClicked="#gotoetudiant" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img/back.png" />
+         </image>
+      </ImageView>
     </children>
 </AnchorPane>

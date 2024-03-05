@@ -4,16 +4,21 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import tn.esprit.esprit.models.Matiere;
 import tn.esprit.esprit.models.PlanDetude;
 import tn.esprit.esprit.services.ServiceMatiere;
 import tn.esprit.esprit.services.ServicePlanDetude;
 import tn.esprit.esprit.services.ServiceUser;
+
+import java.io.IOException;
 
 public class AjouterMatiere {
 
@@ -37,6 +42,8 @@ public class AjouterMatiere {
 
     @FXML
     private TextField tfnommatiere;
+    @FXML
+    private ImageView gotoens;
    ServiceMatiere sm=new ServiceMatiere();
     ServicePlanDetude sp=new ServicePlanDetude();
     ServiceUser su=new ServiceUser();
@@ -187,5 +194,14 @@ public class AjouterMatiere {
        listMatiere.setItems(data);
 
    }
-
+    @FXML
+    void gotoenseignant(MouseEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ProfileEnseignant.fxml"));
+            Parent root = loader.load();
+            gotoens.getScene().setRoot(root);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 }

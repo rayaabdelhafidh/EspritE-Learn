@@ -44,12 +44,17 @@
                </font>
             </Button>
             <Line endX="100.0" layoutX="100.0" layoutY="73.0" startX="-100.0" stroke="WHITE" strokeWidth="2.0" />
-            <Button layoutX="25.0" layoutY="285.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" text="Classe">
+            <Button fx:id="btnc" layoutX="25.0" layoutY="285.0" mnemonicParsing="false" onAction="#gotoclasse" prefHeight="30.0" prefWidth="150.0" text="Classe">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
             <Button layoutX="25.0" layoutY="334.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" text="Clubs">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="presence" layoutX="24.0" layoutY="429.0" mnemonicParsing="false" onAction="#gotopresence" prefHeight="30.0" prefWidth="150.0" text="Presence">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
