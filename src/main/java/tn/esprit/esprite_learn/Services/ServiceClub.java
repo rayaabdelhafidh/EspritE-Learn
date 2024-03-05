@@ -2,6 +2,7 @@ package tn.esprit.esprite_learn.Services;
 
 import tn.esprit.esprite_learn.IService.IService;
 import tn.esprit.esprite_learn.Models.Clubs;
+import tn.esprit.esprite_learn.Models.Evenement;
 import tn.esprit.esprite_learn.utils.DataBase;
 import java.sql.*;
 import java.text.ParseException;
@@ -130,7 +131,7 @@ public class ServiceClub implements IService<Clubs> {
     public Clubs findbyId(int id) {
         ArrayList<Clubs> clubs = new ArrayList();
         String qry = "SELECT `IdClub`, `NomClub`, `DateFondation`, `TypeActivite`, `Description`, `NbMembres`, `Active` FROM `club` WHERE IdClub=?";
-        Clubs c;
+     Clubs c;
         try {
             PreparedStatement ps = cnx.prepareStatement(qry);
             ps.setInt(1, id);
@@ -158,5 +159,30 @@ public class ServiceClub implements IService<Clubs> {
 
     public ArrayList<String> getNom(){
         return (ArrayList<String>) display().stream().map(m->m.getNomClub()).collect(Collectors.toList());
+    }
+
+    public Clubs ChercherClub(String nom){
+        ArrayList<tn.esprit.esprite_learn.Models.Evenement> evenements = new ArrayList();
+        String qry = "SELECT `IdClub`, `NomClub`, `DateFondation`, `TypeActivite`, `Description`, `NbMembres`, `Active` FROM `club` WHERE NomClub=?";
+        Clubs c;
+        try {
+            PreparedStatement ps = cnx.prepareStatement(qry);
+            ps.setString(1, nom);
+            ResultSet rs = ps.executeQuery();
+            c = new Clubs();
+            while (rs.next()) {
+                c.setIdClub(rs.getInt(1));
+                c.setNomClub(rs.getString(2));
+                c.setDateFondation(rs.getDate(3));
+                c.setTypeActivite(rs.getString(4));
+                c.setDescription(rs.getString(5));
+                c.setNbMembres(rs.getInt(6));
+                c.setActive(rs.getBoolean(7));
+                System.out.println("Le club cherché est : " + c.toString());
+            }
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+        return c;
     }
 }

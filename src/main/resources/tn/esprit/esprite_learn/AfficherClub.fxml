@@ -19,7 +19,7 @@
                   <content>
                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="305.0" prefWidth="598.0" styleClass="border-pane-two" stylesheets="@app.css">
                         <children>
-                           <ListView fx:id="clubView" layoutX="7.0" layoutY="8.0" prefHeight="216.0" prefWidth="200.0" stylesheets="@app.css">
+                           <ListView fx:id="clubView" layoutX="7.0" layoutY="8.0" prefHeight="257.0" prefWidth="200.0" stylesheets="@app.css">
                               <contextMenu>
                                  <ContextMenu>
                                     <items>
@@ -29,19 +29,19 @@
                               </contextMenu>
                            </ListView>
                            <ListView fx:id="detailsView" layoutX="253.0" layoutY="20.0" prefHeight="163.0" prefWidth="237.0" stylesheets="@app.css" />
-                           <Button fx:id="AfficherBtn" layoutX="75.0" layoutY="238.0" mnemonicParsing="false" onAction="#AfficherClub" styleClass="custom-button" stylesheets="@app.css" text="Refresh" />
                            <Button fx:id="ModifierBtn" layoutX="501.0" layoutY="20.0" mnemonicParsing="false" onAction="#ModifierClub" prefHeight="30.0" prefWidth="80.0" styleClass="custom-button" stylesheets="@app.css" text="Modifier" />
                            <Button fx:id="SupprimerBtn" layoutX="500.0" layoutY="57.0" mnemonicParsing="false" onAction="#SupprimerClub" styleClass="custom-button" stylesheets="@app.css" text="Supprimer" />
                            <Button fx:id="AjoutBtn" layoutX="500.0" layoutY="151.0" mnemonicParsing="false" onAction="#AjoutClub" prefHeight="30.0" prefWidth="83.0" styleClass="custom-button" stylesheets="@app.css" text="Ajouter" />
-                           <AnchorPane layoutX="499.0" layoutY="190.0" prefHeight="68.0" prefWidth="85.0">
-                              <children>
-                                 <ImageView fitHeight="81.0" fitWidth="99.0" layoutX="1.0" pickOnBounds="true" preserveRatio="true">
+                           <Button fx:id="AfficherBtn1" layoutX="292.0" layoutY="201.0" mnemonicParsing="false" onAction="#AfficherEvenementclub" styleClass="custom-button" stylesheets="@app.css" text="Evenements de ce club" />
+                           <Button layoutX="517.0" layoutY="209.0" mnemonicParsing="false" onAction="#retour" prefHeight="45.0" prefWidth="49.0" styleClass="transparent" stylesheets="@app.css">
+                              <graphic>
+                                 <ImageView fitHeight="30.0" fitWidth="31.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                       <Image url="@1.png" />
+                                       <Image url="@back.png" />
                                     </image>
                                  </ImageView>
-                              </children></AnchorPane>
-                           <Button fx:id="AfficherBtn1" layoutX="292.0" layoutY="201.0" mnemonicParsing="false" onAction="#AfficherEvenementclub" styleClass="custom-button" stylesheets="@app.css" text="Evenements de ce club" />
+                              </graphic>
+                           </Button>
                         </children>
                      </AnchorPane>
                   </content>

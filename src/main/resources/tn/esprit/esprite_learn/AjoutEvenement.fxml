@@ -8,6 +8,8 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -39,5 +41,14 @@
             <Button fx:id="upload" layoutX="300.0" layoutY="231.0" mnemonicParsing="false" onAction="#uploadImage" styleClass="custom-button" stylesheets="@app.css" text="Upload" />
          </children>
       </AnchorPane>
+      <Button layoutX="489.0" layoutY="44.0" mnemonicParsing="false" onAction="#retour" prefHeight="45.0" prefWidth="49.0" styleClass="transparent" stylesheets="@app.css">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="31.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@back.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
 </AnchorPane>

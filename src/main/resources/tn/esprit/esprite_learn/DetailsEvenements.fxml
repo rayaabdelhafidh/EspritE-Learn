@@ -55,7 +55,7 @@
                      </children>
                   </HBox>
                   <ImageView fitHeight="34.0" fitWidth="106.0" pickOnBounds="true" preserveRatio="true" />
-                  <Button fx:id="Btn" mnemonicParsing="false" onAction="#Acheter" styleClass="custom-button" stylesheets="@app.css" text="Button" />
+                  <Button fx:id="Btn" mnemonicParsing="false" onAction="#Acheter" styleClass="custom-button" stylesheets="@app.css" text="Acheter" />
                </children>
             </VBox>
          </children>

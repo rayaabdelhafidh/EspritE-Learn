@@ -3,6 +3,7 @@ package tn.esprit.esprite_learn.Controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -17,12 +18,14 @@ import tn.esprit.esprite_learn.Services.ServiceEvenement;
 import tn.esprit.esprite_learn.utils.DataBase;
 
 import java.io.IOException;
+import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-public class AfficherEvenement {
+public class AfficherEvenement implements Initializable {
 
     @FXML
     private Button AfficherBtn;
@@ -52,24 +55,6 @@ public class AfficherEvenement {
     public AfficherEvenement() throws SQLException {
     }
 
-    public void initialize() throws SQLException {
-        ContextMenu contextMenu = new ContextMenu();
-        MenuItem showMenuItem = new MenuItem("Show");
-        showMenuItem.setOnAction(this::ShowDetails);
-        contextMenu.getItems().add(showMenuItem);
-        eventList.setContextMenu(contextMenu);
-        DataBase db = DataBase.getInstance();
-        ServiceEvenement se = new ServiceEvenement();
-        ArrayList<Evenement> evenements = se.display();
-        // Clear existing items
-        eventList.getItems().clear();
-
-        for (Evenement evenmt : evenements) {
-            String name = evenmt.getNomEvenement();
-            System.out.println("Event Name: " + name);
-            eventList.getItems().add(name);
-        }
-    }
     @FXML
     void ShowDetails(ActionEvent event){
         Evenement selectedClub = onSelectedItem();
@@ -175,7 +160,7 @@ public class AfficherEvenement {
             ArrayList<Evenement> evenements= new ArrayList<>();
             evenements= sc.findByClub(c);
             for(Evenement selectedClub:evenements) {
-                Image defaultImage = new Image("C:/Users/abdel/OneDrive/Bureau/1.png");
+                Image defaultImage = new Image("file:///C:/Users/abdel/OneDrive/Bureau/126.png");
                 Clubs cl=scc.findbyId(selectedClub.getClub());
                 detailsList.getItems().clear();
                 detailsList.getItems().add("Nom de l'evenement: " + selectedClub.getNomEvenement());
@@ -216,5 +201,50 @@ public class AfficherEvenement {
         }
     }
 
+    @FXML
+    void retour(ActionEvent event) {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/tn/esprit/esprite_learn/interfaceUtil.fxml"));
+        try {
+            Parent root = fxmlLoader.load();
+            Scene scene = new Scene(root);
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow(); // Get the current stage
+            currentStage.close(); // Close the current stage
+            Stage newStage = new Stage();
+            newStage.setTitle("Dashboard!");
+            newStage.setScene(scene);
+            newStage.show();
+        } catch (IOException e) {
+            System.out.println("Error loading interfaceUtil.fxml: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        ContextMenu contextMenu = new ContextMenu();
+        MenuItem showMenuItem = new MenuItem("Show");
+        showMenuItem.setOnAction(this::ShowDetails);
+        contextMenu.getItems().add(showMenuItem);
+        eventList.setContextMenu(contextMenu);
+        try {
+            DataBase db = DataBase.getInstance();
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+        ServiceEvenement se = null;
+        try {
+            se = new ServiceEvenement();
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+        ArrayList<Evenement> evenements = se.display();
+        // Clear existing items
+        eventList.getItems().clear();
+
+        for (Evenement evenmt : evenements) {
+            String name = evenmt.getNomEvenement();
+            System.out.println("Event Name: " + name);
+            eventList.getItems().add(name);
+        }
+    }
 }

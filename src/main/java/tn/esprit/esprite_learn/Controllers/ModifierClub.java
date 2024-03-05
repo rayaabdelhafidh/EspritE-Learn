@@ -145,4 +145,22 @@ public class ModifierClub {
         alert.setContentText(content);
         alert.showAndWait();
     }
+
+    @FXML
+    void retour(ActionEvent event) {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/tn/esprit/esprite_learn/AfficherClub.fxml"));
+        try {
+            Parent root = fxmlLoader.load();
+            Scene scene = new Scene(root);
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow(); // Get the current stage
+            currentStage.close(); // Close the current stage
+            Stage newStage = new Stage();
+            newStage.setTitle("Clubs!");
+            newStage.setScene(scene);
+            newStage.show();
+        } catch (IOException e) {
+            System.out.println("Error loading AfficherClub.fxml: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
 }

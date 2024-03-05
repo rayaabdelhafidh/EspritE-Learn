@@ -3,6 +3,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -15,10 +16,12 @@ import tn.esprit.esprite_learn.Services.ServiceClub;
 import tn.esprit.esprite_learn.utils.DataBase;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-public class AfficherClub {
+public class AfficherClub implements Initializable {
 
     @FXML
     private Button AfficherBtn;
@@ -51,7 +54,7 @@ public class AfficherClub {
     public AfficherClub() {
     }
 
-    public void AfficherClub(ActionEvent event) throws SQLException {
+    /*public void AfficherClub(ActionEvent event) throws SQLException {
         DataBase db = DataBase.getInstance();
         ServiceClub sc = new ServiceClub();
         ArrayList<Clubs> clubs = sc.display();
@@ -64,7 +67,7 @@ public class AfficherClub {
         }
         clubView.getItems().add("jhdjdh");
 
-    }
+    }*/
 
     @FXML
     void AjoutClub(ActionEvent event) {
@@ -140,12 +143,22 @@ public class AfficherClub {
         newStage.show();
     }
 
-   public void initialize() {
+   public void initialize() throws SQLException {
         ContextMenu contextMenu = new ContextMenu();
         MenuItem showMenuItem = new MenuItem("Show");
         showMenuItem.setOnAction(this::ShowDetails);
         contextMenu.getItems().add(showMenuItem);
         clubView.setContextMenu(contextMenu);
+       DataBase db = DataBase.getInstance();
+       ServiceClub sc = new ServiceClub();
+       ArrayList<Clubs> clubs = sc.display();
+       clubView.getItems().clear();
+
+       for (Clubs club : clubs) {
+           String name = club.getNomClub();
+           System.out.println("Club Name: " + name);
+           clubView.getItems().add(name);
+       }
     }
    @FXML
     void ShowDetails(ActionEvent event){
@@ -201,5 +214,51 @@ public class AfficherClub {
         stage.setTitle("Evenements");
         stage.setScene(scene);
         stage.show();
+    }
+
+    @FXML
+    void retour(ActionEvent event) {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/tn/esprit/esprite_learn/interfaceUtil.fxml"));
+        try {
+            Parent root = fxmlLoader.load();
+            Scene scene = new Scene(root);
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow(); // Get the current stage
+            currentStage.close(); // Close the current stage
+            Stage newStage = new Stage();
+            newStage.setTitle("Dashboard!");
+            newStage.setScene(scene);
+            newStage.show();
+        } catch (IOException e) {
+            System.out.println("Error loading interfaceUtil.fxml: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        ContextMenu contextMenu = new ContextMenu();
+        MenuItem showMenuItem = new MenuItem("Show");
+        showMenuItem.setOnAction(this::ShowDetails);
+        contextMenu.getItems().add(showMenuItem);
+        clubView.setContextMenu(contextMenu);
+        try {
+            DataBase db = DataBase.getInstance();
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+        ServiceClub sc = null;
+        try {
+            sc = new ServiceClub();
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+        ArrayList<Clubs> clubs = sc.display();
+        clubView.getItems().clear();
+
+        for (Clubs club : clubs) {
+            String name = club.getNomClub();
+            System.out.println("Club Name: " + name);
+            clubView.getItems().add(name);
+        }
     }
 }

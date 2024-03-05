@@ -8,9 +8,10 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.esprite_learn.Controllers.ModifierEvenement">
    <children>
@@ -36,10 +37,19 @@
                   <Button fx:id="ModifierBtn" defaultButton="true" layoutX="468.0" layoutY="159.0" mnemonicParsing="false" onAction="#ModifierEvenement" styleClass="custom-button" stylesheets="@app.css" text="Modifier" textFill="#b90606" />
                   <TextField fx:id="LieuTF" alignment="TOP_LEFT" layoutX="161.0" layoutY="154.0" prefHeight="39.0" prefWidth="201.0" promptText="inserer lieu" styleClass="custom-text-field" stylesheets="@app.css" />
                   <DatePicker fx:id="DateTF" layoutX="161.0" layoutY="84.0" prefHeight="25.0" prefWidth="201.0" styleClass="custom-text-field" stylesheets="@app.css" />
-                  <Button fx:id="AfficherBtn" defaultButton="true" layoutX="468.0" layoutY="214.0" mnemonicParsing="false" onAction="#AfficherEvenement" prefHeight="32.0" prefWidth="64.0" styleClass="custom-button" stylesheets="@app.css" text="Liste" textAlignment="CENTER" textFill="#3e433fbd" textOverrun="CENTER_ELLIPSIS" wrapText="true" />
+                  <Button fx:id="AfficherBtn" defaultButton="true" layoutX="472.0" layoutY="215.0" mnemonicParsing="false" onAction="#AfficherEvenement" prefHeight="32.0" prefWidth="64.0" styleClass="custom-button" stylesheets="@app.css" text="Liste" textAlignment="CENTER" textFill="#3e433fbd" textOverrun="CENTER_ELLIPSIS" wrapText="true" />
                   <Separator layoutX="407.0" layoutY="-1.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="0.0" />
                   <ComboBox fx:id="clubCombo" layoutX="99.0" layoutY="360.0" prefWidth="150.0" />
                   <Button fx:id="upload" layoutX="300.0" layoutY="231.0" mnemonicParsing="false" onAction="#uploadImage" styleClass="custom-button" stylesheets="@app.css" text="Upload" />
+                  <Button layoutX="479.0" layoutY="34.0" mnemonicParsing="false" onAction="#retour" prefHeight="45.0" prefWidth="49.0" styleClass="transparent" stylesheets="@app.css">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="31.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@back.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
                </children>
             </AnchorPane>
          </children>

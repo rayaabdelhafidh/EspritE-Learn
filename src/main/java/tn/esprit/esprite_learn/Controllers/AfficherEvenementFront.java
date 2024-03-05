@@ -29,7 +29,6 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class AfficherEvenementFront implements Initializable {
-
     @FXML
     private Button AfficherBtn;
     @FXML

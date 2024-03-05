@@ -70,7 +70,8 @@ public class Acheter {
 
     @FXML
     private Label total;
-    private float total_pay;
+
+    private int total_pay;
 
     private TextField spinnerTextField;
     private String uniqueToken;
@@ -81,9 +82,8 @@ public class Acheter {
         total_pay = evenement.getPrixEvenement();
         int mm = LocalDate.now().getMonthValue();
         int yy = LocalDate.now().getYear();
-        String total_txt = "Total : " + String.valueOf(total_pay) + " Dt.";
+        String total_txt = String.valueOf(total_pay) + " Dt";
         total.setText(total_txt);
-
     }
     public void initialize(URL url, ResourceBundle rb) {
         anchor.sceneProperty().addListener((observable, oldValue, newValue) -> {
@@ -91,6 +91,7 @@ public class Acheter {
                 newValue.getStylesheets().add(getClass().getResource("/main.projet/css/style.css").toExternalForm());
             }
         });
+        total.setText(total_pay +"dt");
     }
 
     @FXML
