@@ -1,9 +1,8 @@
-package tn.esprit.esprit.controller.controlleurclasse;
+package tn.esprit.esprit.controller.gestionclasse;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import tn.esprit.esprit.models.modelsclasse.classe;
-
+import tn.esprit.Models.classe;
 
 public class ClassCardView {
     @FXML

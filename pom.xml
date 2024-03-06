@@ -55,7 +55,6 @@
           <artifactId>controlsfx</artifactId>
           <version>11.2.0</version>
       </dependency>
-      <!-- exel-->
       <dependency>
           <groupId>org.apache.poi</groupId>
           <artifactId>poi</artifactId>
@@ -66,24 +65,6 @@
           <artifactId>poi-ooxml</artifactId>
           <version>5.2.3</version>
       </dependency>
-      <!-- dependencies Oumaima-->
-      <dependency>
-          <groupId>javax.activation</groupId>
-          <artifactId>activation</artifactId>
-          <version>1.1.1</version>
-      </dependency>
-
-      <dependency>
-          <groupId>org.apache.pdfbox</groupId>
-          <artifactId>pdfbox</artifactId>
-          <version>2.0.24</version> <!-- Or the latest version available -->
-      </dependency>
-      <dependency>
-          <groupId>com.sun.mail</groupId>
-          <artifactId>javax.mail</artifactId>
-          <version>1.6.2</version>
-      </dependency>
-      <!-- Fin dependencies Oumaima-->
   </dependencies>
 
   <build>

@@ -4,12 +4,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
-import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
@@ -55,8 +52,6 @@ public class AjouterCour implements OnChangeListener {
 
     @FXML
     private TextField tftitre;
-    @FXML
-    private ImageView gotoens;
     int idModifier;
     ServiceCour sc=new ServiceCour();
     ServiceMatiere sm=new ServiceMatiere();
@@ -212,16 +207,6 @@ public class AjouterCour implements OnChangeListener {
         if(file!=null){
             String filename= file.getName();
             tfimage.setText(filename);
-        }
-    }
-    @FXML
-    void gotoenseignant(MouseEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ProfileEnseignant.fxml"));
-            Parent root = loader.load();
-            gotoens.getScene().setRoot(root);
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
         }
     }
 }

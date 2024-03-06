@@ -1,9 +1,7 @@
-package tn.esprit.esprit.iservice.servicesclasse;
+package tn.esprit.IServices;
 
-
-
-import tn.esprit.esprit.models.modelsclasse.Presence;
-import tn.esprit.esprit.models.modelsclasse.Seance;
+import tn.esprit.Models.Presence;
+import tn.esprit.Models.Seance;
 
 import java.sql.Date;
 import java.sql.SQLException;

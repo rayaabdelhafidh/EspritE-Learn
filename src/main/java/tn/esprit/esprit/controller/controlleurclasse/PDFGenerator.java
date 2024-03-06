@@ -1,11 +1,10 @@
-package tn.esprit.esprit.controller.controlleurclasse;
+package tn.esprit.esprit.controller.gestionclasse;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
-import tn.esprit.esprit.models.modelsclasse.Presence;
-
+import tn.esprit.Models.Presence;
 
 import java.io.File;
 import java.io.IOException;

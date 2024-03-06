@@ -1,23 +1,21 @@
-package tn.esprit.esprit.services.serviceclasse;
+package tn.esprit.IServices;
 
-
-import tn.esprit.esprit.iservice.servicesclasse.IserviceC;
-import tn.esprit.esprit.models.modelsclasse.classe;
-import tn.esprit.esprit.models.modelsclasse.filiere;
-import tn.esprit.esprit.models.modelsclasse.niveaux;
-import tn.esprit.esprit.utils.MyDb;
+import tn.esprit.Models.classe;
+import tn.esprit.Models.filiere;
+import tn.esprit.Models.niveaux;
+import tn.esprit.utilse.Database;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import static tn.esprit.esprit.models.modelsclasse.niveaux.valueOf;
 
+import static tn.esprit.Models.niveaux.valueOf;
 
-public class ServiceClasse implements IserviceC<classe> {
+public class ServiceClasse implements IserviceC <classe> {
     final Connection cnx ;
     public ServiceClasse(){
-        cnx = MyDb.getInstance().getCnx();
+        cnx =Database.getInstance().getCnx();
 
     }
 
@@ -78,7 +76,7 @@ public class ServiceClasse implements IserviceC<classe> {
 
 
 
-   /* @Override
+    @Override
     public classe update(classe cl) {
         try {
             String req = "UPDATE classe SET nomClasse = ?, filiere = ?, nbreEtudi = ?, niveaux = ? WHERE idClasse = ?";
@@ -101,31 +99,7 @@ public class ServiceClasse implements IserviceC<classe> {
         }
 
         return cl;
-    }*/
-   @Override
-   public classe update(classe cl) {
-       try {
-           String req = "UPDATE classe SET nomClasse = ?, filiere = ?, nbreEtudi = ?, niveaux = ? WHERE idClasse = ?";
-           PreparedStatement pstmt = cnx.prepareStatement(req);
-           pstmt.setString(1, cl.getNomClasse());
-           pstmt.setString(2, cl.getFiliere().name());
-           pstmt.setInt(3, cl.getNbreEtud());
-           pstmt.setString(4, cl.getNiveaux().name());
-           pstmt.setInt(5, cl.getidC()); // Set the id for the WHERE clause
-
-           int rowsUpdated = pstmt.executeUpdate();
-
-           if (rowsUpdated > 0) {
-               System.out.println("Classe " + cl.getidC() + " Modifiée !");
-           } else {
-               System.out.println("Aucune classe modifiée !");
-           }
-       } catch (SQLException e) {
-           System.err.println("Erreur lors de la mise à jour de la classe : " + e.getMessage());
-       }
-
-       return cl;
-   }
+    }
 
     @Override
     public void delete(int cl)throws SQLException {

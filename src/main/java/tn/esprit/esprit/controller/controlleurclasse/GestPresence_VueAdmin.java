@@ -1,4 +1,4 @@
-package tn.esprit.esprit.controller.controlleurclasse;
+package tn.esprit.esprit.controller.gestionclasse;
 
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -6,9 +6,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
-import tn.esprit.esprit.models.modelsclasse.Presence;
-import tn.esprit.esprit.services.serviceclasse.ServicePresence;
-
+import tn.esprit.IServices.ServicePresence;
+import tn.esprit.Models.Presence;
 
 import java.awt.*;
 import java.io.File;
@@ -108,8 +107,8 @@ public class GestPresence_VueAdmin implements Initializable {
     @FXML
     void GenerateExcel(ActionEvent event) {
         ServicePresence sp=new ServicePresence();
-        String filename="presence.xlsx";
-        File file=new File("C:\\Users\\21646\\Downloads\\EspritE-Learn-gestion_user-khalilNaddari\\src\\main\\resources\\excel\\"+filename);
+        String filename="PlandEtude.xlsx";
+        File file=new File("C:\\Users\\21629\\Downloads\\EspritE-Learn-gestionClasse_OmaimaBhd\\EspritE-Learn-gestionClasse_OmaimaBhd\\prj3a22\\src\\main\\resources\\exel"+filename);
         ExcelGenerator.exportToExcel(sp.getAll(),file);
         //Notifications.create().title("Exel").text("le fichier exel et en train d'ouvrir").hideAfter(Duration.seconds(5)).showInformation();
         if(file.exists()){

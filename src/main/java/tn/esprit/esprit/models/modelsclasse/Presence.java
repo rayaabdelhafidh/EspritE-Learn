@@ -1,4 +1,4 @@
-package tn.esprit.esprit.models.modelsclasse;
+package tn.esprit.Models;
 
 import java.time.LocalDate;
 import java.util.Date;
@@ -21,7 +21,7 @@ public class Presence {
     }
 
 
-    public Presence(int idPresence, Date date, classe classe, Seance seance, List<classe> classes, String nomClasse, int idClasse) {
+    public Presence(int idPresence, Date date, tn.esprit.Models.classe classe, Seance seance, List<tn.esprit.Models.classe> classes, String nomClasse, int idClasse) {
         this.idPresence = idPresence;
         this.date = date;
         this.classe = classe;

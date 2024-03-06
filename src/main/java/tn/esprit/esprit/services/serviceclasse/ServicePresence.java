@@ -1,11 +1,7 @@
-package tn.esprit.esprit.services.serviceclasse;
+package tn.esprit.IServices;
 
-
-
-import tn.esprit.esprit.iservice.servicesclasse.InServicePresence;
-import tn.esprit.esprit.models.modelsclasse.Presence;
-import tn.esprit.esprit.models.modelsclasse.Seance;
-import tn.esprit.esprit.utils.MyDb;
+import tn.esprit.Models.*;
+import tn.esprit.utilse.Database;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -15,7 +11,7 @@ public class ServicePresence implements InServicePresence {
     final Connection cnx;
 
     public ServicePresence() {
-        cnx = MyDb.getInstance().getCnx();
+        cnx = Database.getInstance().getCnx();
     }
 
     @Override
@@ -98,7 +94,7 @@ public class ServicePresence implements InServicePresence {
             String req = "UPDATE presence SET  date = ?, seance = ? WHERE idPresence = ?";
             PreparedStatement pstmt = cnx.prepareStatement(req);
           //  pstmt.setString(1, EtP.name());
-            pstmt.setDate(1, new Date(newDate.getTime())); // Convertir la date en java.sql.Date
+            pstmt.setDate(1, new java.sql.Date(newDate.getTime())); // Convertir la date en java.sql.Date
             pstmt.setString(2, newSeance.name());
             pstmt.setInt(3, Pr.getIdPresence()); // Set the id for the WHERE clause
 
@@ -126,7 +122,7 @@ public class ServicePresence implements InServicePresence {
 
         try (PreparedStatement pstmt = cnx.prepareStatement(query)) {
             pstmt.setInt(1, idEtudiant);
-            pstmt.setDate(2, new Date(date.getTime()));
+            pstmt.setDate(2, new java.sql.Date(date.getTime()));
             pstmt.setString(3, seance.toString());
 
             try (ResultSet rs = pstmt.executeQuery()) {

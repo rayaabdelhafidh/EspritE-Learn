@@ -1,4 +1,4 @@
-package tn.esprit.esprit.models.modelsclasse;
+package tn.esprit.Models;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ public class classe {
 
     niveaux niveaux;
     private List<Presence> presences;
-    //private List<Personne> etudiants;
+    private List<Personne> etudiants;
 
     public classe(String nomClasse,filiere filiere, int nbreEtud,  niveaux niveaux) {
         this.nomClasse = nomClasse;

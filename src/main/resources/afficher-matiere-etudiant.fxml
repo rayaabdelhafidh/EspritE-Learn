@@ -20,7 +20,7 @@
             <font>
                 <Font name="System Bold" size="32.0" />
             </font></Text>
-        <ListView fx:id="listMatiere" layoutX="137.0" layoutY="192.0" prefHeight="454.0" prefWidth="703.0" />
+        <ListView fx:id="listMatiere" layoutX="160.0" layoutY="184.0" prefHeight="408.0" prefWidth="660.0" />
         <ImageView fitHeight="108.0" fitWidth="125.0" layoutX="923.0" layoutY="610.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@img/logo.png" />
@@ -28,10 +28,5 @@
         </ImageView>
       <ComboBox fx:id="cbtri" layoutX="160.0" layoutY="150.0" prefWidth="150.0" promptText="Tri" />
       <Button layoutX="326.0" layoutY="150.0" mnemonicParsing="false" onAction="#tri" text="Tri" />
-      <ImageView fx:id="gotoetud" fitHeight="85.0" fitWidth="64.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#gotoetudiant" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@img/back.png" />
-         </image>
-      </ImageView>
     </children>
 </AnchorPane>

@@ -1,4 +1,4 @@
-package tn.esprit.esprit.controller.controlleurclasse;
+package tn.esprit.esprit.controller.gestionclasse;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,12 +17,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import tn.esprit.esprit.MainFx;
-import tn.esprit.esprit.models.modelsclasse.classe;
-import tn.esprit.esprit.models.modelsclasse.filiere;
-import tn.esprit.esprit.models.modelsclasse.niveaux;
-import tn.esprit.esprit.services.serviceclasse.ServiceClasse;
-
+import tn.esprit.IServices.ServiceClasse;
+import tn.esprit.Models.classe;
+import tn.esprit.Models.filiere;
+import tn.esprit.Models.niveaux;
+import tn.esprit.utilse.MainFX;
 
 import java.io.IOException;
 import java.net.URL;
@@ -213,42 +212,6 @@ public class GestClasse_VueAdmin implements Initializable {
     }
 
 
-    /*@FXML
-    void updateClasse(ActionEvent event) {
-
-        // Vérification des champs
-        if (!verifUpdateClasse()) {
-            return;
-        }
-
-        // Récupération des valeurs saisies dans l'interface utilisateur
-        String nomClassModif = labelNomModif.getText();
-        // String idCl = idDonnePourModif.getText();
-        int nombreEtudiants = Integer.parseInt(NbreEtudeLabel.getText());
-        filiere selectedFiliere = filiere.valueOf(lbFiliereModif.getValue());
-        niveaux selectedNiveau = niveaux.valueOf(lbNiveauModif.getValue());
-        if (!isNomCompatibleAvecNiveau(nomClassModif, selectedNiveau)) {
-            showAlert(Alert.AlertType.ERROR, "Erreur", "Le nom de la classe n'est pas compatible avec le niveau sélectionné !");
-            return;
-        }
-        // Création d'un objet classe avec les valeurs saisies
-        classe cl = new classe();
-        // cl.setidC(Integer.parseInt(idCl));
-        cl.setNomClasse(nomClassModif);
-        cl.setNbreEtud(nombreEtudiants);
-        cl.setFiliere(selectedFiliere);
-        cl.setNiveaux(selectedNiveau);
-
-        // Appel du service pour mettre à jour la classe
-        ServiceClasse svc = new ServiceClasse();
-        svc.update(cl);
-
-        // Affichage d'un message de succès
-        showAlert(Alert.AlertType.INFORMATION, "Succès", "Classe mise à jour avec succès !");
-        initialize(null, null);
-        loadDate2();
-
-    }*/
     @FXML
     void updateClasse(ActionEvent event) {
 
@@ -285,7 +248,6 @@ public class GestClasse_VueAdmin implements Initializable {
         loadDate2();
 
     }
-
 
 
 
@@ -516,7 +478,7 @@ public class GestClasse_VueAdmin implements Initializable {
         for(classe c:list){
             try {
 
-                FXMLLoader card=new FXMLLoader(MainFx.class.getResource("/fxmlclasse/classe-card-view.fxml"));
+                FXMLLoader card=new FXMLLoader(MainFX.class.getResource("/classe-card-view.fxml"));
                 AnchorPane anchorPane=card.load();
                 ClassCardView item=card.getController();
                 item.remplireData(c);
@@ -573,7 +535,7 @@ public class GestClasse_VueAdmin implements Initializable {
     @FXML
     void GoToStatistique(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxmlclasse/Statistique.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Statistique.fxml"));
             Parent root = loader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));

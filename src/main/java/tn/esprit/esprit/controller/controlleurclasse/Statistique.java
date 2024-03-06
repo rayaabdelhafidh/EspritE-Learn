@@ -1,12 +1,11 @@
-package tn.esprit.esprit.controller.controlleurclasse;
+package tn.esprit.esprit.controller.gestionclasse;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
-import tn.esprit.esprit.models.modelsclasse.filiere;
-import tn.esprit.esprit.services.serviceclasse.ServiceClasse;
-
+import tn.esprit.IServices.ServiceClasse;
+import tn.esprit.Models.filiere;
 
 import java.util.HashMap;
 import java.util.Map;

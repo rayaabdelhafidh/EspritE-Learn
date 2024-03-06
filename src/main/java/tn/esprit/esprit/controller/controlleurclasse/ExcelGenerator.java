@@ -1,12 +1,11 @@
-package tn.esprit.esprit.controller.controlleurclasse;
+package tn.esprit.esprit.controller.gestionclasse;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import tn.esprit.esprit.models.modelsclasse.Presence;
-
+import tn.esprit.Models.Presence;
 
 import java.io.File;
 import java.io.FileOutputStream;

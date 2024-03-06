@@ -6,9 +6,6 @@ module tn.esprit.esprit {
     requires org.apache.poi.ooxml;
     requires java.desktop;
     requires org.controlsfx.controls;
-    requires activation;
-    requires java.mail;
-    requires org.apache.pdfbox;
 
 
     exports tn.esprit.esprit.test;
@@ -19,8 +16,7 @@ module tn.esprit.esprit {
     opens tn.esprit.esprit to javafx.fxml;
 
 
-    exports tn.esprit.esprit.controller.controlleurclasse;
-    opens tn.esprit.esprit.controller.controlleurclasse to javafx.fxml;
-    opens tn.esprit.esprit.models.modelsclasse to javafx.base;
+
+
 
 }

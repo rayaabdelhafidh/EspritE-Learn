@@ -32,7 +32,7 @@
       <ComboBox fx:id="cbmatiere" layoutX="689.0" layoutY="415.0" prefWidth="150.0" promptText="matiere" />
       <Button layoutX="821.0" layoutY="513.0" mnemonicParsing="false" onAction="#ajouterCour" text="ajouter" />
       <Button layoutX="689.0" layoutY="513.0" mnemonicParsing="false" onAction="#modifierCour" text="Modifier" />
-      <ScrollPane layoutY="38.0" prefHeight="657.0" prefWidth="598.0">
+      <ScrollPane layoutX="5.0" layoutY="17.0" prefHeight="670.0" prefWidth="598.0">
          <content>
             <GridPane fx:id="grid">
               <rowConstraints>
@@ -48,10 +48,5 @@
       </ImageView>
       <Button layoutX="708.0" layoutY="209.0" mnemonicParsing="false" onAction="#uploadPDF" text="Upload" />
       <Button layoutX="909.0" layoutY="209.0" mnemonicParsing="false" onAction="#uploadimage" text="Upload" />
-      <ImageView fx:id="gotoens" fitHeight="60.0" fitWidth="55.0" layoutY="-5.0" onMouseClicked="#gotoenseignant" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@img/back.png" />
-         </image>
-      </ImageView>
    </children>
 </AnchorPane>

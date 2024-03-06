@@ -1,4 +1,4 @@
-package tn.esprit.esprit.models.modelsclasse;
+package tn.esprit.Models;
 
 public enum Seance {
 S1,
